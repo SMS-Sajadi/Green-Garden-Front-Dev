@@ -1,9 +1,0 @@
-/env/
-/.idea/.gitignore
-/.idea/vcs.xml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/modules.xml
-/.idea/misc.xml
-/.idea/green_garden.iml
-/.idea/workspace.xml
-/db.sqlite3
