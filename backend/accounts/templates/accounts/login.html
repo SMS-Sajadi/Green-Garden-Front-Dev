@@ -1,0 +1,16 @@
+<html>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form action="" method="post">
+  <label for="email">email:</label><br>
+  <input type="text" id="email" name="email" value="email"><br>
+  <label for="pass">pass:</label><br>
+  <input type="text" id="pass" name="pass" value="pass"><br><br>
+  <input type="submit" value="Submit">
+  {% csrf_token %}
+</form>
+
+</body>
+</html>
