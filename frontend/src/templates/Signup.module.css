@@ -32,7 +32,7 @@ body {
   background-color: #000000d6;
 }
 .signup{
-  padding: 35px;
+  padding: 17px 26px;
   background-color:  rgba(82, 170, 121, 0.83);
   border-radius: 54px;
   border: 1px solid #75bf96;
@@ -45,7 +45,7 @@ body {
 }
 
 .signupDark{
-  padding: 35px;
+  padding: 17px 26px;
   background-color: rgba(103, 103, 103, 0.6);
   border-radius: 54px;
   border: 1px solid #cbcbcb24;
@@ -64,14 +64,14 @@ button{
 .form_title{
   text-align: center;
   font-size: 2.3rem;
-  margin-bottom: 32px;
+  margin: 0;
   color: #080808;
 }
 
 .form_titleDark{
   text-align: center;
   font-size: 2.3rem;
-  margin-bottom: 32px;
+  margin: 0;
   color: #ffffff;
 }
 
