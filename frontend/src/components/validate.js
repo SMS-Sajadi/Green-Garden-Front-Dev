@@ -15,16 +15,6 @@ export const validate = (data, type) => {
             delete errors.email
       }
 
-      if(!data.phone){
-            errors.phone = 'شماره الزامی '
-      }
-      else if(!data.phone.match(validPhone)){
-            errors.phone = 'شماره نامعتبر'
-      }
-      else{
-            delete errors.phone
-      }
-
 
       if(!data.password){
             errors.password = 'رمز الزامی'
@@ -63,6 +53,16 @@ export const validate = (data, type) => {
                   errors.isAccepted = 'پذیرش الزامی '
             }
       
+      
+            if(!data.phone){
+                  errors.phone = 'شماره الزامی '
+            }
+            else if(!data.phone.match(validPhone)){
+                  errors.phone = 'شماره نامعتبر'
+            }
+            else{
+                  delete errors.phone
+            }
       
 
       }
