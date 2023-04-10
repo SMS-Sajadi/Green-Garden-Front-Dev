@@ -36,9 +36,9 @@ body {
   background-color:  rgba(82, 170, 121, 0.83);
   border-radius: 54px;
   border: 1px solid #75bf96;
-  width: -moz-fit-content;
+
   width: fit-content;
-  height: -moz-fit-content;
+
   height: fit-content;
   margin: 20px;
   box-shadow: 0px 6px 14px rgb(41 95 65 / 83%);
@@ -49,9 +49,9 @@ body {
   background-color: rgba(103, 103, 103, 0.6);
   border-radius: 54px;
   border: 1px solid #cbcbcb24;
-  width: -moz-fit-content;
+
   width: fit-content;
-  height: -moz-fit-content;
+
   height: fit-content;
   margin: 20px;
   box-shadow: 0px 0px 14px rgb(41, 95, 65, 0.83);
@@ -161,7 +161,7 @@ button{
 .accept_div{
       display: flex;
       flex-direction: column;
-      height: 55px;    
+      height: 55px;
 }
 .accept_div label{
       font-size: 0.9rem;
@@ -250,7 +250,7 @@ button{
     .input_div label{
         font-size: 0.8rem;
     }
-      
+
     .form_input:focus,
     .uncomplated:focus{
         height: 20px;
@@ -270,7 +270,7 @@ button{
         font-size: 0.8rem;
     }
     .accept_div{
-        height: 35px;    
+        height: 35px;
   }
 
   .submit_btn{
@@ -293,6 +293,5 @@ button{
 }
 
 }
-
 
 

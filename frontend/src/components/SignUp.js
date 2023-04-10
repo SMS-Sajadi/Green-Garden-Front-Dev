@@ -1,5 +1,7 @@
 import React, {useState , useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+//API
+import axios from 'axios';
 
 import { validate } from './validate';
 import { ToastContainer } from 'react-toastify';
@@ -17,65 +19,83 @@ import ThemeChange from './ThemeChange';
 
 
 
+
+
 const SignUp = () => {
-const [data, setData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    isAccepted: false,
-});
 
-const [errors, setErrors] = useState({});
-const [touch, setTouch] = useState({});
-const [dark, setDark] = useState('false');
+    const navigate = useNavigate();
 
-useEffect(() => {
-    setErrors(validate(data, 'signup'));
-}, [data, touch])
+    const [data, setData] = useState({
+        name: '',
+        email: '',
+        phone_number: '',
+        password: '',
+        confirmPassword: '',
+        isAccepted: false,
+    });
 
-const changeHandeler = (event) => {
+    const [errors, setErrors] = useState({});
+    const [touch, setTouch] = useState({});
+    const [dark, setDark] = useState('false');
 
-    setTouch({...touch, [event.target.name]: true});
+    useEffect(() => {
+        setErrors(validate(data, 'signup'));
+    }, [data, touch])
 
-    if(event.target.name === 'isAccepted'){
-        setData({...data, [event.target.name]: event.target.checked})
-    }
-    else{
-        setData({...data, [event.target.name]: event.target.value})
-    }
-};
+    const changeHandeler = (event) => {
 
-// const focusHandeler = event => {
-//     setTouch({...touch, [event.target.name]: true});
-// }
+        setTouch({...touch, [event.target.name]: true});
 
-
-const submitHandeler = (event) => {
-        event.preventDefault();
-        if(!Object.keys(errors).length){
-            notify('با موفقیت ثبت نام شدید', 'success');
+        if(event.target.name === 'isAccepted'){
+            setData({...data, [event.target.name]: event.target.checked})
         }
-        else {
-            setTouch({
-                name: true,
-                email: true,
-                phone: true,
-                password: true,
-                confirmPassword: true,
-                isAccepted: true,
-            });
-            notify('اطلاعات نامعتبر است', 'error');
-
+        else{
+            setData({...data, [event.target.name]: event.target.value})
         }
-      
-}
+    };
 
-const manageTheme = () => {
-    setDark(!dark);
-    console.log(dark)
-}
+
+    const submitHandeler = (event) => {
+            let res = '';
+            event.preventDefault();
+            if(!Object.keys(errors).length){
+
+                const {name, email, password, phone_number} = data;
+                const context = {name: name,
+                    email: email,
+                    password: password,
+                    phone_number: phone_number,
+                }
+                axios.post('http://localhost:8000/accounts/signup/',  context)
+                    .then(respose => console.log(respose))
+                    .then(respose => res = respose)
+
+                if(!res.is_ok){
+                    notify('اطلاعات نامعتبر است', 'error');
+                }
+                else{
+                    navigate('/signUp/verify')
+                }
+            }
+            else {
+                setTouch({
+                    name: true,
+                    email: true,
+                    phone_number: true,
+                    password: true,
+                    confirmPassword: true,
+                    isAccepted: true,
+                });
+                notify('اطلاعات نامعتبر است', 'error');
+
+            }
+
+    }
+
+    const manageTheme = () => {
+        setDark(!dark);
+
+    }
 
     return (
         <div className={dark ?  Styles.container : Styles.containerDark }>
@@ -89,57 +109,57 @@ const manageTheme = () => {
                 <div className={Styles.form_holder}>
                         <div className={Styles.input_div}>
                             <label className={dark ? Styles.input_lable : Styles.input_lableDark }>نام کاربری</label>
-                            <input 
-                                type='text' 
-                                className={(errors.name && touch.name) ? Styles.uncomplated : Styles.form_input}  
-                                name='name'  
-                                value={data.name} 
-                                placeholder='نام کاربری' 
+                            <input
+                                type='text'
+                                className={(errors.name && touch.name) ? Styles.uncomplated : Styles.form_input}
+                                name='name'
+                                value={data.name}
+                                placeholder='نام کاربری'
                                 onChange={changeHandeler}/>
-                            
+
                             {errors.name && touch.name && <span>{errors.name}</span>}
                         </div>
                         <div className={Styles.input_div}>
                             <label className={dark ? Styles.input_lable : Styles.input_lableDark }>ایمیل</label>
-                            <input 
-                                type='email'  
-                                className={(errors.email && touch.email) ? Styles.uncomplated : Styles.form_input} 
-                                name='email'  
-                                value={data.email} 
-                                placeholder='ایمیل' 
+                            <input
+                                type='email'
+                                className={(errors.email && touch.email) ? Styles.uncomplated : Styles.form_input}
+                                name='email'
+                                value={data.email}
+                                placeholder='ایمیل'
                                 onChange={changeHandeler} />
                             {errors.email && touch.email && <span>{errors.email}</span>}
                         </div>
                         <div className={Styles.input_div}>
                             <label className={dark ? Styles.input_lable : Styles.input_lableDark }>شماره تلفن</label>
-                            <input 
-                                type='text'  
-                                className={(errors.phone && touch.phone) ? Styles.uncomplated : Styles.form_input} 
-                                name='phone'  
-                                value={data.phone} 
-                                placeholder='شماره تلفن' 
+                            <input
+                                type='text'
+                                className={(errors.phone_number && touch.phone_number) ? Styles.uncomplated : Styles.form_input}
+                                name='phone_number'
+                                value={data.phone_number}
+                                placeholder='شماره تلفن'
                                 onChange={changeHandeler} />
-                            {errors.phone && touch.phone && <span>{errors.phone}</span>}
+                            {errors.phone_number && touch.phone_number && <span>{errors.phone_number}</span>}
                         </div>
                         <div className={Styles.input_div}>
                             <label className={dark ? Styles.input_lable : Styles.input_lableDark }>رمز عبور</label>
-                            <input 
-                                type='password'  
-                                className={(errors.password && touch.password) ? Styles.uncomplated : Styles.form_input} 
-                                name='password'  
-                                value={data.password} 
-                                placeholder='رمز عبور' 
+                            <input
+                                type='password'
+                                className={(errors.password && touch.password) ? Styles.uncomplated : Styles.form_input}
+                                name='password'
+                                value={data.password}
+                                placeholder='رمز عبور'
                                 onChange={changeHandeler}/>
-                            {errors.password && touch.password && <span>{errors.password}</span>}
+                            {errors.password && touch.password && <span >{errors.password}</span>}
                         </div>
                         <div className={Styles.input_div}>
                             <label className={dark ? Styles.input_lable : Styles.input_lableDark }>تایید رمز عبور</label>
-                            <input 
-                                type="password" 
-                                 className={(errors.confirmPassword && touch.confirmPassword) ? Styles.uncomplated : Styles.form_input} 
-                                name='confirmPassword' 
-                                value={data.confirmPassword} 
-                                placeholder='تایید رمز عبور' 
+                            <input
+                                type="password"
+                                 className={(errors.confirmPassword && touch.confirmPassword) ? Styles.uncomplated : Styles.form_input}
+                                name='confirmPassword'
+                                value={data.confirmPassword}
+                                placeholder='تایید رمز عبور'
                                 onChange={changeHandeler}/>
                             {errors.confirmPassword && touch.confirmPassword && <span className={Styles.err}>{errors.confirmPassword}</span>}
                         </div>
@@ -150,8 +170,8 @@ const manageTheme = () => {
                                     <div className="checkbox-wrapper-12">
                                     <div className="cbx">
                                         <input id="cbx-12"
-                                         type="checkbox"  
-                                         name='isAccepted'  
+                                         type="checkbox"
+                                         name='isAccepted'
                                         value={data.isAccepted}
                                         onChange={changeHandeler} />
                                         <label ></label>
@@ -159,15 +179,17 @@ const manageTheme = () => {
                                         <path d="M2 8.36364L6.23077 12L13 2"></path>
                                         </svg>
                                     </div>
-                                    
+
                                     </div>
                             </div>
                             {errors.isAccepted && touch.isAccepted && <span>{errors.isAccepted}</span>}
                         </div>
                 </div>
                 <div className={Styles.formButtons}>
-                    <Link to="/login">ورود</Link>
-                    <button type='submit' className={dark ? Styles.submit_btn : Styles. submit_btnDark}>ثبت نام</button>
+                    <Link to="/login" className={Styles.link}>ورود</Link>
+                    <button type='submit' className={dark ? Styles.submit_btn : Styles.submit_btnDark}>
+                        ثبت نام
+                    </button>
                 </div>
             </form>
             <ToastContainer />
