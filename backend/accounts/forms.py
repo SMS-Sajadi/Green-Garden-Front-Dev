@@ -53,6 +53,3 @@ class UserRegistrationForm(forms.Form):
             raise ValidationError('This phone number already exists')
         return phone_number
 
-
-class VerifyCodeForm(forms.Form):
-    code = forms.CharField(required=True)

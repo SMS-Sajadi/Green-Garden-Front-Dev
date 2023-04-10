@@ -35,7 +35,7 @@ class User(AbstractUser):
     objects = UserManager()
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['phone_number', 'name']
     username = None
 
     def __str__(self):
@@ -46,10 +46,6 @@ class User(AbstractUser):
 
     def has_module_perms(self, app_label):
         return True
-
-    @property
-    def is_staff(self):
-        return self.is_admin
 
 
 class TemporaryUser(models.Model):

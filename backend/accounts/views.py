@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.views import View
-from .forms import UserRegistrationForm, VerifyCodeForm
+from .forms import UserRegistrationForm
 import random
 from utils import send_otp_code, Response, req_to_dict
 from .models import TemporaryUser, User
@@ -31,16 +31,10 @@ class UserSignupView(View):
 
 
 class UserVerifyCodeView(View):
-    form_class = VerifyCodeForm
 
     def post(self, request):
-        print(request.user.is_authenticated)
-        form = self.form_class(req_to_dict(request))
-        if not form.is_valid():
-            return Response.bad_request()
-
-        cd = form.cleaned_data
-        temp_user = TemporaryUser.objects.filter(code=cd['code'])
+        code = int(req_to_dict(request)['code'])
+        temp_user = TemporaryUser.objects.filter(code=code)
 
         if not len(temp_user) == 1:
             return Response.bad_request()
