@@ -1,33 +1,59 @@
-# from kavenegar import *
-#
-#
-# def send_otp_code(phone_number, code):
-#
-#     try:
-#         print("yesssssssssssssssssssssssssssss")
-#         api = KavenegarAPI('4A5063446D364565303742736C2B3443706E4B575A6671636F416941744670724F3457674B767557394B553D')
-#         params = {
-#             'sender': '',
-#             'receptor': phone_number,
-#             # 'message': f' رایجه گل ها را در امتداد مسیرت استشمام کن! \n کد تایید شما برای ثبت نام   '
-#             'message': f'Green Garden \n !رایجه گل ها را در امتداد مسیرت استشمام کن \n :کد تایید برای ثبت نام \n {code}'
-#         }
-#         response = api.sms_send(params)
-#         print('*********')
-#         print(response)
-#     except APIException as e:
-#         print(e)
-#     except HTTPException as e:
-#         print(e)
-
+import json
 from django.conf import settings
 from django.core.mail import send_mail
+from django.http import JsonResponse
 
 
 def send_otp_code(name, email, code):
     subject = 'کد تایید ثبت نام در GG'
     message = f'« Green Garden » \n 🪴رایحه گیاهان را در امتداد مسیرت استشمام کن🪴 \n کد تایید ثبت نام شما: {code}'
-    # message = f' رایحه گیاها را در امتداد مسیرت استشمام کن! \n کد تایید ثبت نام شما: {code}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email, ]
-    response = send_mail(subject, message, email_from, recipient_list)
+    send_mail(subject, message, email_from, recipient_list)
+
+
+def req_to_dict(request):
+    body_unicode = request.body.decode('utf-8')
+    return json.loads(body_unicode)
+
+
+class Response:
+    def __init__(self):
+        self.is_ok = None
+        self.code = None
+
+    @classmethod
+    def bad_request(cls):
+        obj = Response()
+        obj.is_ok = False
+        obj.code = 400
+        return JsonResponse(obj.__dict__, safe=False)
+
+    @classmethod
+    def ok(cls):
+        obj = Response()
+        obj.is_ok = True
+        obj.code = 200
+        return JsonResponse(obj.__dict__, safe=False)
+
+    @classmethod
+    def unauthorized(cls):
+        obj = Response()
+        obj.is_ok = False
+        obj.code = 401
+        return JsonResponse(obj.__dict__, safe=False)
+
+    @classmethod
+    def not_found(cls):
+        obj = Response()
+        obj.is_ok = False
+        obj.code = 404
+        return JsonResponse(obj.__dict__, safe=False)
+
+    @classmethod
+    def ok_login(cls, token):
+        obj = Response()
+        obj.is_ok = True
+        obj.code = 200
+        obj.token = token
+        return JsonResponse(obj.__dict__, safe=False)
