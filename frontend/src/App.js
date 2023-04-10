@@ -10,7 +10,7 @@ function App() {
             <Route path='/login'  element={<Login />}/>
             <Route path='/home'  element={<h1>Home page</h1>}/>
 
-            <Route path='/signUp/confirm' element={<ConfirmCode />}/>
+            <Route path='/signUp/verify' element={<ConfirmCode />}/>
             <Route path='/signUp'  element={<SignUp />}/>
             <Route path='/'  element={<Navigate to={'/signUp'} />}/>
 

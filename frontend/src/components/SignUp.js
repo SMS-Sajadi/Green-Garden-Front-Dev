@@ -74,7 +74,7 @@ const SignUp = () => {
                     notify('اطلاعات نامعتبر است', 'error');
                 }
                 else{
-                    navigate('/signUp/confirm')
+                    navigate('/signUp/verify')
                 }
             }
             else {

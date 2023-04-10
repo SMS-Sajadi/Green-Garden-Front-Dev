@@ -1,8 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+//message
 import {notify} from './toast.js';
- import VerificationInput from "react-verification-input";
+//verification tool
+import VerificationInput from "react-verification-input";
+//API
 import axios from 'axios';
+//CSS
+import '../templates/verifyCode.css'
 
 
 const ConfirmCode = () => {
@@ -29,20 +34,23 @@ const ConfirmCode = () => {
 
 
     return (
-        <div>
-            <VerificationInput
-                // classNames={{
-                //     container: "container",
-                //     character: "character",
-                //     characterInactive: "character--inactive",
-                //     characterSelected: "character--selected",
-                //   }}
-                  length = {4}
-                  validChars = {'0-9'}
-                  placeholder = {'_'}
-                  autoFocus = {true}
-                  onComplete = {handleCode}
-                    />
+        <div className={'cont'}>
+            <div className={'box'}>
+                <h1 className={"title"}>تایید کد</h1>
+                <VerificationInput
+                    // classNames={{
+                    //     container: "container",
+                    //     character: "character",
+                    //     characterInactive: "character--inactive",
+                    //     characterSelected: "character--selected",
+                    //   }}
+                      length = {4}
+                      validChars = {'0-9'}
+                      placeholder = {'_'}
+                      autoFocus = {true}
+                      onComplete = {handleCode}
+                />
+            </div>
 
 
         </div>
