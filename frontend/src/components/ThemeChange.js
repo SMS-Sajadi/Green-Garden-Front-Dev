@@ -10,7 +10,7 @@ const ThemeChange = () => {
     }
 
     return (
-    
+
 <div class={darkTheme ? "container" : "darkMode"  }>
       <div class="sky" onClick={themeHandeler}>
         <img

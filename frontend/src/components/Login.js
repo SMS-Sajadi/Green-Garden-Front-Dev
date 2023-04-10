@@ -1,5 +1,7 @@
 import React, {useState , useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+//API
+import axios from 'axios';
 
 import { validate } from './validate';
 import { ToastContainer } from 'react-toastify';
@@ -16,46 +18,67 @@ import ThemeChange from './ThemeChange';
 
 
 const Login = () => {
-const [data, setData] = useState({
-    email: '',
-    password: '',
-});
 
-const [errors, setErrors] = useState({});
-const [touch, setTouch] = useState({});
-const [dark, setDark] = useState('false');
+    const navigate = useNavigate();
 
-useEffect(() => {
-    setErrors(validate(data, 'login'));
-}, [data, touch])
 
-const changeHandeler = (event) => {
+    const [data, setData] = useState({
+        email: '',
+        password: '',
+    });
 
-    setTouch({...touch, [event.target.name]: true});
+    const [errors, setErrors] = useState({});
+    const [touch, setTouch] = useState({});
+    const [dark, setDark] = useState('false');
 
-    setData({...data, [event.target.name]: event.target.value})
-    
-};
+    useEffect(() => {
+        setErrors(validate(data, 'login'));
+    }, [data, touch])
 
-const submitHandeler = (event) => {
-        event.preventDefault();
-        if(!Object.keys(errors).length){
-            notify(':) خوش آمدید', 'success');
-        }
-        else {
-            setTouch({
-                email: true,
-                password: true,
-            });
-            notify('اطلاعات  نامعتبر است', 'error');
-        }
-      
-}
+    const changeHandeler = (event) => {
 
-const manageTheme = () => {
-    setDark(!dark);
-    console.log(dark)
-}
+        setTouch({...touch, [event.target.name]: true});
+
+        setData({...data, [event.target.name]: event.target.value})
+
+    };
+
+    const submitHandeler = (event) => {
+            let res;
+            event.preventDefault();
+            console.log(data)
+            if(!Object.keys(errors).length){
+                axios.post('http://localhost:8000/accounts/login/',  data)
+                    .then(respose => console.log(respose))
+                    .then(respose => res = respose)
+
+                    if(res.is_ok){
+                        notify(':) خوش آمدید', 'success');
+                        navigate('/home')
+                        //should be string
+                        // const {name, token} = res.tokenInfo;
+                        // localStorage.setItem(name, token);
+                    }
+                    else{
+                        notify('اطلاعات نامعتبر است', 'error');
+                    }
+
+
+            }
+            else {
+                setTouch({
+                    email: true,
+                    password: true,
+                });
+                notify('اطلاعات  نامعتبر است', 'error');
+            }
+
+    }
+
+    const manageTheme = () => {
+        setDark(!dark);
+        console.log(dark)
+    }
 
 
     return (
@@ -63,7 +86,7 @@ const manageTheme = () => {
             <div onClick={manageTheme}>
                 <ThemeChange />
             </div>
-            
+
             <img className={Styles.home} src={homeIcon} alt=''/>
 
             <form onSubmit={submitHandeler} className={dark ?  Styles.signup: Styles.signupDark}>
@@ -71,30 +94,32 @@ const manageTheme = () => {
                 <div className={Styles.form_holder}>
                         <div className={Styles.input_div}>
                             <label className={dark ? Styles.input_lable : Styles.input_lableDark } >ایمیل</label>
-                            <input 
-                                type='email'  
-                                className={(errors.email && touch.email) ? Styles.uncomplated : Styles.form_input} 
-                                name='email'  
-                                value={data.email} 
-                                placeholder='ایمیل' 
+                            <input
+                                type='email'
+                                className={(errors.email && touch.email) ? Styles.uncomplated : Styles.form_input}
+                                name='email'
+                                value={data.email}
+                                placeholder='ایمیل'
                                 onChange={changeHandeler} />
                             {errors.email && touch.email && <span>{errors.email}</span>}
                         </div>
                         <div className={Styles.input_div}>
                             <label className={dark ? Styles.input_lable : Styles.input_lableDark }>رمز عبور</label>
-                            <input 
-                                type='password'  
-                                className={(errors.password && touch.password) ? Styles.uncomplated : Styles.form_input} 
-                                name='password'  
-                                value={data.password} 
-                                placeholder='رمز عبور' 
+                            <input
+                                type='password'
+                                className={(errors.password && touch.password) ? Styles.uncomplated : Styles.form_input}
+                                name='password'
+                                value={data.password}
+                                placeholder='رمز عبور'
                                 onChange={changeHandeler}/>
                             {errors.password && touch.password && <span>{errors.password}</span>}
                         </div>
                 </div>
                 <div className={Styles.formButtons}>
-                    <Link to="/signUp">حساب کاربری ندارید؟ ثبت نام</Link>
-                    <button type='submit' className={dark ? Styles.submit_btn : Styles. submit_btnDark}>ورود</button>
+                    <Link to="/signUp" className={Styles.link}>حساب کاربری ندارید؟ ثبت نام</Link>
+                    <button type='submit' className={dark ? Styles.submit_btn : Styles.submit_btnDark}>
+                        ورود
+                    </button>
                 </div>
             </form>
             <ToastContainer />
