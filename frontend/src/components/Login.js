@@ -43,16 +43,15 @@ const Login = () => {
 
     };
 
-    const submitHandeler = (event) => {
-            let res;
+    const submitHandeler = async (event) => {
+            var res = {};
             event.preventDefault();
-            console.log(data)
             if(!Object.keys(errors).length){
-                axios.post('http://localhost:8000/accounts/login/',  data)
-                    .then(respose => console.log(respose))
+                await axios.post('http://localhost:8000/accounts/login/',  data)
                     .then(respose => res = respose)
 
-                    if(res.is_ok){
+                    console.log(res.data.is_ok)
+                    if(res.data.is_ok){
                         notify(':) خوش آمدید', 'success');
                         navigate('/home')
                         //should be string

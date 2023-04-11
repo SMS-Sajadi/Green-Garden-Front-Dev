@@ -55,8 +55,8 @@ const SignUp = () => {
     };
 
 
-    const submitHandeler = (event) => {
-            let res = '';
+    const submitHandeler = async (event) => {
+            let res = {};
             event.preventDefault();
             if(!Object.keys(errors).length){
 
@@ -67,8 +67,7 @@ const SignUp = () => {
                     phone_number: phone_number,
                 }
 
-                axios.post('http://localhost:8000/accounts/signup/',  context)
-                    .then(respose => console.log(respose))
+                await axios.post('http://localhost:8000/accounts/signup/',  context)
                     .then(respose => res = respose)
 
                 if(!res.data.is_ok){
