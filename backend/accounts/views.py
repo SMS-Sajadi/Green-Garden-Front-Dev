@@ -1,100 +1,61 @@
 from django.contrib.auth import login
-from django.shortcuts import render, redirect
 from django.views import View
-from .forms import UserRegistrationForm, VerifyCodeForm
+from .forms import UserRegistrationForm
 import random
-from utils import send_otp_code
-from .models import OtpCode, User
-from django.contrib import messages
+from utils import send_otp_code, Response, req_to_dict
+from .models import TemporaryUser, User
 
 
-class UserRegisterView(View):
+class UserSignupView(View):
     form_class = UserRegistrationForm
-    template_name = 'accounts/register.html'
-
-    def get(self, request):
-        form = self.form_class
-        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            # user = User.objects.filter(phone_number=cd['phone_number'])
-            # if cd['email'].exists() or cd['phone_number'].exists():
-            #     messages.error(request, 'entered email or phone number is exists', 'danger')
-            #     return redirect('accounts:user_register')
+        form = self.form_class(req_to_dict(request))
+        if not form.is_valid():
+            return Response.bad_request()
 
-            random_code = random.randint(1000, 9999)
-            send_otp_code(cd['full_name'], cd['email'], random_code)
+        cd = form.cleaned_data
+        random_code = random.randint(1000, 9999)
+        print(random_code)
+        send_otp_code(cd['name'], cd['email'], random_code)
 
-            last_code = OtpCode.objects.filter(email=cd['email'])
-            if last_code:
-                last_code = last_code[0]
-                last_code.code = random_code
-                last_code.save()
-            else:
-                OtpCode.objects.create(email=cd['email'], code=random_code)
+        last_code = TemporaryUser.objects.filter(email=cd['email'])
+        if last_code:
+            last_code = last_code[0]
+            last_code.code = random_code
+            last_code.save()
+        else:
+            TemporaryUser.from_clean_data(cd, random_code).save()
 
-            request.session['user_registration_info'] = {
-                'phone_number': cd['phone'],
-                'email': cd['email'],
-                'full_name': cd['full_name'],
-                'password': cd['password'],
-            }
-
-            messages.success(request, 'we sent you a code', 'success')
-            return redirect('accounts:verify_code')
-        return render(request, self.template_name, {'form': form})
+        return Response.ok()
 
 
-class UserRegisterVerifyCodeView(View):
-    form_class = VerifyCodeForm
-
-    def get(self, request):
-        form = self.form_class
-        return render(request, 'accounts/verify.html', {'form': form})
+class UserVerifyCodeView(View):
 
     def post(self, request):
-        user_session = request.session['user_registration_info']
-        code_instance = OtpCode.objects.get(email=user_session['email'])
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
+        code = int(req_to_dict(request)['code'])
+        temp_user = TemporaryUser.objects.filter(code=code)
 
-            if cd['code'] == code_instance.code:
-                user = User.objects.create_user(user_session['phone_number'], user_session['email'],
-                                         user_session['full_name'], user_session['password'])
+        if not len(temp_user) == 1:
+            return Response.bad_request()
 
-                code_instance.delete()
-                messages.success(request, 'you registered successfully', 'success')
-                login(request, user)
-                return redirect('home:home')
-            else:
-                messages.error(request, 'entered cod is wrong', 'danger')
-                return redirect('accounts:verify_code')
+        main_user = temp_user[0].to_user()
+        main_user.save()
+        temp_user.delete()
 
-        # todo why redirect to home when form is not valid?
-        return redirect('home:home')
+        login(request, main_user)
+        return Response.ok()
 
 
 class UserLoginView(View):
-    template_name = 'accounts/login.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
 
     def post(self, request):
-        email = request.POST['email']
-        password = request.POST['pass']
-        user = User.objects.filter(email=email)
+        data = req_to_dict(request)
+        email = data['email']
+        password = data['password']
+        user = User.objects.filter(email=email, password=password)
 
         if not user:
-            return redirect('accounts:user_register')
+            return Response.unauthorized()
 
-        user = user[0]
-        if not user.check_password(password):
-            return redirect('accounts:user_login')
-
-        login(request, user)
-        return redirect('home:home')
+        return Response.ok()

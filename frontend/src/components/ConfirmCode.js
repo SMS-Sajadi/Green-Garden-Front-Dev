@@ -15,13 +15,17 @@ const ConfirmCode = () => {
     const navigate = useNavigate();
 
 
-    const handleCode = (event) =>{
-        let res;
+    const handleCode = async (event) =>{
+        var res = {};      
+        
+        const context = {
+            code: event,
+        }
 
-        axios.post('http://localhost:8000/accounts/verify', event )
-            .then(response => res = response.is_ok );
+        await axios.post('http://localhost:8000/accounts/verify/', context)
+            .then(response => res = response);
 
-        if(res){
+        if(res.data.is_ok){
             notify('با موفقیت ثبت نام شدید', 'success');
             navigate("/login");
         }
