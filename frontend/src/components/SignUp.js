@@ -66,11 +66,12 @@ const SignUp = () => {
                     password: password,
                     phone_number: phone_number,
                 }
+
                 axios.post('http://localhost:8000/accounts/signup/',  context)
                     .then(respose => console.log(respose))
                     .then(respose => res = respose)
 
-                if(!res.is_ok){
+                if(!res.data.is_ok){
                     notify('اطلاعات نامعتبر است', 'error');
                 }
                 else{
