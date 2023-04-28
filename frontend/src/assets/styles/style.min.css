@@ -2691,7 +2691,14 @@ padding: 60px 0
 }
 #topnav .logo {
  float:right;
- color:#3c4858 !important
+ color:#fdd05aeb !important;
+ align-items: stretch;
+ display: flex;
+}
+#topnav .logo img{
+    width: 56px; 
+    height: 56px; 
+    margin-left: 10px;
 }
 #topnav .logo .l-dark {
  display:none
@@ -2925,7 +2932,7 @@ padding: 60px 0
 .logo {
  font-weight:700;
  font-size:24px;
- padding:0 0 6px;
+ padding:6px 0 6px;
  letter-spacing:0px;
  line-height:68px
 }
@@ -5227,6 +5234,10 @@ padding: 60px 0
 }
 .footer .logo-footer {
  font-size:22px
+}
+.footer .logo-footer img{
+    width: 166px;
+    height: 123px;
 }
 .footer .logo-footer:focus {
  outline:none
