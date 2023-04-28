@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//image
+import logo from '../assets/images/green garden2.svg'
 
 const Navbar = () => {
     return (
@@ -11,8 +13,10 @@ const Navbar = () => {
 
                     <div>
                         <Link className="logo" to="/home">
-                            {/* <img src="../assets/images/gg-logo.svg" className="l-dark" height="33" alt="G G logo"  /> */}
-                            {/* <img src="../assets/images/gg-logo.svg" className="l-light" height="33" alt="G G loog" /> */}
+                            {/* <img src="../assets/images/green garden2.svg" className="l-dark" height="33" alt="G G logo"  /> */}
+                            <img src={logo} className="l-light" height="33" alt="G G loog" 
+                                style={{width: '56px', height: '56px', marginLeft: '10px'}}
+                            />
                             Green Garden
                         </Link>
                     </div>                 
