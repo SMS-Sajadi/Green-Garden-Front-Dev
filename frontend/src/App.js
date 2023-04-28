@@ -5,6 +5,12 @@ import Login from "./components/Login";
 import ConfirmCode from "./components/ConfirmCode";
 import BackTop from "./components/BackTop";
 import Home from "./components/Home";
+// Styles
+import "./assets/styles/bootstrap.min.css";
+import "./templates/unicons.iconscout.com/release/v3.0.6/css/line.css";
+import "./assets/styles/style.min.css";
+import "./assets/styles/select&second.css";
+
 
 function App() {
   return (

@@ -1,9 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-// Styles
-import "../../assets/styles/bootstrap.min.css";
-import "../../templates/unicons.iconscout.com/release/v3.0.6/css/line.css";
-import "../../assets/styles/style.min.css";
-import "../../assets/styles/select&second.css";
 //images and icons
 import avatar from "../../assets/images/avatar-profie.svg";
 import sun from "../../assets/icons/sun.svg";

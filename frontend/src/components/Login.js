@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //API
 import { postData } from "../services/api";
+// Cookie
+import { useCookies } from "react-cookie";
 
 import { validate } from "../featurs/validate";
 import { ToastContainer } from "react-toastify";
@@ -26,6 +28,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [touch, setTouch] = useState({});
   const [dark, setDark] = useState("false");
+  const [setCookie] = useCookies([]);
 
   useEffect(() => {
     setErrors(validate(data, "login"));
@@ -41,18 +44,17 @@ const Login = () => {
     var res = {};
     event.preventDefault();
     if (!Object.keys(errors).length) {
-     //  await axios
-     //    .post("http://localhost:8000/accounts/login/", data)
-     //    .then((respose) => (res = respose));
-
-        res = await postData('accounts/login/', data);
+      res = await postData('accounts/login/', data);
 
       if (res.is_ok) {
         notify(":) خوش آمدید", "success");
         navigate("/home");
-        //should be string
-        // const {name, token} = res.tokenInfo;
-        // localStorage.setItem(name, token);
+
+        // set cookie
+        setCookie("user", data, {
+            path: "/"
+          });
+
       } else {
         notify("اطلاعات نامعتبر است", "error");
       }

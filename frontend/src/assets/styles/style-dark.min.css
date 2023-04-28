@@ -744,7 +744,8 @@
 
 /*End ../fonts*/
 @import url("https://../fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
-@import url("https://../fonts.googleapis.com/css2?family=Livvic:wght@400;500;600;700&display=swap");@import url("https://../fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
+@import url("https://../fonts.googleapis.com/css2?family=Livvic:wght@400;500;600;700&display=swap");
+@import url("https://../fonts.googleapis.com/css?family=Nunito:300,400,600,700&display=swap");
 @media (min-width: 1400px){
     .container{max-width:1140px !important}
 }
@@ -1345,7 +1346,7 @@ to{background-position:100% 0}
 }
 .bg-animation-left.dark-left:after{background:rgba(60,72,88,0.6)}
 .bg-animation-left.crypto-home:after{background:#2f55d4;width:80%;-webkit-clip-path:polygon(0 0, 100% 0, 50% 100%, 0% 100%);clip-path:polygon(0 0, 100% 0, 50% 100%, 0% 100%)}
-.bg-animation-left.task-management-home:after{background:url("../images/task/bg.png") #2f55d4;width:100%;-webkit-clip-path:circle(65% at 40% 25%);clip-path:circle(65% at 40% 25%)}
+.bg-animation-left.task-management-home:after{width:100%;-webkit-clip-path:circle(65% at 40% 25%);clip-path:circle(65% at 40% 25%)}
 .bg-invoice{padding:100px 0;background-size:cover;-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;position:relative;background-position:center center}
 .classic-app-image .bg-app-shape:after{bottom:3rem;left:-8rem;width:55rem;height:35rem;border-radius:20rem;-webkit-transform:rotate(120deg);transform:rotate(120deg);opacity:0.9}
 .classic-app-image .app-images{position:absolute;bottom:60px;right:-20px}
@@ -1398,7 +1399,7 @@ to{background-position:100% 0}
 .work-process{-webkit-transition:all 0.5s ease;transition:all 0.5s ease}
 .work-process .step,.work-process .step-icon{opacity:0.06}
 .work-process a{font-size:15px}
-.work-process.process-arrow:after{content:'';position:absolute;width:60%;height:40px;top:80px;left:80%;background:url("../images/process.png") center center no-repeat;z-index:1}
+.work-process.process-arrow:after{content:'';position:absolute;width:60%;height:40px;top:80px;left:80%;z-index:1}
 @media (max-width: 767px){.work-process.process-arrow:after{display:none}
 }
 .work-process.process-arrow:hover{-webkit-transform:none !important;transform:none !important}
@@ -2196,7 +2197,7 @@ body{color:#fff;background:#1f2d3d}
 .modal-footer>:not(:first-child){margin-left:0;margin-right:.25rem}
 .features .image:before{right:5px;left:auto;-webkit-transform:rotate(222deg) !important;transform:rotate(222deg) !important}
 .key-feature .icon,.key-feature .icons{margin-right:0 !important}
-.work-process.process-arrow:after{right:80%;left:0 !important;background:url("../images/process-rtl.png") center center no-repeat}
+.work-process.process-arrow:after{right:80%;left:0 !important;}
 .bg-animation-left:after{right:0px;-webkit-clip-path:polygon(30% 0, 100% 0, 100% 100%, 0 100%);clip-path:polygon(30% 0, 100% 0, 100% 100%, 0 100%)}
 .bg-animation-left.crypto-home:after{-webkit-clip-path:polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%);clip-path:polygon(0% 0%, 100% 0%, 100% 100%, 70% 100%)}
 .agency-wrapper:before{left:54rem;right:auto;-webkit-transform:rotate(135deg);transform:rotate(135deg)}
@@ -2222,7 +2223,6 @@ body{color:#fff;background:#1f2d3d}
 .saas-feature-shape-left:after{right:-10rem;left:auto}
 .saas-feature-shape-right:after{left:-10rem;right:auto}
 .shape-before .shape-img{right:-35px !important;left:auto}
-.rtl-personal-hero{background-image:url("../images/personal/rtl-bg01.png") !important}
 .home-wrapper:before{right:auto;left:0rem;-webkit-transform:rotate(98.75deg);transform:rotate(98.75deg)}
 @media (min-width: 769px) and (max-width: 1024px){.home-wrapper:before{right:auto;left:-20rem}
 }
@@ -2246,9 +2246,6 @@ body{color:#fff;background:#1f2d3d}
 .work-container.work-modern .client,.work-container.work-modern .read_more{left:5%;right:auto}
 .courses-desc .collection{top:15px;right:15px}
 .courses-desc .preview{bottom:15px;left:15px}
-.main-slider .slides .bg-home.slider-rtl-1{background-image:url("../images/shop/rtl-bg1.jpg") !important}
-.main-slider .slides .bg-home.slider-rtl-2{background-image:url("../images/shop/rtl-bg2.jpg") !important}
-.main-slider .slides .bg-home.slider-rtl-3{background-image:url("../images/shop/rtl-bg3.jpg") !important}
 .shop-list .shop-image .shop-icons{right:auto;left:15px}
 .shop-list .label{right:-15px !important;left:auto}
 .timeline-page .timeline-item .date-label-left,.timeline-page .timeline-item .duration-right{margin-left:15px !important;margin-right:0}
