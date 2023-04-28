@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../templates/dark_light.css';
+import '../assets/styles/dark_light.css';
 
 const ThemeChange = () => {
 
@@ -11,7 +11,7 @@ const ThemeChange = () => {
 
     return (
 
-<div class={darkTheme ? "container" : "darkMode"  }>
+<div class={darkTheme ? "thcontainer" : "darkMode"  }>
       <div class="sky" onClick={themeHandeler}>
         <img
           class="moon moonrise"

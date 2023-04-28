@@ -1,15 +1,15 @@
 import React, {useState , useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 //API
-import axios from 'axios';
+import { postData } from '../services/api';
 
-import { validate } from './validate';
+import { validate } from '../featurs/validate';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {notify} from './toast.js';
+import {notify} from '../featurs/toast';
 //Styles and css
-import Styles from '../templates/Signup.module.css';
-import '../templates/box.css';
+import Styles from '../assets/styles/Signup.module.css';
+import '../assets/styles/box.css';
 //Asseets
 import girl from '../assets/images/Florist-cuate 1.svg';
 import homeIcon from '../assets/icons/home.svg';
@@ -67,14 +67,16 @@ const SignUp = () => {
                     phone_number: phone_number,
                 }
 
-                await axios.post('http://localhost:8000/accounts/signup/',  context)
-                    .then(respose => res = respose)
+                // await axios.post('http://localhost:8000/accounts/signup/',  context)
+                //     .then(respose => res = respose);
 
-                if(!res.data.is_ok){
+                res = await postData('accounts/signup/', context);
+
+                if(!res.is_ok){
                     notify('اطلاعات نامعتبر است', 'error');
                 }
                 else{
-                    navigate('/signUp/verify')
+                    navigate('/signUp/verify');
                 }
             }
             else {
@@ -98,7 +100,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className={dark ?  Styles.container : Styles.containerDark }>
+        <div className={dark ?  Styles.slcontainer : Styles.containerDark }>
             <div onClick={manageTheme}>
                 <ThemeChange />
             </div>
