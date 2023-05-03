@@ -921,7 +921,7 @@ video:focus{outline:none}
 .btn.btn-outline-light{border:1px solid #dee2e6 !important;color:#3c4858 !important;background-color:transparent}
 .btn.btn-outline-light:hover,.btn.btn-outline-light:focus,.btn.btn-outline-light:active,.btn.btn-outline-light.active,.btn.btn-outline-light.focus{background-color:#f8f9fc !important}
 .btn.btn-icon{height:36px;width:36px;line-height:34px;padding:0}
-.btn.btn-icon .icons{height:16px;width:16px;font-size:16px}
+.btn.btn-icon .icons{height:16px;width:16px;font-size:16px;color: #ffd15a;}
 .btn.btn-icon.btn-lg{height:48px;width:48px;line-height:46px}
 .btn.btn-icon.btn-lg .icons{height:20px;width:20px;font-size:20px}
 .btn.btn-icon.btn-sm{height:30px;width:30px;line-height:28px}

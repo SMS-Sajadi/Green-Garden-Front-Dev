@@ -7,6 +7,8 @@ import logo from "../assets/images/green garden2.svg";
 const Navbar = () => {
   return (
     <div>
+
+
       {/* <!-- Navbar Start --> */}
       <header
         id="topnav"
@@ -17,14 +19,87 @@ const Navbar = () => {
           <div>
             <Link className="logo" to="/home">
               {/* <img src="../assets/images/green garden2.svg" className="l-dark" height="33" alt="G G logo"  /> */}
-              <img
-                src={logo}
-                className="l-light"
-                alt="G G loog"
-              />
+              <img src={logo} className="l-light" alt="G G loog" />
               Green Garden
             </Link>
           </div>
+
+
+
+          <ul className="buy-button list-inline mb-0">
+            <li className="list-inline-item mb-0">
+              <div className="dropdown">
+                <button
+                  type="button"
+                  className="btn btn-link text-decoration-none dropdown-toggle p-0 pe-2"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i className="uil uil-search h5 text-muted"></i>
+                </button>
+                <div
+                  className="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-0"
+                  style={{width: "300px"}}
+                >
+                  <form>
+                    <input
+                      type="text"
+                      id="text"
+                      name="name"
+                      className="form-control border bg-white"
+                      placeholder="جستجو..."
+                    />
+                  </form>
+                </div>
+              </div>
+            </li>
+            <li className="list-inline-item mb-0 pe-1">
+              <Link
+                to="#"
+                className="btn btn-icon btn-soft-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#wishlist"
+              >
+                <i className="uil uil-heart align-middle icons"></i>
+              </Link>
+            </li>
+            <li className="list-inline-item mb-0">
+              <div className="dropdown dropdown-primary">
+                <button
+                  type="button"
+                  className="btn btn-icon btn-soft-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i className="uil uil-user align-middle icons"></i>
+                </button>
+                <div
+                  className="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3"
+                  style={{width: "200px"}}
+                >
+                  <Link className="dropdown-item text-dark" to="#">
+                    <i className="uil uil-user align-middle me-1"></i> حساب کاربری
+                  </Link>
+                  <Link className="dropdown-item text-dark" to="#">
+                    <i className="uil uil-clipboard-notes align-middle me-1"></i>{" "}
+                    سفارشات من{" "}
+                  </Link>
+                  <Link className="dropdown-item text-dark" to="#">
+                    <i className="uil uil-arrow-circle-down align-middle me-1"></i>{" "}
+                    دانلود ها{" "}
+                  </Link>
+                  <div className="dropdown-divider my-3 border-top"></div>
+                  <Link className="dropdown-item text-dark" to="#">
+                    <i className="uil uil-sign-out-alt align-middle me-1"></i> خروج{" "}
+                  </Link>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+
 
           <div className="menu-extras">
             <div className="menu-item">
@@ -76,6 +151,11 @@ const Navbar = () => {
           </div>
         </div>
       </header>
+
+
+
+
+
     </div>
   );
 };

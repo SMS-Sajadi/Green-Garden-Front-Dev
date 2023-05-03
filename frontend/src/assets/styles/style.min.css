@@ -1618,7 +1618,8 @@ small {
 .btn.btn-icon .icons {
  height:16px;
  width:16px;
- font-size:16px
+ font-size:16px;
+ color: #ffd15a;
 }
 .btn.btn-icon.btn-lg {
  height:48px;
@@ -2687,7 +2688,9 @@ padding: 60px 0
  background-color:transparent;
  border:0;
  -webkit-transition:all .5s ease;
- transition:all .5s ease
+ transition:all .5s ease;
+ background: rgb(43 154 102 / 34%);
+ border-radius: 0px 0px 12px 12px;
 }
 #topnav .logo {
  float:right;

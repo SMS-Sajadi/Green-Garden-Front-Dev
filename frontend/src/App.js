@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import ConfirmCode from "./components/ConfirmCode";
 import BackTop from "./components/BackTop";
 import Home from "./components/Home";
+import Map from "./featurs/MapTest";
 // Styles
 import "./assets/styles/bootstrap.min.css";
 import "./templates/unicons.iconscout.com/release/v3.0.6/css/line.css";
@@ -20,6 +21,8 @@ function App() {
         <Route path="/home/*" element={<Home />} />
         <Route path="/signUp/verify" element={<ConfirmCode />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/map" element={<Map />} />
+
         <Route path="/" element={<Navigate to={"/signUp"} />} />
       </Routes>
 
