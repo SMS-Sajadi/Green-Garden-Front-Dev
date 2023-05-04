@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { Link } from "react-router-dom";
 
 //image
 import logo from "../assets/images/green garden2.svg";
 
 const Navbar = () => {
+
+
+  useEffect(() => {
+    const nav = document.getElementById('topnav');
+  
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= 200) {
+        nav.style.background= '#228753d1';
+      } else {
+        nav.style.background= '';
+      }
+    });
+  }, []);
+
   return (
     <div>
 
@@ -13,7 +27,6 @@ const Navbar = () => {
       <header
         id="topnav"
         className="sticky"
-        style={{ background: "#219964d9", borderRadius: "0 0 12px 12px" }}
       >
         <div className="container">
           <div>
@@ -36,7 +49,7 @@ const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <i className="uil uil-search h5 text-muted"></i>
+                  <i className="uil uil-search h5 search"></i>
                 </button>
                 <div
                   className="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-0"
@@ -57,7 +70,7 @@ const Navbar = () => {
             <li className="list-inline-item mb-0 pe-1">
               <Link
                 to="#"
-                className="btn btn-icon btn-soft-primary"
+                className="btn btn-icon  nav-icon"
                 data-bs-toggle="modal"
                 data-bs-target="#wishlist"
               >
@@ -68,7 +81,7 @@ const Navbar = () => {
               <div className="dropdown dropdown-primary">
                 <button
                   type="button"
-                  className="btn btn-icon btn-soft-primary dropdown-toggle"
+                  className="btn btn-icon  dropdown-toggle nav-icon"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
