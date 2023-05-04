@@ -2696,7 +2696,7 @@ padding: 60px 0
  border:0;
  -webkit-transition:all .5s ease;
  transition:all .5s ease;
- background: rgb(43 154 102 / 34%);
+ box-shadow: 0px 0px 6px #6dc77a5c;
  border-radius: 0px 0px 12px 12px;
 }
 #topnav .logo {
@@ -3071,7 +3071,7 @@ padding: 60px 0
   margin-left:10px
  }
  #topnav .navigation-menu.nav-light>li>a {
-  color:rgba(255,255,255,0.82)
+  color: rgb(49 214 143);
  }
  #topnav .navigation-menu.nav-light>li.active>a {
   color:#fff !important
@@ -3080,7 +3080,7 @@ padding: 60px 0
   border-color:#fff !important
  }
  #topnav .navigation-menu.nav-light>li:hover>a {
-  color:#fff !important
+    text-shadow: 0px 2px 2px #fdd05a69   ;
  }
  #topnav .navigation-menu.nav-light .has-submenu .menu-arrow {
   border-color:rgba(255,255,255,0.5)
@@ -3310,6 +3310,9 @@ padding: 60px 0
       width: 40px;
       height: 40px;
       right: 30px;
+      display: flex;
+      flex-direction: column-reverse;
+
   }
   
   
@@ -3323,20 +3326,10 @@ padding: 60px 0
       transform: translateX(-50%) translateY(-50%);
   }
   
-  .noselect:before {
-      content: 'برگشت به اول صفحه';
-      position: absolute;
-      transform: translateX(-50%) translateY(45px);
-      font-size: 15px;
-      transition: 200ms;
-      color: transparent;
-      font-weight: bold;
-  }
-  
   .noselect:hover {
       box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-      width: 80px;
-      height: 80px;
+      width: 45px;
+      height: 45px;
   }
   
   .noselect:hover::before {
@@ -3345,6 +3338,8 @@ padding: 60px 0
   
   .noselect:hover svg {
           animation: bounce 2s infinite linear;
+          left: 23px;
+        
   }
   
   @keyframes bounce {
