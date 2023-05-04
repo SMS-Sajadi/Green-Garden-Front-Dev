@@ -12,7 +12,7 @@ const Navbar = () => {
   
     window.addEventListener("scroll", () => {
       if (window.scrollY >= 200) {
-        nav.style.background= '#228753d1';
+        nav.style.background = 'rgb(255 255 255 / 90%)';
       } else {
         nav.style.background= '';
       }

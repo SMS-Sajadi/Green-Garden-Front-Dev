@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import {
     MapContainer,
@@ -14,11 +14,11 @@ import "../../node_modules/leaflet-geosearch/dist/geosearch.css";
 
 const MapTest = () => {
 
-    const [searchText, setSearchText] = useState('');
+    // const [searchText, setSearchText] = useState('');
     const provider = new OpenStreetMapProvider();
   
     const handleSearch = (result) => {
-      setSearchText(result.label);
+      // setSearchText(result.label);
     };
   
 

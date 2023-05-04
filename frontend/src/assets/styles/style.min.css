@@ -2515,11 +2515,12 @@ padding: 60px 0
  margin-top:100px
 }
 .shape {
- position:absolute;
+ position:relative;
  pointer-events:none;
  left:0;
- bottom:-2px;
- right:0
+ top:49px;
+ right:0;
+ height: 33px;
 }
 .shape>svg {
  -webkit-transform:scale(2);
@@ -2539,6 +2540,11 @@ padding: 60px 0
  .shape.integration-hero {
   height:140px
  }
+ .shape{
+    top: 58px;
+    height: 50px;
+ }
+
 }
 @media (max-width: 425px) {
  .shape.integration-hero {
@@ -2946,6 +2952,11 @@ padding: 60px 0
  letter-spacing:0px;
  line-height:68px
 }
+#suggest img{
+    width: 33px;
+    margin-left: 12px;
+    height: 30px;
+}
 @media (min-width: 1025px) {
  #topnav .navigation-menu>li .submenu.megamenu {
   width:1116px !important
@@ -3078,9 +3089,6 @@ padding: 60px 0
  }
  #topnav .navigation-menu.nav-light>li:hover>.menu-arrow {
   border-color:#fff !important
- }
- #topnav .navigation-menu.nav-light>li:hover>a {
-    text-shadow: 0px 2px 2px #fdd05a69   ;
  }
  #topnav .navigation-menu.nav-light .has-submenu .menu-arrow {
   border-color:rgba(255,255,255,0.5)
@@ -3407,6 +3415,11 @@ padding: 60px 0
  align-self:center;
  position:relative;
  background-position:center center
+}
+#home{
+    background: url('../../assets/images/plants/plBg.png') center center;
+    height: 502px;
+    top: 79px;
 }
 .bg-half-260 {
  padding:260px 0;
