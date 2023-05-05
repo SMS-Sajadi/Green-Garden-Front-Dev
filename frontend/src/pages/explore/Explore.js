@@ -94,14 +94,13 @@ const Explore = () => {
             <div class="col-12 text-center">
               <div class="section-title mb-4 pb-2">
                 <h4 class="title">دسته بندی ها</h4>
-                <h4 class="title"> -------------</h4>
+                <h4 class="title"> --------------------------</h4>
               </div>
             </div>
           </div>
 
           <HorizontalCard info={info}/>
 
-          
         </div>
       </section>
     </div>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d1a8fe8-8e40-4914-b944-1878fc85c318" name="Changes" comment="" />
+    <list default="true" id="9d1a8fe8-8e40-4914-b944-1878fc85c318" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/explore/Explore.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/explore/Explore.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,11 +13,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2PKYAZdbqTgKzahh1tKElQmTn2J" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "explore",
+    "last_opened_file_path": "E:/learning/extra/React Files/login/Green-Garden/frontend",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -28,6 +37,7 @@
       <option name="presentableId" value="Default" />
       <updated>1683207111747</updated>
       <workItem from="1683207127320" duration="33000" />
+      <workItem from="1683266104078" duration="83000" />
     </task>
     <servers />
   </component>
