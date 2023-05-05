@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 //message
-import {notify} from './toast.js';
+import {notify} from '../featurs/toast';
 //verification tool
 import VerificationInput from "react-verification-input";
 //API
 import axios from 'axios';
 //CSS
-import '../templates/verifyCode.css'
+import '../assets/styles/verifyCode.css'
 
 
 const ConfirmCode = () => {
@@ -30,30 +30,30 @@ const ConfirmCode = () => {
             navigate("/login");
         }
         else{
-            console.log('again')
+            notify('رمز واردشده مطابقت ندارد', 'error');
         }
 
     }
 
 
-
     return (
         <div className={'cont'}>
             <div className={'box'}>
-                <h1 className={"title"}>تایید کد</h1>
+                <h1 className={"title"}>تایید کد </h1>
+                <span className='codeGuide'>کد ارسال شده به ایمیل خود را در باکس زیر وارد کنید </span>
+
                 <VerificationInput
-                    // classNames={{
-                    //     container: "container",
-                    //     character: "character",
-                    //     characterInactive: "character--inactive",
-                    //     characterSelected: "character--selected",
-                    //   }}
+                    classNames={{
+                        characterInactive: "inprt_inactive",
+                        characterSelected: "input_select",
+                      }}
                       length = {4}
                       validChars = {'0-9'}
-                      placeholder = {'_'}
+                      placeholder = {'.'}
                       autoFocus = {true}
                       onComplete = {handleCode}
                 />
+
             </div>
 
 

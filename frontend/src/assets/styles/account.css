@@ -1,0 +1,19 @@
+.background{
+    background-color: aquamarine;
+    height: 30vh;
+    text-align: center;
+}
+.profile{
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70%;
+    width: 70%;
+    background-color: antiquewhite;
+    text-align: center;
+    border-radius: 12px;
+}
+.info{
+    margin-top: 25px;
+}

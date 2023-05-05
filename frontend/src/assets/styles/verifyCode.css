@@ -1,0 +1,81 @@
+@font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 100;
+    src: url("../fonts/vaziri_persian/Vazir-Thin.eot");
+    src: url("../fonts/vaziri_persian/Vazir-Thin.woff") format("woff"),
+      url("../fonts/vaziri_persian/Vazir-Thin.ttf") format("ttf"),
+      url("../fonts/vaziri_persian/Vazir-Thin.woff2") format("woff2");
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&display=swap');
+
+
+.cont{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../images/verifyBG.jpg');
+    background-size: cover;
+    font-family: vazir;
+}
+.box{
+    width: fit-content;
+    height: fit-content;
+    min-height: 300px;
+    display: flex;
+    padding: 16px;
+    padding-top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background:rgb(64 158 124 / 45%);
+    box-shadow: 0 0px 11px 0 rgb(96 123 108);
+    border-radius: 10px;
+    border: 1px solid rgb(133 255 215 / 18%);
+}
+
+.vi__character{
+    border: 1px solid rgb(102 109 49 / 23%);
+    background-color: #f1cb62;
+    border-radius: 17px;
+}
+.vi__container{
+    flex-direction: row-reverse;
+}
+.input_select {
+    color: #bd4a02;
+}
+
+.inprt_inactive{
+    background-color: #9bac9f;
+}
+.title{
+    font-size: 2.7rem;
+    color: #57453b;
+}
+.codeGuide{
+    text-align: right;
+    margin-bottom: 30px;
+}
+.flower{
+    width: 220px;
+}
+
+
+@media (max-width : 440px){
+    .vi__container{
+        width: 242px;
+    }
+    .title{
+        font-size: 31px;
+    }
+    .codeGuide{
+        font-size: 14px;
+
+    }
+
+}
+
