@@ -1,33 +1,28 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //image
 import logo from "../assets/images/green garden2.svg";
+//Component
+import SavePlants from "../pages/explore/SavePlants";
 
 const Navbar = () => {
-
-
   useEffect(() => {
-    const nav = document.getElementById('topnav');
-  
+    const nav = document.getElementById("topnav");
+
     window.addEventListener("scroll", () => {
       if (window.scrollY >= 200) {
-        nav.style.background = 'rgb(255 255 255 / 90%)';
+        nav.style.background = "rgb(255 255 255 / 90%)";
       } else {
-        nav.style.background= '';
+        nav.style.background = "";
       }
     });
   }, []);
 
   return (
     <div>
-
-
       {/* <!-- Navbar Start --> */}
-      <header
-        id="topnav"
-        className="sticky"
-      >
+      <header id="topnav" className="sticky">
         <div className="container">
           <div>
             <Link className="logo" to="/home">
@@ -36,8 +31,6 @@ const Navbar = () => {
               Green Garden
             </Link>
           </div>
-
-
 
           <ul className="buy-button list-inline mb-0">
             <li className="list-inline-item mb-0">
@@ -53,7 +46,7 @@ const Navbar = () => {
                 </button>
                 <div
                   className="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-0"
-                  style={{width: "300px"}}
+                  style={{ width: "300px" }}
                 >
                   <form>
                     <input
@@ -68,51 +61,50 @@ const Navbar = () => {
               </div>
             </li>
             <li className="list-inline-item mb-0 pe-1">
-              <Link
+              {/* <Link
                 to="#"
                 className="btn btn-icon  nav-icon"
                 data-bs-toggle="modal"
                 data-bs-target="#wishlist"
               >
                 <i className="uil uil-heart align-middle icons"></i>
-              </Link>
+              </Link> */}
+              <SavePlants />
             </li>
             <li className="list-inline-item mb-0">
               <div className="dropdown dropdown-primary">
-                <button
-                  type="button"
-                  className="btn btn-icon  dropdown-toggle nav-icon"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="uil uil-user align-middle icons"></i>
-                </button>
+                <Link to="/home/account">
+                  <button
+                    type="button"
+                    className="btn btn-icon  dropdown-toggle nav-icon"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="uil uil-user align-middle icons"></i>
+                  </button>
+                </Link>
                 <div
                   className="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3"
-                  style={{width: "200px"}}
+                  style={{ width: "200px" }}
                 >
                   <Link className="dropdown-item text-dark" to="#">
-                    <i className="uil uil-user align-middle me-1"></i> حساب کاربری
+                    <i className="uil uil-user align-middle me-1"></i> حساب
+                    کاربری
                   </Link>
                   <Link className="dropdown-item text-dark" to="#">
                     <i className="uil uil-clipboard-notes align-middle me-1"></i>{" "}
                     سفارشات من{" "}
                   </Link>
-                  <Link className="dropdown-item text-dark" to="#">
-                    <i className="uil uil-arrow-circle-down align-middle me-1"></i>{" "}
-                    دانلود ها{" "}
-                  </Link>
                   <div className="dropdown-divider my-3 border-top"></div>
                   <Link className="dropdown-item text-dark" to="#">
-                    <i className="uil uil-sign-out-alt align-middle me-1"></i> خروج{" "}
+                    <i className="uil uil-sign-out-alt align-middle me-1"></i>{" "}
+                    خروج{" "}
                   </Link>
                 </div>
               </div>
             </li>
           </ul>
-
-
 
           <div className="menu-extras">
             <div className="menu-item">
@@ -164,11 +156,6 @@ const Navbar = () => {
           </div>
         </div>
       </header>
-
-
-
-
-
     </div>
   );
 };
