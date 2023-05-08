@@ -26,7 +26,6 @@ const Navbar = () => {
         <div className="container">
           <div>
             <Link className="logo" to="/home">
-              {/* <img src="../assets/images/green garden2.svg" className="l-dark" height="33" alt="G G logo"  /> */}
               <img src={logo} className="l-light" alt="G G loog" />
               Green Garden
             </Link>

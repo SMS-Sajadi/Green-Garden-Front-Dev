@@ -874,6 +874,16 @@
     z-index: 1200;
     background-color: rgb(150, 152, 150, 0.75);
 }
+.textwrite{
+    font-size: 32px;
+    display: inline-block;
+}
+@media (max-width: 768px) {
+    .textwrite{
+        font-size: 23px;
+
+    }
+}
 
 .row>* {
     position: relative

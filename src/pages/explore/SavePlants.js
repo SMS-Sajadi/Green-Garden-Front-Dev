@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 //images
-import plant from '../../assets/images/3_2.svg'
+import plant from "../../assets/images/3_2.svg";
+import plantBg from "../../assets/images/plants/shahpasand.jpg";
+import plant2 from "../../assets/images/plants/6_2.png";
+// Component
+import SaveCard from "../../components/SaveCard";
 
 const customStyles = {
   content: {
@@ -14,29 +18,30 @@ const customStyles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    background: 'rgb(23 23 23 / 97%)',
-    padding: '50px',
-    borderRadius: '11px',
-    width: '80vw',
-    height: '55vh',
-    maxHeight: '80vh',
-    justifyContent: 'space-evenly'
-
+    background: "rgb(23 23 23 / 97%)",
+    padding: "50px",
+    borderRadius: "11px",
+    width: "80vw",
+    height: "80vh",
+    justifyContent: "space-evenly",
+    paddingTop: '30rem'
+   
   },
 };
 
 Modal.setAppElement("#root");
 
 const SavePlants = () => {
-  let subtitle;
+  const info = {
+    image: plant,
+    name: "plant",
+    category: "roze",
+  };
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    subtitle.style.color = "#198754";
   }
 
   function closeModal() {
@@ -54,24 +59,58 @@ const SavePlants = () => {
       </button>
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <p ref={(_subtitle) => (subtitle = _subtitle)} className="save-title" >گیاهان ذخیره‌شده شما</p>
-        <div>
-
-        </div>
-      <div className="box2">
-        <div className="item">
-          <img src={plant} alt=""/>
-          <p className="title">alaki</p>
-        </div>
-      </div>
+       
+          <div className="container mt-100 mt-60" id="portfolio">
 
 
-        <button className="btn btn-primary mt-2 me-2" onClick={closeModal}>
+            <div className="row">
+              <div className="col-12">
+                <div className="section-title mb-4 pb-2">
+                  <h4 className="title mb-4 text-primary fw-bold">
+                    گیاهان ذخیره‌شده
+                  </h4>
+                </div>
+              </div>
+            </div>
+            
+            <div className="row">
+              <SaveCard info={info} />
+              <SaveCard
+                info={{ image: plant2, name: "nowo", category: "2m" }}
+              />
+
+              <SaveCard info={info} />
+              <SaveCard
+                info={{ image: plant2, name: "nowo", category: "2m" }}
+              />
+              <SaveCard info={info} />
+              <SaveCard
+                info={{ image: plant2, name: "nowo", category: "2m" }}
+              />
+              <SaveCard info={info} />
+              <SaveCard
+                info={{ image: plant2, name: "nowo", category: "2m" }}
+              />
+            </div>
+          </div>
+
+          {/* <div className="row">
+  <div className="col-12 mt-4 pt-2">
+    <a
+      href="page-portfolio-modern.html"
+      className="btn btn-outline-primary"
+    >
+      نمایش بیشتر <i className="uil uil-angle-left-b"></i>
+    </a>
+  </div>
+</div> */}
+      
+
+        <button className="btn btn-primary me-2" onClick={closeModal} style={{marginTop: '50px'}}>
           بستن
         </button>
       </Modal>
