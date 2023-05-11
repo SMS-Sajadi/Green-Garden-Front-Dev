@@ -1,0 +1,16 @@
+.gardenName {
+  background-color: rgb(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  width: 90%;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin: -100px auto 30px auto;
+}
+
+.gardenName img {
+  width: 350px;
+   height: 250px;
+}

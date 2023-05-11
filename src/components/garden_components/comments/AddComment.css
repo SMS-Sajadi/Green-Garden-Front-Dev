@@ -1,0 +1,32 @@
+.commentInputs{
+    padding: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    background-color: #fff;
+    border: none;
+    text-align: right;
+
+}
+
+.AddCommStarsContainer{
+    display: grid;
+     grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+}
+
+.AddCommStarsContainer p{
+    color: #32CC8B;
+     font-size: 24px;
+}
+
+.sendBtn{
+    background-color: #32CC8B;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin: 1rem 0;
+    font-size: 16px;
+    font-weight: 600;
+
+}
