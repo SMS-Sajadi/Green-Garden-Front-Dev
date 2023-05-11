@@ -2034,8 +2034,13 @@ button:not(:disabled) {
 }
 
 .shadow {
-    -webkit-box-shadow: 0 0 3px rgba(60, 72, 88, 0.15) !important;
-    box-shadow: 0 0 3px rgba(60, 72, 88, 0.15) !important
+    -webkit-box-shadow:0 0 3px rgba(60,72,88,0.15) !important;
+    box-shadow:0 0 3px rgba(60,72,88,0.15) !important
+   }
+.card-shadow{
+    -webkit-box-shadow: -1px 1px 9px rgb(80, 107, 93, 0.52) !important;
+    box-shadow: -1px 1px 9px rgb(80, 107, 93, 0.52) !important;
+
 }
 
 .shadow-lg {

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 //images
 import plant from "../../assets/images/3_2.svg";
-import plantBg from "../../assets/images/plants/shahpasand.jpg";
 import plant2 from "../../assets/images/plants/6_2.png";
 // Component
 import SaveCard from "../../components/SaveCard";
