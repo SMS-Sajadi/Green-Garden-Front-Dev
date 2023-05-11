@@ -1,0 +1,14 @@
+.plantDescContainer{
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem 0;
+}
+
+.leftSection{
+    width: 60%;
+    text-align: right;
+}
+
+.specifications{
+    display: flex;
+}
