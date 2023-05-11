@@ -9,6 +9,8 @@ import Product from "../../components/profile/Product";
 //image
 import garden from "../../assets/images/plants/14.jpg";
 import plant from "../../assets/images/plants/22.png";
+import parvaneh from '../../assets/images/temp/parvaneh.png'
+
 
 const Garden = () => {
   return (
@@ -31,7 +33,7 @@ const Garden = () => {
                       saved: "",
                     }}
                   />
-                  <BusinessInfo info={{ business_id: "589955", img: garden }} />
+                  <BusinessInfo info={{ business_id: "589955", img: parvaneh }} />
                   <h5 className="mt-4 mb-0">محصولات :</h5>
                   <div className="row">
                     <Product

@@ -14,7 +14,7 @@ const Business = ({ info }) => {
             src={idIcon}
             className="fea icon-ex-md text-muted me-3"
             alt=""
-            style={{ marginBottom: "20px" }}
+            style={{ marginBottom: "24px" }}
           />
 
           <div className="flex-1">

@@ -17,7 +17,7 @@ const Personalnfo = ({ info }) => {
             src={emailIcon}
             className="fea icon-ex-md text-muted me-3"
             alt=""
-            style={{marginBottom: '20px'}}
+            style={{marginBottom: '24px'}}
           />
 
           <div className="flex-1">
@@ -30,7 +30,7 @@ const Personalnfo = ({ info }) => {
             src={cityIcon}
             className="fea icon-ex-md text-muted me-3"
             alt=""
-            style={{marginBottom: '20px'}}
+            style={{marginBottom: '24px'}}
           />
 
           <div className="flex-1">
@@ -43,7 +43,7 @@ const Personalnfo = ({ info }) => {
             src={phoneIcon}
             className="fea icon-ex-md text-muted me-3"
             alt=""
-            style={{marginBottom: '20px'}}
+            style={{marginBottom: '24px'}}
           />
 
           <div className="flex-1">
@@ -56,7 +56,7 @@ const Personalnfo = ({ info }) => {
             src={saveIcon}
             className="fea icon-ex-md text-muted me-3"
             alt=""
-            style={{marginBottom: '20px'}}
+            style={{marginBottom: '24px'}}
           />
 
           <Link>

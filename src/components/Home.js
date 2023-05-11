@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import ProfileSetting from "../pages/account/ProfileSetting";
 import Explore from "../pages/explore/Explore";
 import Garden from '../pages/garden/Garden';
+import PlantDetail from "../pages/plant/PlantDetail";
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
         <Route path="/account" element={<AccountProfile />} />
         <Route path="/account/setting" element={<ProfileSetting />} />
         <Route path="/garden" element={<Garden />} />
+        <Route path="/plant-detail" element={<PlantDetail />} />
         <Route path="/" element={<Explore />} />
       </Routes>
       <Footer />
