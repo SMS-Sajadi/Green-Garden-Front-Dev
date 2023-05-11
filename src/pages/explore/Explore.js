@@ -11,7 +11,7 @@ import HorizontalCard from "../../components/HorizontalCard";
 const Explore = () => {
   const info = {
     image: plantBg,
-    title: "plant",
+    name: "plant",
     category: "fall",
   };
 
@@ -24,25 +24,24 @@ const Explore = () => {
         <div className="container">
           <div className="col-lg-8 col-md-9">
             <div className="title-heading mt-4">
-              <h1 className="display-5 fw-bold mb-3">
+              <p className="display-5 fw-bold mb-3">
                 گیاهانی شاداب و زیبا
                 <br></br>
                 <TypeAnimation
                   reverse
                   sequence={[
-                    "متناسب با سلیقه شما",
+                    "متناسب با شرایط شما",
                     2000, // Waits 2s
-                    "متانسب با شرایط شما",
+                    "متناسب با سلیقه شما",
                     1000, // Waits 1s
                   ]}
                   wrapper="span"
-                  className="text-primary typewrite"
+                  className="text-primary typewrite textwrite"
                   speed={5}
                   cursor={false}
                   repeat={3}
-                  style={{ fontSize: "32px", display: "inline-block" }}
                 />
-              </h1>
+              </p>
               <div className="mt-4 pt-2" id="suggest">
                 <a href="#portfolio" className="btn btn-primary mt-2 me-2">
                   <img src={kaktos} alt="" />
@@ -54,7 +53,7 @@ const Explore = () => {
         </div>
       </section>
 
-      <div classNaem="position-relative">
+      <div className="position-relative">
         <div className="shape overflow-hidden text-white">
           <svg
             viewBox="0 0 2880 48"
@@ -82,19 +81,19 @@ const Explore = () => {
           <div id="grid" className="row">
             <Card info={info} />
             <Card
-              info={{ image: aloeVear, title: "aloe", category: "winter" }}
+              info={{ image: aloeVear, name: "aloe", category: "winter" }}
             />
           </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 text-center">
-              <div class="section-title mb-4 pb-2">
-                <h4 class="title">دسته بندی ها</h4>
-                <h4 class="title"> --------------------------</h4>
+      <section className="section">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+              <div className="section-title mb-4 pb-2">
+                <h4 className="title">دسته بندی ها</h4>
+                <h4 className="title"> --------------------------</h4>
               </div>
             </div>
           </div>
@@ -103,6 +102,7 @@ const Explore = () => {
 
         </div>
       </section>
+
     </div>
   );
 };
