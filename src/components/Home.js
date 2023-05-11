@@ -6,6 +6,8 @@ import Navbar from "../components/Navbar";
 import Footer from "./Footer";
 import ProfileSetting from "../pages/account/ProfileSetting";
 import Explore from "../pages/explore/Explore";
+import Garden from '../pages/garden/Garden';
+
 
 const Home = () => {
   return (
@@ -14,6 +16,7 @@ const Home = () => {
       <Routes>
         <Route path="/account" element={<AccountProfile />} />
         <Route path="/account/setting" element={<ProfileSetting />} />
+        <Route path="/garden" element={<Garden />} />
         <Route path="/" element={<Explore />} />
       </Routes>
       <Footer />

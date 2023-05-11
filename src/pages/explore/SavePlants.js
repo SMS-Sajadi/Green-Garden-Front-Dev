@@ -13,7 +13,7 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    marginRight: "-50%",
+    marginRight: '-50%',
     transform: "translate(-50%, -50%)",
     display: "flex",
     flexDirection: "column",
@@ -24,8 +24,6 @@ const customStyles = {
     width: "80vw",
     height: "80vh",
     justifyContent: "space-evenly",
-    paddingTop: '30rem'
-   
   },
 };
 
@@ -63,42 +61,47 @@ const SavePlants = () => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-       
-          <div className="container mt-100 mt-60" id="portfolio">
-
-
-            <div className="row">
-              <div className="col-12">
-                <div className="section-title mb-4 pb-2">
-                  <h4 className="title mb-4 text-primary fw-bold">
-                    گیاهان ذخیره‌شده
-                  </h4>
-                </div>
+        <div className="container mt-100 mt-60 save-div" id="portfolio">
+          <div className="row">
+            <div className="col-12">
+              <div className="section-title mb-4 pb-2">
+                <h4 className="title mb-4 text-primary fw-bold">
+                  گیاهان ذخیره‌شده
+                </h4>
               </div>
-            </div>
-            
-            <div className="row">
-              <SaveCard info={info} />
-              <SaveCard
-                info={{ image: plant2, name: "nowo", category: "2m" }}
-              />
-
-              <SaveCard info={info} />
-              <SaveCard
-                info={{ image: plant2, name: "nowo", category: "2m" }}
-              />
-              <SaveCard info={info} />
-              <SaveCard
-                info={{ image: plant2, name: "nowo", category: "2m" }}
-              />
-              <SaveCard info={info} />
-              <SaveCard
-                info={{ image: plant2, name: "nowo", category: "2m" }}
-              />
             </div>
           </div>
 
-          {/* <div className="row">
+          <div className="row">
+            <SaveCard info={info} />
+            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+
+            <SaveCard info={info} />
+            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+            <SaveCard info={info} />
+            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+            <SaveCard info={info} />
+            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+
+            <SaveCard info={info} />
+            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+
+            <SaveCard info={info} />
+            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+
+            <SaveCard info={info} />
+            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+            <button
+              className="btn btn-primary me-2"
+              onClick={closeModal}
+              style={{ marginTop: "50px" }}
+            >
+              بستن
+            </button>
+          </div>
+        </div>
+
+        {/* <div className="row">
   <div className="col-12 mt-4 pt-2">
     <a
       href="page-portfolio-modern.html"
@@ -108,11 +111,6 @@ const SavePlants = () => {
     </a>
   </div>
 </div> */}
-      
-
-        <button className="btn btn-primary me-2" onClick={closeModal} style={{marginTop: '50px'}}>
-          بستن
-        </button>
       </Modal>
     </div>
   );
