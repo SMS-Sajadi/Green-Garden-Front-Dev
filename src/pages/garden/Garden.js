@@ -9,14 +9,14 @@ import Product from "../../components/profile/Product";
 //image
 import garden from "../../assets/images/plants/14.jpg";
 import plant from "../../assets/images/plants/22.png";
-import parvaneh from '../../assets/images/temp/parvaneh.png'
-
+import parvaneh from "../../assets/images/temp/parvaneh.png";
 
 const Garden = () => {
+  const gardenOwner = true;
   return (
     <div>
       <HeaderProfile
-        prof_info={{ image: garden, name: "گلخانه رز", describe: "گلخانه" }}
+        prof_info={{ image: garden, name: "گلخانه رز", describe: "گلخانه", owner: gardenOwner }}
       />
 
       <section className="section mt-60">
@@ -26,14 +26,21 @@ const Garden = () => {
             <div className="col-lg-8 col-12">
               <div className="border-bottom pb-4">
                 <div className="row">
-                  <Personalnfo
-                    info={{
-                      email: "mkkfj@hbf",
-                      phone_number: "09140466",
-                      saved: "",
-                    }}
+
+                  {gardenOwner && (
+                    <Personalnfo
+                      info={{
+                        name: "الهام وهابی",
+                        email: "mkkfj@hbf",
+                        phone_number: "09140466",
+                        saved: "",
+                      }}
+                    />
+                  )}
+
+                  <BusinessInfo
+                    info={{ business_id: "589955", img: parvaneh }}
                   />
-                  <BusinessInfo info={{ business_id: "589955", img: parvaneh }} />
                   <h5 className="mt-4 mb-0">محصولات :</h5>
                   <div className="row">
                     <Product
@@ -60,7 +67,6 @@ const Garden = () => {
                         id: 2,
                       }}
                     />
-
                   </div>
 
                   <div className="col-12 mt-4 pt-2">

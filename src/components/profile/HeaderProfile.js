@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HeaderProfile = ({prof_info}) => {
-    const {image, name, describe} = prof_info;
+const HeaderProfile = ({ prof_info }) => {
+  const { image, name, describe, owner } = prof_info;
   return (
     <>
       {/* <!-- Hero Start --> */}
@@ -32,24 +32,27 @@ const HeaderProfile = ({prof_info}) => {
                             {describe}
                           </small>
                         </div>
-                        <div className="col-md-5 text-md-end text-center">
-                          <ul className="list-unstyled social-icon social mb-0 mt-4">
-                            <li
-                              className="list-inline-item"
-                              style={{ marginLeft: "42px" }}
-                            >
-                              <Link
-                                to="/home/account/setting"
-                                className="rounded"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="bottom"
-                                title="تنظیمات"
+
+                        {owner && (
+                          <div className="col-md-5 text-md-end text-center">
+                            <ul className="list-unstyled social-icon social mb-0 mt-4">
+                              <li
+                                className="list-inline-item"
+                                style={{ marginLeft: "42px" }}
                               >
-                                <i className="uil uil-cog align-middle"></i>
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
+                                <Link
+                                  to="/home/account/setting"
+                                  className="rounded"
+                                  data-bs-toggle="tooltip"
+                                  data-bs-placement="bottom"
+                                  title="تنظیمات"
+                                >
+                                  <i className="uil uil-cog align-middle"></i>
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

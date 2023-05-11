@@ -870,6 +870,41 @@
     }
 }
 
+.sliderimg{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 33px;
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+
+  .alice-carousel__prev-btn,  .alice-carousel__next-btn{
+    padding: 0 84px;
+
+  }
+  .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item {
+    font-weight: 1000;
+    color: #ffd15a;
+  }
+  .slide-card{
+    border-radius: 6px;
+    width: 350px;
+    height: 631px;
+    margin-bottom: 20px;
+  }
+
+  .alice-carousel__dots-item:not(.__custom).__active{
+    background-color: #ffd15a;
+    transform: rotate(45deg);
+
+  }
+  .alice-carousel__dots-item:not(.__custom){
+    width: 12px;
+    height: 12px;
+    border-radius: 30%;
+  }
+  
 .ReactModal__Overlay {
     z-index: 1200;
     background-color: rgb(150, 152, 150, 0.75);
@@ -2446,25 +2481,25 @@ button:not(:disabled) {
     color: #3c4858
 }
 
-.breadcrumb .breadcrumb-item a:hover {
+/* .breadcrumb .breadcrumb-item a:hover {
     color: #2f55d4
-}
+} */
 
-.breadcrumb .breadcrumb-item.active {
+/* .breadcrumb .breadcrumb-item.active {
     color: #2f55d4
-}
+} */
 
 .breadcrumb .breadcrumb-item:before {
     content: ""
 }
 
-.breadcrumb .breadcrumb-item:after {
+/* .breadcrumb .breadcrumb-item:after {
     content: "\F0141" !important;
     font-size: 14px;
     color: #3c4858;
     font-family: 'Material Design Icons';
     padding-right: 5px
-}
+} */
 
 .breadcrumb .breadcrumb-item:last-child:after {
     display: none
