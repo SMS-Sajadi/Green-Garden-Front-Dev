@@ -58,22 +58,7 @@ const Garden = () => {
                         id: 2,
                       }}
                     />
-                    <Product
-                      info={{
-                        image: plant,
-                        name: "plant",
-                        category: "flow",
-                        id: 2,
-                      }}
-                    />
-                    <Product
-                      info={{
-                        image: plant,
-                        name: "plant",
-                        category: "flow",
-                        id: 2,
-                      }}
-                    />
+
                   </div>
 
                   <div className="col-12 mt-4 pt-2">
