@@ -1,0 +1,20 @@
+.plantName {
+    width: 20%;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin: -120px auto 30px auto;
+  }
+  
+  .plantName img {
+    width: 350px;
+     height: 250px;
+  }
+  
+  .plantNameBreadcrumb{
+    background-color: #fff;
+border-radius: 10px;
+padding: .3rem 0;
+display: flex;
+justify-content: center;
+  }
