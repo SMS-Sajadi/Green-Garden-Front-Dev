@@ -3,13 +3,24 @@ import React from "react";
 import PlantHeader from "../../components/plant/PlantHeader";
 import PlantExplain from "../../components/plant/PlantExplain";
 
+const info = {
+
+  name: 'آلوئه ورا',
+  description: 'توضیحات گیاه',
+  lihgt_intensity: 'زیاد',
+  water: 'دوبار در هفته',
+   type: 'همه فصله'
+}
+
 const PlantDetail = () => {
+
+  
   return (
     <div>
-      <PlantHeader />
+      <PlantHeader name = {info.name}/>
 
-      <div class="position-relative">
-        <div class="shape overflow-hidden text-white">
+      <div className="position-relative" style={{bottom: '75px'}}>
+        <div className="shape overflow-hidden text-white">
           <svg
             viewBox="0 0 2880 48"
             fill="none"
@@ -23,8 +34,8 @@ const PlantDetail = () => {
         </div>
       </div>
 
-      <section class="section pb-0">
-      <PlantExplain />
+      <section className="section pb-0">
+      <PlantExplain info={info}/>
 
       </section>
     </div>
