@@ -1,0 +1,35 @@
+.navContainer{
+    background-color: #A7DBC5;
+    height: 30vh;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 2rem;
+}
+
+.navLogo{
+    width: 120px;
+     height: 60px;
+}
+.navItems ul{
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.navItems ul li{
+margin-left: 20px;
+}
+
+.iconContainer{
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.iconContainer img{
+    margin-right: 5px;
+    width: 30px;
+     height: 30px;
+}
