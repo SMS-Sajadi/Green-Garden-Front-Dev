@@ -50,12 +50,13 @@ const SignUp = () => {
     event.preventDefault();
     let res = {};
     if (!Object.keys(errors).length) {
-      const { name, email, password, phone_number } = data;
+      const { name, email, password, phone_number, isAccepted } = data;
       const context = {
         name: name,
         email: email,
         password: password,
         phone_number: phone_number,
+        isAccepted:  isAccepted,
       };
 
       res = await postData("accounts/signup/", context);
@@ -87,7 +88,10 @@ const SignUp = () => {
       <div onClick={manageTheme}>
         <ThemeChange />
       </div>
-      <img className={Styles.home} src={homeIcon} alt="" />
+      <Link to="/home">
+        <img className={Styles.home} src={homeIcon} alt="" />
+      </Link>
+
 
       <form
         onSubmit={submitHandeler}

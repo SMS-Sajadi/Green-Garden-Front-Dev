@@ -44,7 +44,7 @@ const Login = () => {
     var res = {};
     event.preventDefault();
     if (!Object.keys(errors).length) {
-      res = await postData('accounts/login/', data);
+      res = await postData("accounts/login/", data);
 
       if (res.is_ok) {
         notify(":) خوش آمدید", "success");
@@ -52,9 +52,8 @@ const Login = () => {
 
         // set cookie
         setCookie("user", data, {
-            path: "/"
-          });
-
+          path: "/",
+        });
       } else {
         notify("اطلاعات نامعتبر است", "error");
       }
@@ -77,7 +76,9 @@ const Login = () => {
         <ThemeChange />
       </div>
 
-      <img className={Styles.home} src={homeIcon} alt="" />
+      <Link to="/home">
+        <img className={Styles.home} src={homeIcon} alt="" />
+      </Link>
 
       <form
         onSubmit={submitHandeler}
