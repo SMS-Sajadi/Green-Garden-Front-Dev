@@ -72,7 +72,7 @@ const SignUp = () => {
         phone_number: true,
         password: true,
         confirmPassword: true,
-        isAccepted: true,
+        // isAccepted: true,
       });
       notify("اطلاعات نامعتبر است", "error");
     }
@@ -210,7 +210,7 @@ const SignUp = () => {
           <div className={Styles.accept_div}>
             <div className={Styles.chekbox_div}>
               <label className={dark ? Styles.accept : Styles.input_lableDark}>
-                قوانین مربوطه را می‌پذیرم
+                ثبت نام به عنوان گلخانه‌دار
               </label>
 
               <div className="checkbox-wrapper-12">
@@ -229,9 +229,7 @@ const SignUp = () => {
                 </div>
               </div>
             </div>
-            {errors.isAccepted && touch.isAccepted && (
-              <span>{errors.isAccepted}</span>
-            )}
+
           </div>
         </div>
         <div className={Styles.formButtons}>
