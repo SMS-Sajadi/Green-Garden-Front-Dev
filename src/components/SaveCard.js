@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SaveCard = ({ info }) => {
   const { image, name, category } = info;
@@ -10,13 +11,13 @@ const SaveCard = ({ info }) => {
             <img class="item-container img-fluid mx-auto" src={image} alt="1" />
             <div class="overlay-work bg-dark"></div>
             <div class="content">
-                <h5 class="mb-0"><a href="page-portfolio-detail.html" class="text-white title">{name} </a></h5>
+                <h5 class="mb-0"><link to="/" class="text-white title">{name} </link></h5>
                 <h6 class="text-light tag mb-0"> {category} </h6>
             </div>
             <div class="icons text-center">
-                <a href="images/personal/1.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox">
+                <link href="images/personal/1.jpg" class="text-primary work-icon bg-white d-inline-block rounded-pill lightbox">
                 <i data-feather="camera" class="uil uil-camera "></i>
-                    </a>
+                    </link>
             </div>
         </div>
     </div>

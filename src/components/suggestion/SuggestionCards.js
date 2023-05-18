@@ -49,59 +49,58 @@ const SuggestionCards = () => {
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
   return (
-    <section class="section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 text-center">
-            <div class="section-title mb-4 pb-2">
-              <h4 class="title mb-4"> گیاه‌های مربوط </h4>
-              <p class="text-muted para-desc mb-0 mx-auto">
+    <section className="section">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 text-center">
+            <div className="section-title mb-4 pb-2">
+              <h4 className="title mb-4"> گیاه‌های مربوط </h4>
+              <p className="text-muted para-desc mb-0 mx-auto">
                 
-                با <span class="text-primary fw-bold">گرین گاردن </span>گیاهان
+                با <span className="text-primary fw-bold">گرین گاردن </span>گیاهان
                 متناسب با شرایطت را پیدا کن.
               </p>
             </div>
           </div>
         </div>
 
-        <div class="row">
+        <div className="row">
           {currentItems.map((item) => (
             <Card key={item.id} item={item} />
           ))}
         </div>
 
-        <div class="row">
-          <div class="col-12 mt-4 pt-2">
-            <ul class="pagination justify-content-center mb-0">
-              <li class="page-item">
+        <div className="row">
+          <div className="col-12 mt-4 pt-2">
+            <ul className="pagination justify-content-center mb-0">
+              <li className="page-item">
                 <p
-                  class={currentPage === 0 ? 'page-link disabled':'page-link'}
+                  className={currentPage === 0 ? 'page-link disabled':'page-link'}
                   onClick={handleClickPrev}
                 >
-                  
                   قبلی
                 </p>
               </li>
 
               {Array.from({ length: totalPages }, (_, index) => (
-                <li                   class={
+                <li  key={index} className={
                     currentPage === index ? "page-item active" : "page-item"
                   }>
                   <p
-                    key={index}
+                    key={index*2 - 3}
                     onClick={() => handlePageClick(index)}
                     disabled={currentPage === index}
-                    class={currentPage === index ? "page-link active" : "page-link"}
+                    className={currentPage === index ? "page-link active" : "page-link"}
                   >
                     {index + 1}
                   </p>
                 </li>
               ))}
 
-              <li class="page-item">
+              <li className="page-item">
                 <p
                   onClick={handleClickNext}
-                  class={endIndex >= items.length ? 'page-link disabled':'page-link'}
+                  className={endIndex >= items.length ? 'page-link disabled':'page-link'}
 
                 >
                   بعدی

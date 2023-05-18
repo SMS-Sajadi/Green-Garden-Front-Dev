@@ -8,6 +8,7 @@ import BackTop from "./components/BackTop";
 import Home from "./components/Home";
 import Map from "./featurs/MapTest";
 import ConfirmCode from './components/ConfirmCode';
+import ErrorPage from "./pages/404/ErrorPage";
 // Styles
 import "./assets/styles/bootstrap.min.css";
 import "./templates/unicons.iconscout.com/release/v3.0.6/css/line.css";
@@ -38,6 +39,8 @@ function App() {
           <Route path="/signUp/verify" element={<ConfirmCode />} />
           <Route path="/map" element={<Map />} />
           <Route path="/" element={<Navigate to={"/signUp"} />} />
+          <Route path="*" element={<ErrorPage />} />
+
         </Routes>
 
         <BackTop />
