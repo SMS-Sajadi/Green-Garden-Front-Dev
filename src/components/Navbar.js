@@ -128,8 +128,8 @@ const Navbar = () => {
               </li>
 
               <li className="has-submenu parent-parent-menu-item">
-                <Link to="#">پیشنهاد گیاه </Link>
-                <span className="menu-arrow"></span>
+                <Link to="/home/suggestion">پیشنهاد گیاه </Link>
+                {/* <span className="menu-arrow"></span>
                 <ul className="submenu">
                   <li className="has-submenu parent-menu-item">
                     <Link to="#"> نمونه </Link>
@@ -145,7 +145,7 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </li>
-                </ul>
+                </ul> */}
               </li>
 
               <li className="has-submenu parent-menu-item">

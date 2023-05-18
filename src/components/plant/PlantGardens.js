@@ -12,6 +12,8 @@ import eatable from "../../assets/icons/eatable.svg";
 import growth from "../../assets/icons/growth.svg";
 //image
 import garden from "../../assets/images/green garden2.svg";
+// Component
+import StarScore from "../score/StarScore";
 
 const PlantGardens = ({ info }) => {
   const [styles, setStyles] = useState({
@@ -207,12 +209,39 @@ const PlantGardens = ({ info }) => {
                       />
                       گلخانه رز{" "}
                     </td>
+
+                    <td class="list-unstyled mb-0">
+                      <div class="tdst-inline-item">
+                        <StarScore
+                          id={1}
+                          outOf={5}
+                          onChange={(newRating) => {
+                            console.log(newRating);
+                          }}
+                          class="mdi mdi-star text-warning"
+                        />
+                      </div>
+                    </td>
                   </tr>
 
                   <tr>
                     <td>
                       <img src={temp} alt="" style={{ margin: "0px 12px" }} />
                       گلخانه سپاهان{" "}
+                    </td>
+
+                    <td className="list-unstyled mb-0">
+                      <div className="tdst-inline-item">
+                        <StarScore
+                          id={2}
+                          outOf={5}
+                          initialRating={2}
+                          onChange={(newRating) => {
+                            console.log(newRating);
+                          }}
+                          className="mdi mdi-star text-warning"
+                        />
+                      </div>
                     </td>
                   </tr>
                 </tbody>
