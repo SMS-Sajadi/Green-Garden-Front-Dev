@@ -60,14 +60,6 @@ const Navbar = () => {
               </div>
             </li>
             <li className="list-inline-item mb-0 pe-1">
-              {/* <Link
-                to="#"
-                className="btn btn-icon  nav-icon"
-                data-bs-toggle="modal"
-                data-bs-target="#wishlist"
-              >
-                <i className="uil uil-heart align-middle icons"></i>
-              </Link> */}
               <SavePlants />
             </li>
             <li className="list-inline-item mb-0">
@@ -123,7 +115,7 @@ const Navbar = () => {
             <ul className="navigation-menu nav-light">
               <li>
                 <Link to="/home" className="sub-menu-item">
-                  صفحه اصلی{" "}
+                  صفحه اصلی
                 </Link>
               </li>
 

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import error from "../../assets/images/404 Error-pana.svg";
 
 import Navbar from "../../components/Navbar";
-
 const ErrorPage = () => {
   return (
     <>

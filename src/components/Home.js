@@ -11,7 +11,6 @@ import PlantDetail from "../pages/plant/PlantDetail";
 import Suggestion from "../pages/suggestion/Suggestion";
 import ErrorPage from "../pages/404/ErrorPage";
 
-
 const Home = () => {
   return (
     <div>

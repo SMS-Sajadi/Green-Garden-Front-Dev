@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 //API
 import { postData } from "../services/api";
+
+
+
 
 import { validate } from "../featurs/validate";
 import { ToastContainer } from "react-toastify";
@@ -17,7 +21,10 @@ import homeIcon from "../assets/icons/home.svg";
 import ThemeChange from "./ThemeChange";
 
 const SignUp = () => {
+
+
   const navigate = useNavigate();
+
 
   const [data, setData] = useState({
     name: "",
@@ -64,6 +71,7 @@ const SignUp = () => {
       if (!res.is_ok) {
         notify("اطلاعات نامعتبر است", "error");
       } else {
+
         navigate("/signUp/verify");
       }
     } else {

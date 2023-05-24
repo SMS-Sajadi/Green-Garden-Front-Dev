@@ -65,7 +65,7 @@ const PlantGardens = ({ info }) => {
 
           {styles.element1 && (
             <div
-              className="card border-0 tab-pane fade show active"
+              className="card mt-3 border-0 tab-pane fade show active"
               id="additional"
             >
               <table className="table">
@@ -83,7 +83,7 @@ const PlantGardens = ({ info }) => {
                       />
                       نور{" "}
                     </td>
-                    <td className="text-muted">متوسظ</td>
+                    <td className="text-muted">متوسط</td>
                   </tr>
 
                   <tr>
@@ -191,7 +191,7 @@ const PlantGardens = ({ info }) => {
 
           {styles.element2 && (
             <div
-              className="card border-0 tab-pane fade show active"
+              className="card mt-3 border-0 tab-pane fade show active"
               id="additional"
             >
               <table className="table">

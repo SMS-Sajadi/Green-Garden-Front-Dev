@@ -9,6 +9,8 @@ import Home from "./components/Home";
 import Map from "./featurs/MapTest";
 import ConfirmCode from './components/ConfirmCode';
 import ErrorPage from "./pages/404/ErrorPage";
+
+import SavePlants from "./pages/explore/SavePlants";
 // Styles
 import "./assets/styles/bootstrap.min.css";
 import "./templates/unicons.iconscout.com/release/v3.0.6/css/line.css";
@@ -17,13 +19,13 @@ import "./assets/styles/select&second.css";
 // Context
 export const User = React.createContext();
 
+
+
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.withCredentials = true;
 
-// const client = axios.create({
-//   baseURL: "http://localhost:8000/",
-// });
+
 
 function App() {
   // const [currentUser, setCurrentUser] = useState();
@@ -37,6 +39,7 @@ function App() {
           <Route path="/home/*" element={<Home />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/signUp/verify" element={<ConfirmCode />} />
+          <Route path="/temp" element={<SavePlants />} />
           <Route path="/map" element={<Map />} />
           <Route path="/" element={<Navigate to={"/signUp"} />} />
           <Route path="*" element={<ErrorPage />} />
