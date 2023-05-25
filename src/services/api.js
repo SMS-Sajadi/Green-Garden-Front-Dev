@@ -21,4 +21,12 @@ const postData = async (str, data) => {
     
     return res.data;
 }
-export {getData, postData, checkToken};
+
+const post = async (str, data) => {
+    var res;
+    await axios.post(BASE_URL + str, data)
+        .then(response =>  res = response)
+
+    return res;
+}
+export {getData, postData, checkToken, post};

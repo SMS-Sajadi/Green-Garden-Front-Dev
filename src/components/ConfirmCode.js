@@ -10,6 +10,7 @@ import axios from "axios";
 import "../assets/styles/verifyCode.css";
 // API 
 import { postData } from "../services/api";
+import { post } from "../services/api";
 // Cookie
 import { useCookies } from "react-cookie";
 
@@ -25,16 +26,17 @@ const ConfirmCode = () => {
       code: event,
     };
 
-      res = await postData("accounts/verify/", context);
+      res = await post("accounts/verify/", context);
 
-
-    if (res.is_ok) {
+      console.log(res)
+    console.log(res.status)
+    if (res.status === 200) {
       notify("با موفقیت ثبت نام شدید", "success");
       // set cookie
-      setCookie("token", res.token, { expires: 7, path: "/" });
+      setCookie("token", res.token, {path: "/" });
       axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
 
-      navigate("/login");
+      navigate("/home");
     } else {
       notify("رمز واردشده مطابقت ندارد", "error");
     }
