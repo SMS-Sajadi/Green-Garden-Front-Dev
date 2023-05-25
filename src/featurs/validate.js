@@ -41,8 +41,6 @@ export const validate = (data, type) => {
                   delete errors.confirmPassword
             }
 
-
-
             if(!data.phone_number){
                   errors.phone_number = 'شماره الزامی '
             }

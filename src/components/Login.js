@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //API
-import { postData, checkToken } from "../services/api";
+import { post, checkToken } from "../services/api";
 // Cookie
 import { useCookies } from 'react-cookie';
 
@@ -38,20 +38,21 @@ const Login = () => {
   useEffect(() => {
     setErrors(validate(data, "login"));
     const token = cookies["token"];
-    if (token) {
-      checkToken("accounts/login/", token)
-        .then((response) => {
-          // if token valid set the token to header
-          if (response.data.is_ok) {
-            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          }
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [data, touch, cookies]);
+    console.log(token)
+    // if (token) {
+    //   checkToken("accounts/login/", token)
+    //     .then((response) => {
+    //       // if token valid set the token to header
+    //       if (response.status === 200) {
+    //         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    //       }
+    //       console.log(response.data);
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     });
+    // }
+  }, [data, touch]);
 
   const changeHandeler = (event) => {
     setTouch({ ...touch, [event.target.name]: true });
@@ -63,17 +64,17 @@ const Login = () => {
     var res = {};
     event.preventDefault();
     if (!Object.keys(errors).length) {
-      res = await postData("accounts/login/", data);
-
-      if (res.is_ok) {
+      const whole_res = await post("accounts/login/", data);
+      res = whole_res.data
+      console.log(whole_res.status)
+      if (whole_res.status === 200) {
         notify(":) خوش آمدید", "success");
 
         const token = cookies["token"];
         // Set token if isn't save
         if (!token) {
-          setCookie('token', res.token, { expires: 7, path: '/' });
+          setCookie('token', res.token, { path: '/' });
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
         }    
 
         navigate("/home");

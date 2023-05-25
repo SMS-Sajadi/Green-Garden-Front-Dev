@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 //API
 import { postData } from "../services/api";
@@ -13,7 +14,7 @@ import { notify } from "../featurs/toast";
 //Styles and css
 import Styles from "../assets/styles/Signup.module.css";
 import "../assets/styles/box.css";
-// Asseets
+//Asseets
 import girl from "../assets/images/Florist-cuate 1.svg";
 import homeIcon from "../assets/icons/home.svg";
 //component
@@ -53,9 +54,9 @@ const SignUp = () => {
   };
 
   const submitHandeler = async (event) => {
-   
     event.preventDefault();
     let res = {};
+    console.log(Object.keys(errors))
     if (!Object.keys(errors).length) {
       const { name, email, password, phone_number, isAccepted } = data;
       const context = {
@@ -63,12 +64,12 @@ const SignUp = () => {
         email: email,
         password: password,
         phone_number: phone_number,
-        is_garden_owner:  isAccepted,
+        isAccepted:  isAccepted,
       };
 
       res = await postData("accounts/signup/", context);
-
-      if (!res.is_ok) {
+      console.log(res)
+      if (res === 412) {
         notify("اطلاعات نامعتبر است", "error");
       } else {
 
@@ -81,6 +82,7 @@ const SignUp = () => {
         phone_number: true,
         password: true,
         confirmPassword: true,
+        // isAccepted: true,
       });
       notify("اطلاعات نامعتبر است", "error");
     }
@@ -115,7 +117,7 @@ const SignUp = () => {
             <label
               className={dark ? Styles.input_lable : Styles.input_lableDark}
             >
-              نام
+              نام کاربری
             </label>
             <input
               type="text"
