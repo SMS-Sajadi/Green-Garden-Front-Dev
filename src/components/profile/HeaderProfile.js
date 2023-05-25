@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const HeaderProfile = ({ prof_info }) => {
-  const { image, name, describe, owner } = prof_info;
+  const { image, name, describe, owner, link } = prof_info;
   return (
     <>
       {/* <!-- Hero Start --> */}
@@ -41,7 +41,7 @@ const HeaderProfile = ({ prof_info }) => {
                                 style={{ marginLeft: "42px" }}
                               >
                                 <Link
-                                  to="/home/account/setting"
+                                  to={link}
                                   className="rounded"
                                   data-bs-toggle="tooltip"
                                   data-bs-placement="bottom"

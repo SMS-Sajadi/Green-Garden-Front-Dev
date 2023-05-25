@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 // Components
 import HeaderProfile from "../../components/profile/HeaderProfile";
@@ -12,11 +12,26 @@ import plant from "../../assets/images/plants/22.png";
 import parvaneh from "../../assets/images/temp/parvaneh.png";
 
 const Garden = () => {
+
+  const products = []
+
+  const [count, setCount] = useState(4);
+
   const gardenOwner = true;
+
+
+  const handleShowMore = () => {
+    setCount(count + 5);
+  };
+
+  const handleShowLess = () => {
+    setCount(4);
+  };
+
   return (
     <div>
       <HeaderProfile
-        prof_info={{ image: garden, name: "گلخانه رز", describe: "گلخانه", owner: gardenOwner }}
+        prof_info={{ image: garden, name: "گلخانه رز", describe: "گلخانه", owner: gardenOwner, link: '/home/garden/setting' }}
       />
 
       <section className="section mt-60">
@@ -56,7 +71,7 @@ const Garden = () => {
                         image: plant,
                         name: "plant",
                         category: "flow",
-                        id: 2,
+                        id: 3,
                       }}
                     />
                     <Product
@@ -64,7 +79,7 @@ const Garden = () => {
                         image: plant,
                         name: "plant",
                         category: "flow",
-                        id: 2,
+                        id: 4,
                       }}
                     />
                   </div>
