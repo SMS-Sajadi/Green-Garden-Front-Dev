@@ -17,7 +17,7 @@ const Product = ({ info }) => {
             <div className="post-meta d-flex justify-content-between mt-3">
               <div></div>
               <Link to="/" className="text-muted readmore">
-                جزئیات گل<i className="uil uil-angle-left-b align-middle"></i>
+                جزئیات گیاه<i className="uil uil-angle-left-b align-middle"></i>
               </Link>
             </div>
           </div>

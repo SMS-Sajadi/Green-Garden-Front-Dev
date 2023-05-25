@@ -216,7 +216,6 @@ const PlantGardens = ({ info }) => {
                           id={1}
                           outOf={5}
                           onChange={(newRating) => {
-                            console.log(newRating);
                           }}
                           class="mdi mdi-star text-warning"
                         />
@@ -237,7 +236,6 @@ const PlantGardens = ({ info }) => {
                           outOf={5}
                           initialRating={2}
                           onChange={(newRating) => {
-                            console.log(newRating);
                           }}
                           className="mdi mdi-star text-warning"
                         />

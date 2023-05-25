@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 //API
 import { postData } from "../services/api";
@@ -14,7 +13,7 @@ import { notify } from "../featurs/toast";
 //Styles and css
 import Styles from "../assets/styles/Signup.module.css";
 import "../assets/styles/box.css";
-//Asseets
+// Asseets
 import girl from "../assets/images/Florist-cuate 1.svg";
 import homeIcon from "../assets/icons/home.svg";
 //component
@@ -54,6 +53,7 @@ const SignUp = () => {
   };
 
   const submitHandeler = async (event) => {
+   
     event.preventDefault();
     let res = {};
     if (!Object.keys(errors).length) {
@@ -63,7 +63,7 @@ const SignUp = () => {
         email: email,
         password: password,
         phone_number: phone_number,
-        isAccepted:  isAccepted,
+        is_garden_owner:  isAccepted,
       };
 
       res = await postData("accounts/signup/", context);
@@ -81,7 +81,6 @@ const SignUp = () => {
         phone_number: true,
         password: true,
         confirmPassword: true,
-        // isAccepted: true,
       });
       notify("اطلاعات نامعتبر است", "error");
     }
@@ -116,7 +115,7 @@ const SignUp = () => {
             <label
               className={dark ? Styles.input_lable : Styles.input_lableDark}
             >
-              نام کاربری
+              نام
             </label>
             <input
               type="text"

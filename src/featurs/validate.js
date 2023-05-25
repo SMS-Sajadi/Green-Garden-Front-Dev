@@ -41,12 +41,6 @@ export const validate = (data, type) => {
                   delete errors.confirmPassword
             }
 
-            if(data.isAccepted){
-                  delete errors.isAccepted
-            }
-            else{
-                  errors.isAccepted = 'پذیرش الزامی '
-            }
 
 
             if(!data.phone_number){

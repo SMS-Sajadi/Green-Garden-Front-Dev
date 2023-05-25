@@ -26,7 +26,6 @@ const Account_profile = () => {
     const value = event.target.options[event.target.selectedIndex].text;
 
     setDefaultData({ ...defaultData, [name]: value });
-    console.log(defaultData);
   };
 
   const saveHandeler = () => {
@@ -36,7 +35,7 @@ const Account_profile = () => {
   return (
     <div className="account">
       {/* <!-- Hero Start --> */}
-      <HeaderProfile prof_info={{ image: avatar, name: 'الهام وهابی', describe: 'کاربر خوش قلب گرین گاردن', owner: true}} />
+      <HeaderProfile prof_info={{ image: avatar, name: 'الهام وهابی', describe: 'کاربر خوش قلب گرین گاردن', owner: true, link: '/home/account/setting'}} />
       {/* <!-- Hero End --> */}
 
       {/* <!-- Profile Start --> */}
