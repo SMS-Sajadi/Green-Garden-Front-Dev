@@ -56,6 +56,7 @@ const SignUp = () => {
   const submitHandeler = async (event) => {
     event.preventDefault();
     let res = {};
+    console.log(Object.keys(errors))
     if (!Object.keys(errors).length) {
       const { name, email, password, phone_number, isAccepted } = data;
       const context = {
@@ -67,8 +68,8 @@ const SignUp = () => {
       };
 
       res = await postData("accounts/signup/", context);
-
-      if (!res.is_ok) {
+      console.log(res)
+      if (res === 412) {
         notify("اطلاعات نامعتبر است", "error");
       } else {
 
