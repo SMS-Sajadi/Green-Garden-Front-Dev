@@ -1,5 +1,6 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
+import { Link } from "react-router-dom";
 // image  and icons
 import plantBg from "../../assets/images/plants/shahpasand.jpg";
 import aloeVear from "../../assets/images/plants/aloe vear.jpg";
@@ -10,6 +11,7 @@ import HorizontalCard from "../../components/HorizontalCard";
 
 const Explore = () => {
   const info = {
+    id: 2,
     image: plantBg,
     name: "plant",
     category: "fall",
@@ -43,10 +45,10 @@ const Explore = () => {
                 />
               </p>
               <div className="mt-4 pt-2" id="suggest">
-                <a href="#portfolio" className="btn btn-primary mt-2 me-2">
+                <Link to="/home/suggestion" className="btn btn-primary mt-2 me-2">
                   <img src={kaktos} alt="" />
                   اکنون پیشنهاد بگیرید
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -79,8 +81,9 @@ const Explore = () => {
             </div>
           </div>
           <div id="grid" className="row">
-            <Card info={info} />
+            <Card  key={info.id} info={info} />
             <Card
+            key={1}
               info={{ image: aloeVear, name: "aloe", category: "winter" }}
             />
           </div>

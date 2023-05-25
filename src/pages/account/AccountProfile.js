@@ -36,7 +36,7 @@ const Account_profile = () => {
   return (
     <div className="account">
       {/* <!-- Hero Start --> */}
-      <HeaderProfile prof_info={{ image: avatar, name: 'الهام وهابی', describe: 'کاربر خوش قلب گرین گاردن'}} />
+      <HeaderProfile prof_info={{ image: avatar, name: 'الهام وهابی', describe: 'کاربر خوش قلب گرین گاردن', owner: true}} />
       {/* <!-- Hero End --> */}
 
       {/* <!-- Profile Start --> */}

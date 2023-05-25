@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 //API
-import { postData } from "../services/api";
+import { postData, checkToken } from "../services/api";
 // Cookie
-import { useCookies } from "react-cookie";
+import { useCookies } from 'react-cookie';
+
 
 import { validate } from "../featurs/validate";
 import { ToastContainer } from "react-toastify";
@@ -18,6 +20,10 @@ import homeIcon from "../assets/icons/home.svg";
 import ThemeChange from "./ThemeChange";
 
 const Login = () => {
+
+  const [cookies, setCookie] = useCookies(['token']);
+
+
   const navigate = useNavigate();
 
   const [data, setData] = useState({
@@ -28,11 +34,24 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [touch, setTouch] = useState({});
   const [dark, setDark] = useState("false");
-  const [setCookie] = useCookies([]);
 
   useEffect(() => {
     setErrors(validate(data, "login"));
-  }, [data, touch]);
+    const token = cookies["token"];
+    if (token) {
+      checkToken("accounts/login/", token)
+        .then((response) => {
+          // if token valid set the token to header
+          if (response.data.is_ok) {
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          }
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [data, touch, cookies]);
 
   const changeHandeler = (event) => {
     setTouch({ ...touch, [event.target.name]: true });
@@ -48,12 +67,16 @@ const Login = () => {
 
       if (res.is_ok) {
         notify(":) خوش آمدید", "success");
-        navigate("/home");
 
-        // set cookie
-        setCookie("user", data, {
-          path: "/",
-        });
+        const token = cookies["token"];
+        // Set token if isn't save
+        if (!token) {
+          setCookie('token', res.token, { expires: 7, path: '/' });
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+        }    
+
+        navigate("/home");
       } else {
         notify("اطلاعات نامعتبر است", "error");
       }
@@ -119,19 +142,12 @@ const Login = () => {
             </label>
             <input
               type="password"
-              className={
-                errors.password && touch.password
-                  ? Styles.uncomplated
-                  : Styles.form_input
-              }
+              className={Styles.form_input}
               name="password"
               value={data.password}
               placeholder="رمز عبور"
               onChange={changeHandeler}
             />
-            {errors.password && touch.password && (
-              <span>{errors.password}</span>
-            )}
           </div>
         </div>
         <div className={Styles.formButtons}>

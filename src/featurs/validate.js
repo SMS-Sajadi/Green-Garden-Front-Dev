@@ -2,7 +2,6 @@ export const validate = (data, type) => {
       const errors = {};
       var validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       var validphone_number = /^09(1[0-9]|3[1-9]|2[1-9]|9[1-9])-?[0-9]{3}-?[0-9]{4}$/;
-      var validPassword = /^(?!.*\s)(?=.*[A-Za-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}[]|:;"'<>,.?_₹]).{6,16}$/;
 
       if(!data.email){
             errors.email = 'ایمیل الزامی '
@@ -17,9 +16,6 @@ export const validate = (data, type) => {
 
       if(!data.password){
             errors.password = 'رمز الزامی'
-      }
-      else if(!data.password.match(validPassword)){
-            errors.password = 'حداقل 6 کارکتر،حاوی حداقل یک حرف بزگ  یا کوچک و یک کارکتر ویژه'
       }
       else{
             delete errors.password

@@ -50,7 +50,6 @@ const SavePlants = () => {
       <button
         onClick={openModal}
         className="btn btn-icon  nav-icon"
-        data-bs-target="#wishlist"
       >
         <i className="uil uil-heart align-middle icons"></i>
       </button>
@@ -59,6 +58,10 @@ const SavePlants = () => {
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
+        overlayStyle={{
+          backgroundColor: 'rgba(0, 1, 10, 0.5)',
+          zIndex: 9999,
+        }}
       >
         <div className="container mt-100 mt-60 save-div" id="portfolio">
           <div className="row">
@@ -100,16 +103,7 @@ const SavePlants = () => {
           </div>
         </div>
 
-        {/* <div className="row">
-  <div className="col-12 mt-4 pt-2">
-    <a
-      href="page-portfolio-modern.html"
-      className="btn btn-outline-primary"
-    >
-      نمایش بیشتر <i className="uil uil-angle-left-b"></i>
-    </a>
-  </div>
-</div> */}
+
       </Modal>
     </div>
   );

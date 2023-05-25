@@ -9,7 +9,7 @@ import Explore from "../pages/explore/Explore";
 import Garden from '../pages/garden/Garden';
 import PlantDetail from "../pages/plant/PlantDetail";
 import Suggestion from "../pages/suggestion/Suggestion";
-
+import ErrorPage from "../pages/404/ErrorPage";
 
 const Home = () => {
   return (
@@ -22,6 +22,7 @@ const Home = () => {
         <Route path="/plant-detail" element={<PlantDetail />} />
         <Route path="/suggestion" element={<Suggestion />} />
         <Route path="/" element={<Explore />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
     </div>

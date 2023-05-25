@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //Icon
 import plantIcon from "../../assets/icons/plantProduct.svg";
 
@@ -15,9 +16,9 @@ const Product = ({ info }) => {
           <div className="card-body content">
             <div className="post-meta d-flex justify-content-between mt-3">
               <div></div>
-              <a href="page-blog-detail.html" className="text-muted readmore">
+              <Link to="/" className="text-muted readmore">
                 جزئیات گل<i className="uil uil-angle-left-b align-middle"></i>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="author">
