@@ -1035,6 +1035,11 @@ a.text-secondary:focus {
 .background{
     background: url('../images/bg.png') center center;
 }
+.background2{
+    background: url('../images/salesman.jpg')  center center;
+    margin-top: 80px;
+}
+
 
 .background-pic{
     background: url('../images/plants/22.png') center center;
@@ -3364,6 +3369,17 @@ p {
     }
 }
 
+@media (max-width: 768px) {
+    .tdst-inline-item{
+        margin-left: 0 !important;
+    }
+}
+
+.tdst-inline-item{
+    margin-left: 300px;
+}
+
+
 #topnav {
     position: fixed;
     left: 0;
@@ -3389,6 +3405,7 @@ p {
     width: 56px;
     height: 56px;
     margin-left: 10px;
+    margin-top: 6px;
 }
 
 #topnav .logo .l-dark {

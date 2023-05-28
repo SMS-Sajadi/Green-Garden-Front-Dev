@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 //images and icons
 import avatar from "../../assets/images/avatar-profie.svg";
-import userIcon from "../../assets/icons/user_icon.svg";
+import userIcon from "../../assets/icons/user-1-svgrepo-com.svg";
 import phoneIcon from "../../assets/icons/phone.svg";
 import emailIcon from "../../assets/icons/email.svg";
 import keyIcon from "../../assets/icons/key.svg";

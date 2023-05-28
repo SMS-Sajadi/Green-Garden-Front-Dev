@@ -11,6 +11,7 @@ import PlantDetail from "../pages/plant/PlantDetail";
 import Suggestion from "../pages/suggestion/Suggestion";
 import ErrorPage from "../pages/404/ErrorPage";
 import GardenSetting from "../pages/garden/GardenSetting";
+import AboutUs from "../pages/about us/AboutUs";
 
 const Home = () => {
   return (
@@ -19,10 +20,11 @@ const Home = () => {
       <Routes>
         <Route path="/account" element={<AccountProfile />} />
         <Route path="/account/setting" element={<ProfileSetting />} />
-        <Route path="/garden" element={<Garden />} />
+        <Route path="/garden/:gerden_id" element={<Garden />} />
         <Route path="/garden/setting" element={<GardenSetting />} />
-        <Route path="/plant-detail" element={<PlantDetail />} />
+        <Route path="/plant-detail/:plant_id" element={<PlantDetail />} />
         <Route path="/suggestion" element={<Suggestion />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/" element={<Explore />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

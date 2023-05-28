@@ -1,21 +1,70 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 // Icons
 import sun from "../../assets/icons/sun2.svg";
 import allergy from "../../assets/icons/allergy.svg";
 import temp from "../../assets/icons/temp.svg";
 import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
-import weather from "../../assets/icons/weather.svg";
-import water from "../../assets/icons/water.svg";
-import fragrance from "../../assets/icons/fragrance.svg";
-import eatable from "../../assets/icons/eatable.svg";
-import growth from "../../assets/icons/growth.svg";
-//image
-import garden from "../../assets/images/green garden2.svg";
+// import weather from "../../assets/icons/weather.svg";
+import waterIcon from "../../assets/icons/water.svg";
+import fragranceIcon from "../../assets/icons/fragrance.svg";
+import eatableIcon from "../../assets/icons/eatable.svg";
+import growthIcon from "../../assets/icons/growth.svg";
+// //image
+// import garden from "../../assets/images/garden/g1.jpg";
+// import g2 from "../../assets/images/garden/g2.avif";
+// import g3 from "../../assets/images/garden/g3.jfif";
+
 // Component
-import StarScore from "../score/StarScore";
+import GardenList from "../garden/GardenList";
 
 const PlantGardens = ({ info }) => {
+
+
+  const 
+  {
+    fragrance,
+    // type,
+    lihgt_intensity,
+    // location_type,
+    water,
+    growth,
+    temperature,
+    pet_compatible,
+    alergy_compatible,
+    attention_need,
+    edible,
+    gardens
+    } = info;
+
+  // const gardens = [
+  //   {
+  //     name: "گلخانه ارکیده",
+  //     image: garden,
+  //     id: 8,
+  //     score: 3,
+  //   },
+  //   {
+  //     name: "گلخانه ارکیده",
+  //     image: g2,
+  //     id: 9,
+  //     score: 2,
+  //   },
+  //   {
+  //     name: "گلخانه ارکیده",
+  //     image: g3,
+  //     id: 10,
+  //     score: 4,
+  //   },
+  //   {
+  //     name: "گلخانه ارکیده",
+  //     image: g2,
+  //     id: 11,
+  //     score: 5,
+  //   },
+  // ];
+
   const [styles, setStyles] = useState({
     style1: "nav-link py-2 px-5 rounded active",
     style2: "nav-link py-2 px-5 rounded",
@@ -39,6 +88,16 @@ const PlantGardens = ({ info }) => {
         element2: false,
       });
     }
+  };
+
+  const showAllGarden = (gardens) => {
+    return gardens.map((item) => {
+      return(
+        <Link to={`/home/garden/${item.id}`}>
+         <GardenList key={item.id*10} info={item} />
+         </Link>
+         );
+    });
   };
 
   return (
@@ -83,7 +142,7 @@ const PlantGardens = ({ info }) => {
                       />
                       نور{" "}
                     </td>
-                    <td className="text-muted">متوسط</td>
+                    <td className="text-muted">{lihgt_intensity}</td>
                   </tr>
 
                   <tr>
@@ -91,30 +150,30 @@ const PlantGardens = ({ info }) => {
                       <img src={temp} alt="" style={{ margin: "0px 12px" }} />
                       دما{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{temperature} </td>
                   </tr>
 
                   <tr>
                     <td>
                       <img
-                        src={fragrance}
+                        src={fragranceIcon}
                         alt=""
                         style={{ margin: "0px 12px" }}
                       />
                       عطری{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{fragrance} </td>
                   </tr>
                   <tr>
                     <td>
                       <img
-                        src={eatable}
+                        src={eatableIcon}
                         alt=""
                         style={{ margin: "0px 12px" }}
                       />
                       خوراکی{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{edible} </td>
                   </tr>
 
                   <tr>
@@ -126,37 +185,21 @@ const PlantGardens = ({ info }) => {
                       />
                       حساسیت{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{alergy_compatible} </td>
                   </tr>
 
                   <tr>
                     <td>
-                      <img
-                        src={weather}
-                        alt=""
-                        style={{
-                          margin: "0px 12px",
-                          width: "30px",
-                          height: "30px",
-                        }}
-                      />
-                      آب و هوا{" "}
-                    </td>
-                    <td className="text-muted">پنبه </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img src={growth} alt="" style={{ margin: "0px 12px" }} />
+                      <img src={growthIcon} alt="" style={{ margin: "0px 12px" }} />
                       مرحله رشد{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{growth} </td>
                   </tr>
 
                   <tr>
                     <td>
                       <img
-                        src={water}
+                        src={waterIcon}
                         alt=""
                         style={{
                           margin: "0px 12px",
@@ -166,7 +209,7 @@ const PlantGardens = ({ info }) => {
                       />
                       آب مورد نیاز{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{water} </td>
                   </tr>
 
                   <tr>
@@ -174,7 +217,7 @@ const PlantGardens = ({ info }) => {
                       <img src={pet} alt="" style={{ margin: "0px 12px" }} />
                       حیوان خانگی{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{pet_compatible} </td>
                   </tr>
 
                   <tr>
@@ -182,7 +225,7 @@ const PlantGardens = ({ info }) => {
                       <img src={bill} alt="" style={{ margin: "0px 12px" }} />
                       میزان رسیدگی{" "}
                     </td>
-                    <td className="text-muted">پنبه </td>
+                    <td className="text-muted">{attention_need} </td>
                   </tr>
                 </tbody>
               </table>
@@ -196,52 +239,7 @@ const PlantGardens = ({ info }) => {
             >
               <table className="table">
                 <tbody>
-                  <tr>
-                    <td style={{ width: "180px" }}>
-                      <img
-                        src={garden}
-                        alt=""
-                        style={{
-                          margin: "0px 12px",
-                          width: "30px",
-                          height: "30px",
-                        }}
-                      />
-                      گلخانه رز{" "}
-                    </td>
-
-                    <td class="list-unstyled mb-0">
-                      <div class="tdst-inline-item">
-                        <StarScore
-                          id={1}
-                          outOf={5}
-                          onChange={(newRating) => {
-                          }}
-                          class="mdi mdi-star text-warning"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <img src={temp} alt="" style={{ margin: "0px 12px" }} />
-                      گلخانه سپاهان{" "}
-                    </td>
-
-                    <td className="list-unstyled mb-0">
-                      <div className="tdst-inline-item">
-                        <StarScore
-                          id={2}
-                          outOf={5}
-                          initialRating={2}
-                          onChange={(newRating) => {
-                          }}
-                          className="mdi mdi-star text-warning"
-                        />
-                      </div>
-                    </td>
-                  </tr>
+                      {showAllGarden(gardens)}
                 </tbody>
               </table>
             </div>

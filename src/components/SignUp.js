@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 //API
-import { postData } from "../services/api";
+import {  post } from "../services/api";
 
 
 
@@ -67,9 +66,9 @@ const SignUp = () => {
         isAccepted:  isAccepted,
       };
 
-      res = await postData("accounts/signup/", context);
+      res = await post("accounts/signup/", context);
       console.log(res)
-      if (res === 412) {
+      if (res.status === 412) {
         notify("اطلاعات نامعتبر است", "error");
       } else {
 
@@ -117,7 +116,7 @@ const SignUp = () => {
             <label
               className={dark ? Styles.input_lable : Styles.input_lableDark}
             >
-              نام کاربری
+                نام
             </label>
             <input
               type="text"

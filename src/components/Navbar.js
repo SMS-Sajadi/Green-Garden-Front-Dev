@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { get } from "../services/api";
 
 //image
 import logo from "../assets/images/green garden2.svg";
@@ -7,6 +9,17 @@ import logo from "../assets/images/green garden2.svg";
 import SavePlants from "../pages/explore/SavePlants";
 
 const Navbar = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const [status, setStatus] = useState("garden_owner");
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
+
+  const style = {
+    s1: "dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3 ",
+    s2: "dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3 show card-shadow",
+  }
+  
+
   useEffect(() => {
     const nav = document.getElementById("topnav");
 
@@ -18,6 +31,30 @@ const Navbar = () => {
       }
     });
   }, []);
+
+  const token = cookies["token"];
+
+  const accountHandeler = () => {
+    setOpen(!open);
+
+    // if any token exist
+    // if (token) {
+    //   const whole_res = get("token_check/");
+    //   if (whole_res.status === 200) {
+    //     setStatus("user");
+    //     setId(whole_res.data.user_id);
+    //     if (whole_res.data.is_garden_owner) setStatus("garden_owner");
+    //   } else {
+    //     setStatus("usual");
+    //   }
+    // } else {
+    //   setStatus("usual");
+    // }
+  };
+
+  const logout = () => {
+     removeCookie('token');
+  }
 
   return (
     <div>
@@ -62,9 +99,8 @@ const Navbar = () => {
             <li className="list-inline-item mb-0 pe-1">
               <SavePlants />
             </li>
-            <li className="list-inline-item mb-0">
+            <li className="list-inline-item mb-0" onClick={accountHandeler}>
               <div className="dropdown dropdown-primary">
-                <Link to="/home/account">
                   <button
                     type="button"
                     className="btn btn-icon  dropdown-toggle nav-icon"
@@ -74,24 +110,38 @@ const Navbar = () => {
                   >
                     <i className="uil uil-user align-middle icons"></i>
                   </button>
-                </Link>
+                {/* user  */}
                 <div
-                  className="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3"
-                  style={{ width: "200px" }}
+                  className={open ? style.s2 : style.s1}
+                  style={{ width: "200px", left: "0" }}
                 >
-                  <Link className="dropdown-item text-dark" to="#">
-                    <i className="uil uil-user align-middle me-1"></i> حساب
-                    کاربری
-                  </Link>
-                  <Link className="dropdown-item text-dark" to="#">
-                    <i className="uil uil-clipboard-notes align-middle me-1"></i>{" "}
-                    سفارشات من{" "}
-                  </Link>
+                  {status !== "usual" ? (
+                    <Link
+                      className="dropdown-item text-dark"
+                      to='/home/account/'
+                    >
+                      <i className="uil uil-user align-middle me-1"></i> حساب
+                      کاربری
+                    </Link>
+                  ) : (
+                    <Link className="dropdown-item text-dark" to="/login">
+                      <i className="uil uil-user align-middle me-1"></i> ورود{" "}
+                    </Link>
+                  )}
+                  {status === "garden_owner" &&  (
+                    <Link className="dropdown-item text-dark" to='/home/garden/'>
+                      <i className="uil uil-clipboard-notes align-middle me-1"></i>{" "}
+                      حساب گلخانه{" "}
+                    </Link>
+                  ) }
                   <div className="dropdown-divider my-3 border-top"></div>
-                  <Link className="dropdown-item text-dark" to="#">
-                    <i className="uil uil-sign-out-alt align-middle me-1"></i>{" "}
-                    خروج{" "}
-                  </Link>
+
+                  {status !== "usual" &&  (
+                    <Link className="dropdown-item text-dark" to="/home" onClick={logout}>
+                      <i className="uil uil-sign-out-alt align-middle me-1"></i>{" "}
+                      خروج{" "}
+                    </Link>
+                  )}
                 </div>
               </div>
             </li>
@@ -121,23 +171,6 @@ const Navbar = () => {
 
               <li className="has-submenu parent-parent-menu-item">
                 <Link to="/home/suggestion">پیشنهاد گیاه </Link>
-                {/* <span className="menu-arrow"></span>
-                <ul className="submenu">
-                  <li className="has-submenu parent-menu-item">
-                    <Link to="#"> نمونه </Link>
-                    <span className="submenu-arrow"></span>
-                    <ul className="submenu">
-                      <li>
-                        <Link
-                          to="account-profile.html"
-                          className="sub-menu-item"
-                        >
-                          تست 1{" "}
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                </ul> */}
               </li>
 
               <li className="has-submenu parent-menu-item">

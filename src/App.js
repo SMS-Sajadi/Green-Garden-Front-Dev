@@ -9,7 +9,6 @@ import Home from "./components/Home";
 import Map from "./featurs/MapTest";
 import ConfirmCode from './components/ConfirmCode';
 import ErrorPage from "./pages/404/ErrorPage";
-
 import SavePlants from "./pages/explore/SavePlants";
 // Styles
 import "./assets/styles/bootstrap.min.css";
@@ -41,7 +40,7 @@ function App() {
           <Route path="/signUp/verify" element={<ConfirmCode />} />
           <Route path="/temp" element={<SavePlants />} />
           <Route path="/map" element={<Map />} />
-          <Route path="/" element={<Navigate to={"/signUp"} />} />
+          <Route path="/" element={<Navigate to={"/home"} />} />
           <Route path="*" element={<ErrorPage />} />
 
         </Routes>

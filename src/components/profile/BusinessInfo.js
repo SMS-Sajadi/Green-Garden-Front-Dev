@@ -8,7 +8,7 @@ import phoneIcon from "../../assets/icons/phone.svg";
 
 
 const Business = ({ info }) => {
-  const { business_id, img } = info;
+  const { business_id, image, address, admin, phone } = info;
   return (
     <div className="col-md-6 mt-4">
       <h5>اطلاعات کسب و کار :</h5>
@@ -37,7 +37,7 @@ const Business = ({ info }) => {
 
           <div className="flex-1">
             <h6 className="text-primary mb-0">آدرس :</h6>
-            <p className="text-muted">{business_id}</p>
+            <p className="text-muted">{address}</p>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ const Business = ({ info }) => {
 
           <div className="flex-1">
             <h6 className="text-primary mb-0"> شماره تلفن گلخانه  :</h6>
-            <p className="text-muted">{business_id}</p>
+            <p className="text-muted">{phone}</p>
           </div>
         </div>
 
@@ -66,7 +66,7 @@ const Business = ({ info }) => {
 
           <div className="flex-1">
             <h6 className="text-primary mb-0"> مدیر و سرمایه‌گذار اصلی گلخانه  :</h6>
-            <p className="text-muted">ملکان</p>
+            <p className="text-muted">{admin}</p>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ const Business = ({ info }) => {
               پروانه کسب :
             </h6>
             <img
-              src={img}
+              src={image}
               alt=""
               style={{ width: "280px", marginTop: "16px" }}
             />
