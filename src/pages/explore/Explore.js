@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Link } from "react-router-dom";
+import { getWithParam } from "../../services/api";
 // image  and icons
 import plantBg from "../../assets/images/plants/shahpasand.jpg";
 import aloeVear from "../../assets/images/plants/aloe vear.jpg";
@@ -10,6 +11,43 @@ import Card from "../../components/Card";
 import HorizontalCard from "../../components/HorizontalCard";
 
 const Explore = () => {
+  const season_data = [{
+    seasonal: 1
+  },
+  {
+    seasonal: 2
+  },
+  {
+    seasonal: 3
+  },
+  {
+    seasonal: 4
+  },
+  
+]
+
+  useEffect(() => {
+    async function fetchData() {
+      
+      try {
+        const promises = season_data.map(item => {
+          return getWithParam('/plants/filter/', item);
+        });
+
+        console.log(promises)
+        
+        const results = await Promise.all(promises);
+        
+        console.log(results);
+        // handle the data here
+      } catch (error) {
+        // handle errors here
+      }
+    }
+  
+    fetchData();  }, 
+    [season_data]);
+  
   const info = {
     id: 2,
     image: plantBg,
@@ -75,7 +113,7 @@ const Explore = () => {
           <div className="row">
             <div className="col-12 text-center">
               <div className="section-title mb-4 pb-2">
-                <h4 className="title">تازه ها</h4>
+                <h4 className="title">فصلی ها</h4>
                 <h4 className="title"> --------------------------</h4>
               </div>
             </div>
