@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { postData } from "../../services/api";
+import { getWithParam } from "../../services/api";
 // Component
 import SuggestionCards from '../../components/suggestion/SuggestionCards';
 
 const SuggestionField = () => {
   const [info, setInfo] = useState({});
+  const [isReceived, setIsReceived] = useState(false);
   const [data, setData] = useState({
     light_intensity: "",
     temperature: "",
@@ -21,14 +22,17 @@ const SuggestionField = () => {
     fragrance: false,
   });
 
-  const searchHandeler = () => {
-    const information = postData('/plant/suggest/', data);
+  const searchHandler = async (event) => {
+    event.preventDefault();
+    const information = await getWithParam('/plants/filter/', data);
+    console.log(information)
     setInfo(information);
+    setIsReceived(true);
   };
 
   const handleSelectChange = (event) => {
     const name = event.target.name;
-    const value = event.target.options[event.target.selectedIndex].text;
+    const value = event.target.options[event.target.selectedIndex].value;
 
     setData({ ...data, [name]: value });
 
@@ -46,7 +50,7 @@ const SuggestionField = () => {
           <div className="col-lg-12">
             <form
               className="p-4 shadow bg-white rounded"
-              onSubmit={searchHandeler}
+              onSubmit={searchHandler}
             >
               <h4 className="mb-4">اکنون پیشنهاد بگیر !</h4>
               <span>موارد ستاره‌دار الزامی است :)</span>
@@ -239,7 +243,7 @@ const SuggestionField = () => {
         </div>
       </div>
     </section>
-    <SuggestionCards info={info}/>
+      {isReceived && <SuggestionCards info={info}/>}
 
     </>
   );
