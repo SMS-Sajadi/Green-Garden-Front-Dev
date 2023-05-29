@@ -10,7 +10,7 @@ import SavePlants from "../pages/explore/SavePlants";
 
 const Navbar = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  const [status, setStatus] = useState("garden_owner");
+  const [status, setStatus] = useState("usual");
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
 
@@ -38,18 +38,18 @@ const Navbar = () => {
     setOpen(!open);
 
     // if any token exist
-    // if (token) {
-    //   const whole_res = get("token_check/");
-    //   if (whole_res.status === 200) {
-    //     setStatus("user");
-    //     setId(whole_res.data.user_id);
-    //     if (whole_res.data.is_garden_owner) setStatus("garden_owner");
-    //   } else {
-    //     setStatus("usual");
-    //   }
-    // } else {
-    //   setStatus("usual");
-    // }
+    if (token) {
+      const whole_res = get("token_check/");
+      if (whole_res.status === 200) {
+        setStatus("user");
+        setId(whole_res.data.user_id);
+        if (whole_res.data.is_garden_owner) setStatus("garden_owner");
+      } else {
+        setStatus("usual");
+      }
+    } else {
+      setStatus("usual");
+    }
   };
 
   const logout = () => {

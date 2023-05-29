@@ -21,9 +21,8 @@ const PlantDetail = () => {
   const plant_id = params.plant_id;
 
   useEffect(() => {
-      getData(`/plant/${plant_id}`)
-        .then(data => setInfo(data))
-        .catch(error => console.log(error));
+      const data =getData(`/plant/${plant_id}`);
+       setInfo(data);
     
   }, [plant_id]);  
   return (
