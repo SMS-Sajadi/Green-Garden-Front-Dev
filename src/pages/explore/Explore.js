@@ -11,6 +11,7 @@ import Card from "../../components/Card";
 import HorizontalCard from "../../components/HorizontalCard";
 
 const Explore = () => {
+  const [data, setData] = useState({});
   const season_data = [{
     seasonal: 1
   },
@@ -34,19 +35,21 @@ const Explore = () => {
           return getWithParam('/plants/filter/', item);
         });
 
-        console.log(promises)
-        
+
+
         const results = await Promise.all(promises);
-        
         console.log(results);
+        setData((results))
         // handle the data here
       } catch (error) {
         // handle errors here
       }
     }
   
-    fetchData();  }, 
-    [season_data]);
+    fetchData();
+    },
+    []
+  );
   
   const info = {
     id: 2,
@@ -119,6 +122,10 @@ const Explore = () => {
             </div>
           </div>
           <div id="grid" className="row">
+            {/*{data.map(item => {*/}
+            {/*  <Card  key={item.id} info={item} />*/}
+
+            {/*})}*/}
             <Card  key={info.id} info={info} />
             <Card
             key={1}
