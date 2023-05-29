@@ -2,26 +2,15 @@ import React, { useState } from "react";
 // Component
 import Card from "./Card";
 
-// Images
-import p1 from "../../assets/images/plants/14.jpg";
-import p2 from "../../assets/images/plants/aloe vear.jpg";
-import p3 from "../../assets/images/plants/fanj-J3-Pofva-_w-unsplash.jpg";
-import p4 from "../../assets/images/plants/henry-co-FObU8l6PyLA-unsplash.jpg";
+// // Images
+// import p1 from "../../assets/images/plants/14.jpg";
+// import p2 from "../../assets/images/plants/aloe vear.jpg";
+// import p3 from "../../assets/images/plants/fanj-J3-Pofva-_w-unsplash.jpg";
+// import p4 from "../../assets/images/plants/henry-co-FObU8l6PyLA-unsplash.jpg";
 
 const itemsPerPage = 4;
 
-const SuggestionCards = () => {
-  const items = [
-    { image: p1, id: 1, name: "first", category: "flowers" },
-    { image: p1, id: 2, name: "first", category: "flowers" },
-    { image: p1, id: 3, name: "first", category: "flowers" },
-    { image: p1, id: 4, name: "first", category: "flowers" },
-    { image: p1, id: 5, name: "first", category: "flowers" },
-    { image: p2, id: 6, name: "first", category: "flowers" },
-    { image: p1, id: 7, name: "first", category: "flowers" },
-    { image: p4, id: 8, name: "first", category: "flowers" },
-    { image: p3, id: 9, name: "first", category: "flowers" },
-  ];
+const SuggestionCards = ({info}) => {
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -44,9 +33,9 @@ const SuggestionCards = () => {
 
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = items.slice(startIndex, endIndex);
+  const currentItems = info.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const totalPages = Math.ceil(info.length / itemsPerPage);
 
   return (
     <section className="section">
@@ -66,7 +55,7 @@ const SuggestionCards = () => {
 
         <div className="row">
           {currentItems.map((item) => (
-            <Card key={item.id} item={item} />
+            <Card key={item.plant_id} item={item} />
           ))}
         </div>
 
@@ -100,7 +89,7 @@ const SuggestionCards = () => {
               <li className="page-item">
                 <p
                   onClick={handleClickNext}
-                  className={endIndex >= items.length ? 'page-link disabled':'page-link'}
+                  className={endIndex >= info.length ? 'page-link disabled':'page-link'}
 
                 >
                   بعدی

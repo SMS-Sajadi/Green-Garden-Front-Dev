@@ -9,10 +9,9 @@ import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
 //API
 import { postData, getData } from "../../services/api";
-//Component 
+//Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
-
 
 const Account_profile = () => {
   const [defaultData, setDefaultData] = useState({});
@@ -36,7 +35,15 @@ const Account_profile = () => {
   return (
     <div className="account">
       {/* <!-- Hero Start --> */}
-      <HeaderProfile prof_info={{ image: userInfoRef.profile_photo, name: userInfoRef.name, describe: 'کاربر خوش قلب گرین گاردن', owner: true, link: '/home/account/setting'}} />
+      <HeaderProfile
+        prof_info={{
+          image: userInfoRef.profile_photo,
+          name: userInfoRef.name,
+          describe: "کاربر خوش قلب گرین گاردن",
+          owner: true,
+          link: "/home/account/setting",
+        }}
+      />
       {/* <!-- Hero End --> */}
 
       {/* <!-- Profile Start --> */}
@@ -46,8 +53,13 @@ const Account_profile = () => {
             <div className="col-lg-8 col-12">
               <div className="border-bottom pb-4">
                 <div className="row">
-
-                  <Personalnfo info={{email: userInfoRef.email, phone_number: userInfoRef.phone_number, saved: userInfoRef.save }}/>
+                  <Personalnfo
+                    info={{
+                      email: userInfoRef.email,
+                      phone_number: userInfoRef.phone_number,
+                      saved: userInfoRef.save,
+                    }}
+                  />
 
                   <div className="col-md-6 mt-4 pt-2 pt-sm-0 info">
                     <h5>اطلاعات محیط :</h5>
