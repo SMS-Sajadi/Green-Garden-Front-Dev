@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+
 //images and icons
-import avatar from "../../assets/images/avatar-profie.svg";
+// import avatar from "../../assets/images/avatar-profie.svg";
 import sun from "../../assets/icons/sun.svg";
 import allergy from "../../assets/icons/allergy.svg";
 import temp from "../../assets/icons/temp.svg";
@@ -35,7 +36,7 @@ const Account_profile = () => {
   return (
     <div className="account">
       {/* <!-- Hero Start --> */}
-      <HeaderProfile prof_info={{ image: avatar, name: 'الهام وهابی', describe: 'کاربر خوش قلب گرین گاردن', owner: true, link: '/home/account/setting'}} />
+      <HeaderProfile prof_info={{ image: userInfoRef.profile_photo, name: userInfoRef.name, describe: 'کاربر خوش قلب گرین گاردن', owner: true, link: '/home/account/setting'}} />
       {/* <!-- Hero End --> */}
 
       {/* <!-- Profile Start --> */}
@@ -59,9 +60,9 @@ const Account_profile = () => {
                           name="light intensity"
                           onChange={handleSelectChange}
                         >
-                          <option value="0">زیاد</option>
-                          <option value="1">متوسط</option>
-                          <option value="3">کم</option>
+                          <option value="3">زیاد</option>
+                          <option value="2">متوسط</option>
+                          <option value="1">کم</option>
                         </select>
                       </div>
                     </div>
@@ -89,10 +90,10 @@ const Account_profile = () => {
                           name="temperature"
                           onChange={handleSelectChange}
                         >
-                          <option value="0">گرم و مرطوب</option>
-                          <option value="1">گرم و خشک</option>
-                          <option value="2">سرد و خشک</option>
-                          <option value="3"> متعادل</option>
+                          <option value="1">گرم و مرطوب</option>
+                          <option value="2">گرم و خشک</option>
+                          <option value="3">سرد و خشک</option>
+                          <option value="4"> متعادل</option>
                         </select>
                       </div>
                     </div>
@@ -105,10 +106,10 @@ const Account_profile = () => {
                           name="maintenance"
                           onChange={handleSelectChange}
                         >
-                          <option value="0"> هر روز </option>
-                          <option value="1"> دوبار در هفته </option>
-                          <option value="2"> هفته‌ای یکبار </option>
-                          <option value="3"> دوهفته یکبار</option>
+                          <option value="1"> هر روز </option>
+                          <option value="2"> دوبار در هفته </option>
+                          <option value="3"> هفته‌ای یکبار </option>
+                          <option value="4"> دوهفته یکبار</option>
                         </select>
                       </div>
                     </div>
@@ -118,8 +119,8 @@ const Account_profile = () => {
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0"> حیوان خانگی </h4>
                         <select name="pet" onChange={handleSelectChange}>
-                          <option value="0"> دارم </option>
-                          <option value="1"> ندارم </option>
+                          <option value="true"> دارم </option>
+                          <option value="false"> ندارم </option>
                         </select>
                       </div>
                     </div>
@@ -127,7 +128,7 @@ const Account_profile = () => {
                     <div className="savebtn">
                       <button
                         className="btn btn-primary"
-                        onChange={saveHandeler}
+                        onClick={saveHandeler}
                       >
                         ذخیره
                       </button>

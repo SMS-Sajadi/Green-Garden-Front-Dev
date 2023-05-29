@@ -1,4 +1,5 @@
 import React from "react";
+
 //image
 import avatar from "../../assets/images/avatar-profie.svg";
 // Component

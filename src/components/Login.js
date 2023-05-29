@@ -37,22 +37,8 @@ const Login = () => {
 
   useEffect(() => {
     setErrors(validate(data, "login"));
-    const token = cookies["token"];
-    console.log(token)
-    // if (token) {
-    //   checkToken("accounts/login/", token)
-    //     .then((response) => {
-    //       // if token valid set the token to header
-    //       if (response.status === 200) {
-    //         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    //       }
-    //       console.log(response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
-    // }
   }, [data, touch]);
+
 
   const changeHandeler = (event) => {
     setTouch({ ...touch, [event.target.name]: true });

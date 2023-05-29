@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+// Create random id for key
+import { v4 as uuidv4 } from 'uuid';
 
 const StarScore = (props) => {
   const [stars, setStars] = useState([]);
@@ -35,11 +37,12 @@ const StarScore = (props) => {
   return (
     <div
       className="rating"
-      style={{ fontSize: "1.5em", color: "#6dc77a", marginRight: "2.5em" }}
+      style={{ fontSize: "1.5em", color: "#6dc77a"}}
     >
       {stars.map((star) => {
         return (
           <span
+          key={uuidv4()}
             style={{ cursor: "pointer" }}
             onClick={() => {
               changeRating(star);

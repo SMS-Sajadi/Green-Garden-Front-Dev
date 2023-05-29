@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //image
-import logo from "../assets/images/green garden2.svg";
+import logo from "../assets/images/lg.svg";
 
 
 const Footer = () => {

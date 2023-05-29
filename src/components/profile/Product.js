@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import plantIcon from "../../assets/icons/plantProduct.svg";
 
 const Product = ({ info }) => {
-    const {image, name, category, id} = info;
+    const {image, name, category, plant_id} = info;
   return (
 
       <div className="col-md-6 mt-4 pt-2">
@@ -16,7 +16,7 @@ const Product = ({ info }) => {
           <div className="card-body content">
             <div className="post-meta d-flex justify-content-between mt-3">
               <div></div>
-              <Link to="/" className="text-muted readmore">
+              <Link to={`/home/plant_detail/${plant_id}`} className="text-muted readmore">
                 جزئیات گیاه<i className="uil uil-angle-left-b align-middle"></i>
               </Link>
             </div>

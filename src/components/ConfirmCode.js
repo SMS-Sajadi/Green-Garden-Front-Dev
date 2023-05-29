@@ -9,7 +9,6 @@ import axios from "axios";
 //CSS
 import "../assets/styles/verifyCode.css";
 // API 
-import { postData } from "../services/api";
 import { post } from "../services/api";
 // Cookie
 import { useCookies } from "react-cookie";
