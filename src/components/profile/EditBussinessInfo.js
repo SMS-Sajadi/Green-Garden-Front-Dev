@@ -48,7 +48,7 @@ const EditBussinessInfo = () => {
     reader.readAsDataURL(file);
   }
 
-  const submitHandeler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("new_image", avatarImage);
@@ -60,7 +60,7 @@ const EditBussinessInfo = () => {
     post("garden/edit/profile/", info);
   };
 
-  const changeHandeler = (event) => {
+  const changeHandler = (event) => {
     setInfo({ ...info, [event.target.name]: event.target.value });
   };
 
@@ -103,7 +103,7 @@ const EditBussinessInfo = () => {
                   </div>
                 </div>
 
-                <form onSubmit={submitHandeler}>
+                <form onSubmit={submitHandler}>
                   <div className="row mt-4">
                     <div className="col-md-6">
                       <div className="mb-3">
@@ -120,7 +120,7 @@ const EditBussinessInfo = () => {
                             type="text"
                             className="form-control ps-5"
                             placeholder="نام گلخانه "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
                           />
                         </div>
                       </div>
@@ -141,7 +141,7 @@ const EditBussinessInfo = () => {
                             type="text"
                             className="form-control ps-5"
                             placeholder="شناسه کسب و کار "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
                           />
                         </div>
                       </div>
@@ -162,7 +162,7 @@ const EditBussinessInfo = () => {
                             type="text"
                             className="form-control ps-5"
                             placeholder="تلفن "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
                           />
                         </div>
                       </div>
@@ -184,7 +184,7 @@ const EditBussinessInfo = () => {
                             type="text"
                             className="form-control ps-5"
                             placeholder="آدرس شما "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
                           />
                         </div>
                       </div>
@@ -206,7 +206,7 @@ const EditBussinessInfo = () => {
                             type="text"
                             className="form-control ps-5"
                             placeholder=" مدیر اصلی "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
                             style={{ height: "41px", fontSize: "14px" }}
                           />
                         </div>

@@ -17,7 +17,7 @@ const Comment = ({ garden_id }) => {
   });
 
   // update commentMessage
-  const changeHandeler = (event) => {
+  const changeHandler = (event) => {
     setCommentMassage({
       ...commentMessage,
       [event.target.name]: event.target.value,
@@ -25,14 +25,14 @@ const Comment = ({ garden_id }) => {
   };
 
   // send comment to be saved in database
-  const submitHandeler = (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
     post(`/garden/${garden_id}/`, commentMessage);
   };
 
   return (
     <div className=" mt-4 pt-2 pt-lg-0" style={{ width: "60%" }}>
-      <form className="ms-lg-4" onSubmit={submitHandeler}>
+      <form className="ms-lg-4" onSubmit={submitHandler}>
         <div className="row">
           <div className="col-12">
             <h5>اضافه کردن نظر:</h5>
@@ -63,7 +63,7 @@ const Comment = ({ garden_id }) => {
                   value={commentMessage.name}
                   type="text"
                   placeholder="نام"
-                  onChange={changeHandeler}
+                  onChange={changeHandler}
                   className="form-control ps-5"
                   required=""
                 />
@@ -82,7 +82,7 @@ const Comment = ({ garden_id }) => {
                   rows="5"
                   name="message"
                   value={commentMessage.message}
-                  onChange={changeHandeler}
+                  onChange={changeHandler}
                   className="form-control ps-5"
                   required=""
                 ></textarea>

@@ -871,71 +871,80 @@
 }
 
 @media (max-width: 800px) {
-    .b-image{
+    .b-image {
         margin-right: 0 !important;
     }
-    }
-
-
-.b-image{
-    margin-right: 30px ;
 }
 
-.sliderimg{
+
+
+
+.b-image {
+    margin-right: 30px;
+}
+
+.sliderimg {
     width: 100%;
     height: 500px;
     object-fit: cover;
     border-radius: 50px;
     margin-top: 10px;
     padding: 0 10px;
-  }
+}
 
-  .alice-carousel__prev-btn,  .alice-carousel__next-btn{
+.alice-carousel__prev-btn,
+.alice-carousel__next-btn {
     padding: 0 84px;
 
-  }
-  .alice-carousel__prev-btn-item, .alice-carousel__next-btn-item {
+}
+
+.alice-carousel__prev-btn-item,
+.alice-carousel__next-btn-item {
     font-weight: 1000;
     color: #ffd15a;
-  }
-  .slide-card{
+}
+
+.slide-card {
     border-radius: 6px;
     width: 350px;
     height: 631px;
     margin-bottom: 20px;
-  }
+}
 
-  .alice-carousel__dots-item:not(.__custom).__active{
+.alice-carousel__dots-item:not(.__custom).__active {
     background-color: #ffd15a;
     transform: rotate(45deg);
 
-  }
-  .alice-carousel__dots-item:not(.__custom){
+}
+
+.alice-carousel__dots-item:not(.__custom) {
     width: 12px;
     height: 12px;
     border-radius: 30%;
-  }
+}
 
 .ReactModal__Overlay {
     z-index: 1200;
     background-color: rgb(150, 152, 150, 0.75);
 }
-.textwrite{
+
+.textwrite {
     font-size: 32px;
     display: inline-block;
 }
+
 @media (max-width: 768px) {
-    .textwrite{
+    .textwrite {
         font-size: 23px;
 
     }
 }
 
-.disabled{
+.disabled {
     cursor: not-allowed !important;
 }
 
-.save-div{
+.save-div {
     position: absolute;
     top: -66px;
     padding: 30px;
@@ -1043,16 +1052,17 @@ a.text-secondary:focus {
     background-color: #2daa3f !important
 }
 
-.background{
+.background {
     background: url('../images/bg.png') center center;
 }
-.background2{
-    background: url('../images/salesman.jpg')  center center;
+
+.background2 {
+    background: url('../images/salesman.jpg') center center;
     margin-top: 80px;
 }
 
 
-.background-pic{
+.background-pic {
     background: url('../images/plants/22.png') center center;
     /* height: 400px; */
 }
@@ -2101,10 +2111,11 @@ button:not(:disabled) {
 }
 
 .shadow {
-    -webkit-box-shadow:0 0 3px rgba(60,72,88,0.15) !important;
-    box-shadow:0 0 3px rgba(60,72,88,0.15) !important
-   }
-.card-shadow{
+    -webkit-box-shadow: 0 0 3px rgba(60, 72, 88, 0.15) !important;
+    box-shadow: 0 0 3px rgba(60, 72, 88, 0.15) !important
+}
+
+.card-shadow {
     -webkit-box-shadow: -1px 1px 9px rgb(80, 107, 93, 0.52) !important;
     box-shadow: -1px 1px 9px rgb(80, 107, 93, 0.52) !important;
 
@@ -2742,8 +2753,8 @@ button:not(:disabled) {
 
 }
 
-.form-control:hover{
-    color: #f5c752eb   !important;
+.form-control:hover {
+    color: #f5c752eb !important;
     font-weight: 500;
 }
 
@@ -3023,7 +3034,7 @@ button:not(:disabled) {
     vertical-align: 0 !important
 }
 
-.save-title{
+.save-title {
     font-weight: 600;
     font-size: 28px;
 }
@@ -3381,12 +3392,12 @@ p {
 }
 
 @media (max-width: 768px) {
-    .tdst-inline-item{
+    .tdst-inline-item {
         margin-left: 0 !important;
     }
 }
 
-.tdst-inline-item{
+.tdst-inline-item {
     margin-left: 300px;
 }
 
@@ -4660,6 +4671,7 @@ button:focus {
     .bg-half {
         padding: 169px 0 50px
     }
+
     /* .page-next{
         top: 198px; */
     /* } */

@@ -7,18 +7,23 @@ import { get } from "../services/api";
 import logo from "../assets/images/green garden2.svg";
 //Component
 import SavePlants from "../pages/explore/SavePlants";
+import HamburgerMenue from "./HamburgerMenu";
+
 
 const Navbar = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [status, setStatus] = useState("usual");
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   const style = {
     s1: "dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3 ",
     s2: "dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-3 py-3 show card-shadow",
-  }
-  
+  };
+
+
 
   useEffect(() => {
     const nav = document.getElementById("topnav");
@@ -30,11 +35,30 @@ const Navbar = () => {
         nav.style.background = "";
       }
     });
+
+
+    const handleResize = () => {
+      if (window.innerWidth < 1000) {
+        setIsMenuOpen(true);
+      } else {
+        setIsMenuOpen(false);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
+
   }, []);
 
   const token = cookies["token"];
 
-  const accountHandeler = () => {
+  const accountHandler = () => {
     setOpen(!open);
 
     // if any token exist
@@ -53,8 +77,11 @@ const Navbar = () => {
   };
 
   const logout = () => {
-     removeCookie('token');
-  }
+    removeCookie("token");
+  };
+
+
+  
 
   return (
     <div>
@@ -68,9 +95,14 @@ const Navbar = () => {
             </Link>
           </div>
 
+
           <ul className="buy-button list-inline mb-0">
             <li className="list-inline-item mb-0">
               <div className="dropdown">
+
+              {isMenuOpen &&           <HamburgerMenue />}
+
+
                 <button
                   type="button"
                   className="btn btn-link text-decoration-none dropdown-toggle p-0 pe-2"
@@ -99,17 +131,17 @@ const Navbar = () => {
             <li className="list-inline-item mb-0 pe-1">
               <SavePlants />
             </li>
-            <li className="list-inline-item mb-0" onClick={accountHandeler}>
+            <li className="list-inline-item mb-0" onClick={accountHandler}>
               <div className="dropdown dropdown-primary">
-                  <button
-                    type="button"
-                    className="btn btn-icon  dropdown-toggle nav-icon"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i className="uil uil-user align-middle icons"></i>
-                  </button>
+                <button
+                  type="button"
+                  className="btn btn-icon  dropdown-toggle nav-icon"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i className="uil uil-user align-middle icons"></i>
+                </button>
                 {/* user  */}
                 <div
                   className={open ? style.s2 : style.s1}
@@ -118,7 +150,7 @@ const Navbar = () => {
                   {status !== "usual" ? (
                     <Link
                       className="dropdown-item text-dark"
-                      to='/home/account/'
+                      to="/home/account/"
                     >
                       <i className="uil uil-user align-middle me-1"></i> حساب
                       کاربری
@@ -128,16 +160,23 @@ const Navbar = () => {
                       <i className="uil uil-user align-middle me-1"></i> ورود{" "}
                     </Link>
                   )}
-                  {status === "garden_owner" &&  (
-                    <Link className="dropdown-item text-dark" to='/home/garden/'>
+                  {status === "garden_owner" && (
+                    <Link
+                      className="dropdown-item text-dark"
+                      to="/home/garden/"
+                    >
                       <i className="uil uil-clipboard-notes align-middle me-1"></i>{" "}
                       حساب گلخانه{" "}
                     </Link>
-                  ) }
+                  )}
                   <div className="dropdown-divider my-3 border-top"></div>
 
-                  {status !== "usual" &&  (
-                    <Link className="dropdown-item text-dark" to="/home" onClick={logout}>
+                  {status !== "usual" && (
+                    <Link
+                      className="dropdown-item text-dark"
+                      to="/home"
+                      onClick={logout}
+                    >
                       <i className="uil uil-sign-out-alt align-middle me-1"></i>{" "}
                       خروج{" "}
                     </Link>
@@ -147,19 +186,6 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div className="menu-extras">
-            <div className="menu-item">
-              {/* <!-- Mobile menu toggle--> */}
-              <Link className="navbar-toggle" id="isToggle">
-                <div className="lines">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </Link>
-              {/* <!-- End mobile menu toggle--> */}
-            </div>
-          </div>
 
           <div id="navigation">
             <ul className="navigation-menu nav-light">

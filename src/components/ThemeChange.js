@@ -5,14 +5,14 @@ const ThemeChange = () => {
 
     const [darkTheme , setDarkTheme] = useState("true");
 
-    const themeHandeler = () => {
+    const themeHandler = () => {
         setDarkTheme(!darkTheme);
     }
 
     return (
 
 <div className={darkTheme ? "thcontainer" : "darkMode"  }>
-      <div className="sky" onClick={themeHandeler}>
+      <div className="sky" onClick={themeHandler}>
         <img
           className="moon moonrise"
           src="https://i.postimg.cc/B6cVZTXv/moon.png"

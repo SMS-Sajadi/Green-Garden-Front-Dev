@@ -41,7 +41,7 @@ const EditPersonalInfo = () => {
     setAvatarImage(avatar);
   };
 
-  const submitHandeler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('image', avatarImage);
@@ -50,12 +50,12 @@ const EditPersonalInfo = () => {
 
   }
 
-  const changeHandeler = (event) => {
+  const changeHandler = (event) => {
     setPersonalInfo({...personalInfo, [event.target.name] : event.target.value })
   }
 
 
-  const passHandeler = (event) => {
+  const passHandler = (event) => {
       setPassword({...password, [event.target.name] : event.target.value})
   }
 
@@ -126,7 +126,7 @@ const EditPersonalInfo = () => {
 
                 </div>
 
-                <form onSubmit={submitHandeler}>
+                <form onSubmit={submitHandler}>
                   <div className="row mt-4">
                     <div className="col-md-6">
                       <div className="mb-3">
@@ -144,7 +144,7 @@ const EditPersonalInfo = () => {
                             type="text"
                             className="form-control ps-5"
                             placeholder="نام "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
                           />
                         </div>
                       </div>
@@ -166,7 +166,7 @@ const EditPersonalInfo = () => {
                             type="text"
                             className="form-control ps-5"
                             placeholder="تلفن "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
                           />
                         </div>
                       </div>
@@ -188,7 +188,7 @@ const EditPersonalInfo = () => {
                             type="email"
                             className="form-control ps-5"
                             placeholder="ایمیل شما "
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
 
                           />
                         </div>
@@ -212,7 +212,7 @@ const EditPersonalInfo = () => {
                             rows="4"
                             className="form-control ps-5"
                             placeholder="توضیحات : اگر شرایط خاصی دارید وارد کنید"
-                            onChange={changeHandeler}
+                            onChange={changeHandler}
 
                           ></textarea>
                         </div>
@@ -251,11 +251,11 @@ const EditPersonalInfo = () => {
                               <input
                                 type="password"
                                 name="previous_password"
-                                value={passHandeler.previous_password}
+                                value={passHandler.previous_password}
                                 className="form-control ps-5"
                                 placeholder="رمز قدیمی"
                                 required=""
-                                onChange={passHandeler}
+                                onChange={passHandler}
                               />
                             </div>
                           </div>
@@ -279,7 +279,7 @@ const EditPersonalInfo = () => {
                                 className="form-control ps-5"
                                 placeholder="رمز جدید"
                                 required=""
-                                onChange={passHandeler}
+                                onChange={passHandler}
                               />
                             </div>
                           </div>
@@ -303,7 +303,7 @@ const EditPersonalInfo = () => {
                                 className="form-control ps-5"
                                 placeholder="رمز عبور جدید"
                                 required=""
-                                onChange={passHandeler}
+                                onChange={passHandler}
                               />
                             </div>
                           </div>
