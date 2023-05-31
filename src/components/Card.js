@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ info }) => {
-  const { image, name, category } = info;
+  const { image: main_img, name, category: type } = info;
   return (
     <div className="col-lg-3 col-md-6 col-12 spacing picture-item">
       <div className="card border-0 work-container work-modern position-relative d-block overflow-hidden rounded">
         <div className="card-body p-0">
-          <img src={image} className="img-fluid" alt="" />
+          <img src={main_img} className="img-fluid" alt="" />
           <div className="overlay-work bg-dark"></div>
           <div className="content">
             <h5 className="mb-0">
@@ -15,7 +15,7 @@ const Card = ({ info }) => {
                 {name}
               </Link>
             </h5>
-            <h6 className="text-light tag mb-0">{category} </h6>
+            <h6 className="text-light tag mb-0">{type} </h6>
           </div>
           {/* detail */}
           <div className="icons text-center">

@@ -42,7 +42,7 @@ const SignUp = () => {
     setErrors(validate(data, "signup"));
   }, [data, touch]);
 
-  const changeHandeler = (event) => {
+  const changeHandler = (event) => {
     setTouch({ ...touch, [event.target.name]: true });
 
     if (event.target.name === "isAccepted") {
@@ -52,7 +52,7 @@ const SignUp = () => {
     }
   };
 
-  const submitHandeler = async (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     let res = {};
     console.log(Object.keys(errors))
@@ -102,7 +102,7 @@ const SignUp = () => {
 
 
       <form
-        onSubmit={submitHandeler}
+        onSubmit={submitHandler}
         className={dark ? Styles.signup : Styles.signupDark}
       >
         <h1
@@ -128,7 +128,7 @@ const SignUp = () => {
               name="name"
               value={data.name}
               placeholder="نام کاربری"
-              onChange={changeHandeler}
+              onChange={changeHandler}
             />
 
             {errors.name && touch.name && <span>{errors.name}</span>}
@@ -149,7 +149,7 @@ const SignUp = () => {
               name="email"
               value={data.email}
               placeholder="ایمیل"
-              onChange={changeHandeler}
+              onChange={changeHandler}
             />
             {errors.email && touch.email && <span>{errors.email}</span>}
           </div>
@@ -169,7 +169,7 @@ const SignUp = () => {
               name="phone_number"
               value={data.phone_number}
               placeholder="شماره تلفن"
-              onChange={changeHandeler}
+              onChange={changeHandler}
             />
             {errors.phone_number && touch.phone_number && (
               <span>{errors.phone_number}</span>
@@ -191,7 +191,7 @@ const SignUp = () => {
               name="password"
               value={data.password}
               placeholder="رمز عبور"
-              onChange={changeHandeler}
+              onChange={changeHandler}
             />
             {errors.password && touch.password && (
               <span>{errors.password}</span>
@@ -213,7 +213,7 @@ const SignUp = () => {
               name="confirmPassword"
               value={data.confirmPassword}
               placeholder="تایید رمز عبور"
-              onChange={changeHandeler}
+              onChange={changeHandler}
             />
             {errors.confirmPassword && touch.confirmPassword && (
               <span className={Styles.err}>{errors.confirmPassword}</span>
@@ -232,7 +232,7 @@ const SignUp = () => {
                     type="checkbox"
                     name="isAccepted"
                     value={data.isAccepted}
-                    onChange={changeHandeler}
+                    onChange={changeHandler}
                   />
                   <label></label>
                   <svg className="svgBox" width="15" height="14" fill="none">

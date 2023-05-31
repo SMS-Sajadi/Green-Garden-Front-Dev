@@ -28,7 +28,7 @@ const Account_profile = () => {
     setDefaultData({ ...defaultData, [name]: value });
   };
 
-  const saveHandeler = () => {
+  const saveHandler = () => {
     postData("accounts/", defaultData);
   };
 
@@ -140,7 +140,7 @@ const Account_profile = () => {
                     <div className="savebtn">
                       <button
                         className="btn btn-primary"
-                        onClick={saveHandeler}
+                        onClick={saveHandler}
                       >
                         ذخیره
                       </button>

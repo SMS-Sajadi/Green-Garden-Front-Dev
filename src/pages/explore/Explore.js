@@ -11,43 +11,41 @@ import Card from "../../components/Card";
 import HorizontalCard from "../../components/HorizontalCard";
 
 const Explore = () => {
-  const season_data = [{
-    seasonal: 1
-  },
-  {
-    seasonal: 2
-  },
-  {
-    seasonal: 3
-  },
-  {
-    seasonal: 4
-  },
-  
-]
+  const [data, setData] = useState({});
+  const season_data = [
+    {
+      seasonal: 1,
+    },
+    {
+      seasonal: 2,
+    },
+    {
+      seasonal: 3,
+    },
+    {
+      seasonal: 4,
+    },
+  ];
 
   useEffect(() => {
     async function fetchData() {
-      
       try {
-        const promises = season_data.map(item => {
-          return getWithParam('/plants/filter/', item);
+        const promises = season_data.map((item) => {
+          return getWithParam("/plants/filter/", item);
         });
 
-        console.log(promises)
-        
         const results = await Promise.all(promises);
-        
         console.log(results);
+        setData(results);
         // handle the data here
       } catch (error) {
         // handle errors here
       }
     }
-  
-    fetchData();  }, 
-    [season_data]);
-  
+
+    fetchData();
+  }, []);
+
   const info = {
     id: 2,
     image: plantBg,
@@ -83,7 +81,10 @@ const Explore = () => {
                 />
               </p>
               <div className="mt-4 pt-2" id="suggest">
-                <Link to="/home/suggestion" className="btn btn-primary mt-2 me-2">
+                <Link
+                  to="/home/suggestion"
+                  className="btn btn-primary mt-2 me-2"
+                >
                   <img src={kaktos} alt="" />
                   اکنون پیشنهاد بگیرید
                 </Link>
@@ -119,9 +120,12 @@ const Explore = () => {
             </div>
           </div>
           <div id="grid" className="row">
-            <Card  key={info.id} info={info} />
+            {/* {data.map((item) => {
+              return <Card key={item.id} info={item} />;
+            })} */}
+            <Card key={info.id} info={info} />
             <Card
-            key={1}
+              key={1}
               info={{ image: aloeVear, name: "aloe", category: "winter" }}
             />
           </div>
@@ -139,11 +143,9 @@ const Explore = () => {
             </div>
           </div>
 
-          <HorizontalCard info={info}/>
-
+          <HorizontalCard info={info} />
         </div>
       </section>
-
     </div>
   );
 };
