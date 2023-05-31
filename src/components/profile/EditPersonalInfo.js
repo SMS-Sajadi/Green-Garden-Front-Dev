@@ -10,10 +10,12 @@ import phoneIcon from "../../assets/icons/phone.svg";
 import emailIcon from "../../assets/icons/email.svg";
 import keyIcon from "../../assets/icons/key.svg";
 import commentIcon from "../../assets/icons/comment.svg";
-import { post } from "../../services/api";
+import { put_edit_user, post } from "../../services/api";
+import {useCookies} from "react-cookie";
+
 
 const EditPersonalInfo = () => {
-
+  const [cookies, setCookie] = useCookies(["token"]);
   const [avatarImage, setAvatarImage] = useState(avatar);
   const [password, setPassword] = useState({
     previous_password: '',
@@ -21,11 +23,11 @@ const EditPersonalInfo = () => {
     confirm_pass: ''
   });
   const [personalInfo, setPersonalInfo] = useState({
-    new_name: '',
-    new_phone_number: '',
-    new_email: '',
+    name: '',
+    phone_number: '',
+    email: '',
     describtion: '',
-    new_image: ''
+    image: ''
   });
 
   const handleAvatarChange = (event) => {
@@ -41,13 +43,13 @@ const EditPersonalInfo = () => {
     setAvatarImage(avatar);
   };
 
-  const submitHandeler = (e) => {
+  const submitHandeler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('image', avatarImage);
     setPersonalInfo({...personalInfo, image: formData});
-    post('user/edit/personal-info/', personalInfo);
-
+    const put_result = await put_edit_user('accounts/update-user/', personalInfo, cookies['token']);
+    console.log(put_result)
   }
 
   const changeHandeler = (event) => {
@@ -138,8 +140,8 @@ const EditPersonalInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_name"
-                            value={personalInfo.new_name}
+                            name="name"
+                            value={personalInfo.name}
                             id="first"
                             type="text"
                             className="form-control ps-5"
@@ -160,8 +162,8 @@ const EditPersonalInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_phone_number"
-                            value={personalInfo.new_phone_number}
+                            name="phone_number"
+                            value={personalInfo.phone_number}
                             id="phone_number"
                             type="text"
                             className="form-control ps-5"
@@ -182,8 +184,8 @@ const EditPersonalInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_email"
-                            value={personalInfo.new_email}
+                            name="email"
+                            value={personalInfo.email}
                             id="email"
                             type="email"
                             className="form-control ps-5"

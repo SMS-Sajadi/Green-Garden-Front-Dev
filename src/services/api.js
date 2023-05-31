@@ -30,8 +30,13 @@ const postData = async (str, data) => {
 const post = async (str, data) => {
     var res;
     await axios.post(BASE_URL + str, data)
-        .then(response =>  res = response)
-
+        .then(
+            response =>  res = response
+        )
+        .catch(error => {
+            res = error.response
+        });
+    console.log(res.status)
     return res;
 }
 
@@ -59,4 +64,37 @@ const getWithParam = async (str, data) => {
     return res.data
 }
 
-export {getData, postData, checkToken, post, get, getWithParam};
+const get_for_user = async (str, token) => {
+    var result;
+    await axios.get(BASE_URL + str, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    })
+    .then(res => {
+      result = res;
+    })
+
+
+    return result.data
+}
+
+const put_edit_user = async (str, data, token) => {
+    var result
+    console.log(token)
+    axios.put(BASE_URL + str, {
+        headers: {
+            'Authorization': `Token ${token}`
+        },
+        data: {
+            data
+        }
+    })
+    .then((response) => {
+        console.log(response)
+          result = response
+    })
+    return result
+}
+
+export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user};
