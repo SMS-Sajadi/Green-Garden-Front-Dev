@@ -7,19 +7,34 @@ import allergy from "../../assets/icons/allergy.svg";
 import temp from "../../assets/icons/temp.svg";
 import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
+import axios from "axios";
 //API
 import { postData, getData } from "../../services/api";
 //Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
+import {useCookies} from "react-cookie";
 
 const Account_profile = () => {
   const [defaultData, setDefaultData] = useState({});
   const userInfoRef = useRef(null);
+  const [cookies, setCookie] = useCookies(["token"]);
+
 
   useEffect(() => {
-    userInfoRef.current = getData("accounts/");
-  }, [userInfoRef]);
+    var result;
+    axios.get('localhost3000/accounts/get-user/', {
+      headers: {
+        'Authorization': `Bearer ${cookies}`
+      }
+    })
+    .then(res => {
+      result = res;
+      userInfoRef.current = res.data;
+    })
+  .catch(error => {
+    console.log(error);
+  });  }, [userInfoRef]);
 
   const handleSelectChange = (event) => {
     const name = event.target.name;

@@ -34,7 +34,6 @@ const ConfirmCode = () => {
       // set cookie
       setCookie("token", res.token, {path: "/" });
       axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
-
       navigate("/home");
     } else {
       notify("رمز واردشده مطابقت ندارد", "error");

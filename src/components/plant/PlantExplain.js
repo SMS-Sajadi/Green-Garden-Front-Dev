@@ -7,13 +7,13 @@ import sun from "../../assets/icons/sun2.svg";
 import waterIcon from "../../assets/icons/water.svg";
 
 const PlantExplain = ({ info }) => {
-  const { name, description, lihgt_intensity, water, type, plant_image_ur_listl } = info;
+  const { name, description, lihgt_intensity, water, type, image_list } = info;
 
   return (
     <div className="container">
       <div className="row align-items-center">
         <div className="col-md-5">
-          <Slidebar album={plant_image_ur_listl}/>
+          {/*<Slidebar album={image_list}/>*/}
         </div>
 
         <div className="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">
