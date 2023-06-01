@@ -1,4 +1,5 @@
 import axios from "axios";
+import { async } from "q";
 
 const BASE_URL  = "http://localhost:8000/";
 
@@ -66,6 +67,19 @@ const getWithParam = async (str, params) => {
 }
 
 const get_for_user = async (str, token) => {
+  try {
+    const response = await axios.get(BASE_URL + str, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+const get_by_token =async (str, token) => {
+
     var result;
     await axios.get(BASE_URL + str, {
       headers: {
@@ -81,10 +95,11 @@ const get_for_user = async (str, token) => {
 
 
     return result.data
+
+
 }
 
 const put_edit_user = async (str, data, token) => {
-    console.log(token)
     try {
       const response = await axios.patch(BASE_URL + str, data, {
         headers: {
@@ -100,4 +115,19 @@ const put_edit_user = async (str, data, token) => {
     }
   }
 
-export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user};
+
+  const put = async (str, token) => {
+    console.log(token);
+    try {
+      const response = await axios.put(BASE_URL + str, {}, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      });
+      return response;
+    } catch (error) {
+      console.error(error);
+      return error.response.status;
+    }
+  };
+export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user, put, get_by_token};

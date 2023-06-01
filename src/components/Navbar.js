@@ -63,6 +63,21 @@ const Navbar = () => {
 
   }, []);
 
+  const accountHandler = () => {
+    setOpen(!open);
+
+    const fetch = async () => {
+    
+        const res = await get_for_user("accounts/get-user/", cookies["token"]);
+        setResult(res);
+        setError(res)
+      
+    };
+        fetch();
+
+  };
+
+
   useEffect(() => {
     if (error === 401) {
       console.log('miii')
@@ -77,27 +92,9 @@ const Navbar = () => {
 
 
 
-  const accountHandler = () => {
-    setOpen(!open);
-
-    const fetch = async () => {
-      try {
-        const res = await get_for_user("accounts/get-user/", cookies["token"]);
-        setResult(res);
-      } catch (err) {
-        const res = err.response.status;
-        setError(res);
-      }
-    };
-    fetch();
-
-  };
-
-
-
 
   const logout = () => {
-    removeCookie("token");
+    removeCookie("token", {path:'/'});
   };
 
 

@@ -1,5 +1,7 @@
 import React from "react";
 import { changeValue } from "../../featurs/translateType";
+import { put } from "../../services/api";
+import { useCookies } from "react-cookie";
 // Components
 import Slidebar from "../../components/plant/Slidebar";
 import PlantGardens from "./PlantGardens";
@@ -9,9 +11,13 @@ import waterIcon from "../../assets/icons/water.svg";
 import saved from "../../assets/icons/saved.svg";
 
 const PlantExplain = ({ info }) => {
+
+  const [cookies, setCookie] = useCookies(["token"]);
+
   const { name, description, light_intensity, water, type, image_list, id } = info;
 
-  const savePlant = () => {
+  const savePlant = async () => {
+    const res = await put(`accounts/bookmark-plant/${id}/`, cookies['token'])
 
   }
 

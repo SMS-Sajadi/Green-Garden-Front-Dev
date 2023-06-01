@@ -116,7 +116,6 @@ const Explore = () => {
             </div>
           </div>
           <div id="grid" className="row">
-
             {data.flatMap((item) => {
               return item.map((element) => {
                 return <Card key={element.id} info={element} />;
