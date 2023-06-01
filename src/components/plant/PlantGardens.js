@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { changeValue } from "../../featurs/translateType";
 // Icons
 import sun from "../../assets/icons/sun2.svg";
 import allergy from "../../assets/icons/allergy.svg";
@@ -11,6 +12,7 @@ import waterIcon from "../../assets/icons/water.svg";
 import fragranceIcon from "../../assets/icons/fragrance.svg";
 import eatableIcon from "../../assets/icons/eatable.svg";
 import growthIcon from "../../assets/icons/growth.svg";
+import locationIcon from "../../assets/icons/location2.svg";
 // //image
 // import garden from "../../assets/images/garden/g1.jpg";
 // import g2 from "../../assets/images/garden/g2.avif";
@@ -33,48 +35,10 @@ const PlantGardens = ({ info }) => {
     attention_need,
     edible,
     gardens,
+    location_type,
   } = info;
 
-  const lightValues = ["کم", "متوسط", "زیاد"];
-  const waterValues = [
-    "هر روز",
-    "هر دو روز یکبار",
-    "هر هفته",
-    "هر دو هفته یکبار",
-  ];
-  const attentionValues = ["هر روز", "هفتگی", "ماهانه"];
-  const growthValues = ["بذر", "نهال", "رشد کامل"];
-  const temperatureValues = ["گرم", "شرجی"];
 
-  // Convet values
-  const changeValue = (type, input) => {
-    switch (type) {
-      case "light":
-        return lightValues[input - 1];
-      case "water":
-        return waterValues[input - 1];
-      case "fragrance":
-        if (input === "true") return "است";
-        else return "نیست";
-      case "growth":
-        return growthValues[input - 1];
-      case "temperature":
-        return temperatureValues[input - 1];
-      case "alergy":
-        if (input === "true") return "دارد";
-        else return "ندارد";
-      case "pet":
-        if (input === "true") return "حساس";
-        else return "سازگار با حیوانات";
-      case "attention":
-        return attentionValues[input - 1];
-      case "edible":
-        if (input === "true") return "هست";
-        else return "نیست";
-      default:
-        return "";
-    }
-  };
 
   // const gardens = [
   //   {
@@ -180,7 +144,9 @@ const PlantGardens = ({ info }) => {
                       />
                       نور{" "}
                     </td>
-                    <td className="text-muted">{changeValue('light', light_intensity)}</td>
+                    <td className="text-muted">
+                      {changeValue("light", light_intensity)}
+                    </td>
                   </tr>
 
                   <tr>
@@ -188,7 +154,9 @@ const PlantGardens = ({ info }) => {
                       <img src={temp} alt="" style={{ margin: "0px 12px" }} />
                       دما{" "}
                     </td>
-                    <td className="text-muted">{changeValue('temperature', temperature)} </td>
+                    <td className="text-muted">
+                      {changeValue("temperature", temperature)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -200,7 +168,9 @@ const PlantGardens = ({ info }) => {
                       />
                       عطری{" "}
                     </td>
-                    <td className="text-muted">{changeValue('fragrance', fragrance)} </td>
+                    <td className="text-muted">
+                      {changeValue("fragrance", fragrance)}{" "}
+                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -211,7 +181,23 @@ const PlantGardens = ({ info }) => {
                       />
                       خوراکی{" "}
                     </td>
-                    <td className="text-muted">{changeValue('edible', edible)} </td>
+                    <td className="text-muted">
+                      {changeValue("edible", edible)}{" "}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <img
+                        src={locationIcon}
+                        alt=""
+                        style={{ margin: "0px 12px", width: "32px" }}
+                      />
+                      محیط{" "}
+                    </td>
+                    <td className="text-muted">
+                      {changeValue("location_type", location_type)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -223,7 +209,9 @@ const PlantGardens = ({ info }) => {
                       />
                       حساسیت{" "}
                     </td>
-                    <td className="text-muted">{changeValue('alergy', alergy_compatible)} </td>
+                    <td className="text-muted">
+                      {changeValue("alergy", alergy_compatible)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -235,7 +223,9 @@ const PlantGardens = ({ info }) => {
                       />
                       مرحله رشد{" "}
                     </td>
-                    <td className="text-muted">{changeValue('growth', growth)} </td>
+                    <td className="text-muted">
+                      {changeValue("growth", growth)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -251,7 +241,9 @@ const PlantGardens = ({ info }) => {
                       />
                       آب مورد نیاز{" "}
                     </td>
-                    <td className="text-muted">{changeValue('water', water)} </td>
+                    <td className="text-muted">
+                      {changeValue("water", water)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -259,7 +251,9 @@ const PlantGardens = ({ info }) => {
                       <img src={pet} alt="" style={{ margin: "0px 12px" }} />
                       حیوان خانگی{" "}
                     </td>
-                    <td className="text-muted">{changeValue('pet', pet_compatible)} </td>
+                    <td className="text-muted">
+                      {changeValue("pet", pet_compatible)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -267,7 +261,9 @@ const PlantGardens = ({ info }) => {
                       <img src={bill} alt="" style={{ margin: "0px 12px" }} />
                       میزان رسیدگی{" "}
                     </td>
-                    <td className="text-muted">{changeValue('attention', attention_need)} </td>
+                    <td className="text-muted">
+                      {changeValue("attention", attention_need)}{" "}
+                    </td>
                   </tr>
                 </tbody>
               </table>

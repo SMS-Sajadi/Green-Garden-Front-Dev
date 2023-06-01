@@ -9,54 +9,45 @@ import kaktos from "../../assets/icons/kaktos.svg";
 // Component
 import Card from "../../components/Card";
 import HorizontalCard from "../../components/HorizontalCard";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 const Explore = () => {
-  const [data, setData] = useState({});
-  const season_data = [{
-    seasonal: 1
-  },
-  {
-    seasonal: 2
-  },
-  {
-    seasonal: 3
-  },
-  {
-    seasonal: 4
-  },
-  
-]
+  const [data, setData] = useState([]);
+  const season_data = [
+    {
+      seasonal: 1,
+    },
+
+  ];
 
   useEffect(() => {
-    async function fetchData() {
-      
+    const fetchData = async () => {
       try {
-        const promises = season_data.map(item => {
-          return getWithParam('/plants/filter/', item);
+        const promises = season_data.map((item) => {
+          return getWithParam("/plants/filter/", item);
         });
-
-
 
         const results = await Promise.all(promises);
         console.log(results);
-        setData((results))
+        setData(results);
         // handle the data here
       } catch (error) {
         // handle errors here
+        console.log(error)
       }
-    }
-  
+    };
+
     fetchData();
-    },
-    []
-  );
-  
+  }, []);
+
   const info = {
     id: 2,
     image: plantBg,
     name: "plant",
     category: "fall",
   };
+
+  const showData = () => {};
 
   return (
     <div>
@@ -86,7 +77,10 @@ const Explore = () => {
                 />
               </p>
               <div className="mt-4 pt-2" id="suggest">
-                <Link to="/home/suggestion" className="btn btn-primary mt-2 me-2">
+                <Link
+                  to="/home/suggestion"
+                  className="btn btn-primary mt-2 me-2"
+                >
                   <img src={kaktos} alt="" />
                   اکنون پیشنهاد بگیرید
                 </Link>
@@ -122,15 +116,17 @@ const Explore = () => {
             </div>
           </div>
           <div id="grid" className="row">
-            {/*{data.map(item => {*/}
-            {/*  <Card  key={item.id} info={item} />*/}
 
-            {/*})}*/}
-            <Card  key={info.id} info={info} />
+            {data.flatMap((item) => {
+              return item.map((element) => {
+                return <Card key={element.id} info={element} />;
+              });
+            })}
+            {/* <Card key={info.id} info={info} />
             <Card
-            key={1}
+              key={1}
               info={{ image: aloeVear, name: "aloe", category: "winter" }}
-            />
+            /> */}
           </div>
         </div>
       </section>
@@ -146,11 +142,9 @@ const Explore = () => {
             </div>
           </div>
 
-          <HorizontalCard info={info}/>
-
+          <HorizontalCard info={info} />
         </div>
       </section>
-
     </div>
   );
 };

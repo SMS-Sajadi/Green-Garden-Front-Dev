@@ -1,4 +1,5 @@
 import React from "react";
+import { changeValue } from "../../featurs/translateType";
 // Components
 import Slidebar from "../../components/plant/Slidebar";
 import PlantGardens from "./PlantGardens";
@@ -8,19 +9,7 @@ import waterIcon from "../../assets/icons/water.svg";
 import saved from "../../assets/icons/saved.svg";
 
 const PlantExplain = ({ info }) => {
-  const { name, description, lihgt_intensity, water, type, image_list, id } = info;
-
-  const lightValues = ['کم', 'متوسط', 'زیاد'];
-  const waterValues = ['هر روز', 'هر دو روز یکبار', 'هر هفته', 'هر دو هفته یکبار'];
-
-  const changeValue = (type, input) => {
-    if(type === 'lihgt'){
-      return lightValues[input - 1];
-    }
-    else{
-      return waterValues[input - 1];
-    }
-  }
+  const { name, description, light_intensity, water, type, image_list, id } = info;
 
   const savePlant = () => {
 
@@ -41,9 +30,9 @@ const PlantExplain = ({ info }) => {
             <h5 className="mt-4 py-2">توضیحات :</h5>
             <p className="text-muted">{description}</p>
 
-            <div className="mt-4 pt-2" style={{ display: "flex" }}>
+            <div className="mt-4 pt-2" style={{ display: "flex",   flexWrap: 'wrap' }}>
 
-              <div className="d-flex align-items-center" onClick={savePlant}>
+              <div className="d-flex align-items-center mb-3" onClick={savePlant}>
                 <ul className="list-unstyled mb-0 ms-3">
                   <li className="list-inline-item">
                     <div className="btn btn-icon btn-soft-primary">
@@ -57,11 +46,11 @@ const PlantExplain = ({ info }) => {
                 </ul>
                 <h6 className="mb-0" style={{ marginRight: "14px" }}>
                   ذخیره
-                  <span style={{ marginRight: "7px" }}>{lihgt_intensity}</span>
+                  <span style={{ marginRight: "7px" }}></span>
                 </h6>
               </div>
 
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center mb-3">
                 <ul className="list-unstyled mb-0 ms-3">
                   <li className="list-inline-item">
                     <div className="btn btn-icon btn-soft-primary">
@@ -75,11 +64,11 @@ const PlantExplain = ({ info }) => {
                 </ul>
                 <h6 className="mb-0" style={{ marginRight: "14px" }}>
                   نور :
-                  <span style={{ marginRight: "7px" }}>{changeValue('light', lihgt_intensity)}</span>
+                  <span style={{ marginRight: "7px" }}>{changeValue('light', light_intensity)}</span>
                 </h6>
               </div>
 
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center mb-3">
                 <ul className="list-unstyled mb-0 ms-3">
                   <li className="list-inline-item">
                     <div className="btn btn-icon btn-soft-primary">

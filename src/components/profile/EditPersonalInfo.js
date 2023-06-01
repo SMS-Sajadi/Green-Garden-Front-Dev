@@ -10,22 +10,32 @@ import emailIcon from "../../assets/icons/email.svg";
 import keyIcon from "../../assets/icons/key.svg";
 import { put_edit_user, post } from "../../services/api";
 import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 
 const EditPersonalInfo = ({ info }) => {
   const [cookies, setCookie] = useCookies(["token"]);
-  const [avatarImage, setAvatarImage] = useState(avatar);
+  const [avatarImage, setAvatarImage] = useState();
   const [password, setPassword] = useState({
     previous_password: "",
     new_password: "",
     confirm_pass: "",
   });
+
   const [personalInfo, setPersonalInfo] = useState({
-    name: info.name,
-    phone_number: info.phone_number,
-    email: info.email,
+    name: '',
     image: info.image,
+    email: '',
   });
 
+useEffect(() => {
+  if(!info.image){
+    setAvatarImage(avatar)
+  }
+  else{
+    setAvatarImage(info.image)
+  }
+  setPersonalInfo(info)
+}, [info])
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -36,12 +46,19 @@ const EditPersonalInfo = ({ info }) => {
   };
 
   const handleDeleteAvatar = () => {
-    if (!info.image) {
+    if(avatarImage === avatar){
+      return
+    }
+    if(info.image === avatarImage){
+      setAvatarImage(avatar)
+    }
+    else if (!info.image) {
       setAvatarImage(avatar);
     }
     else{
       setAvatarImage(info.image)
     }
+
   };
 
   const submitHandeler = async (e) => {
@@ -49,19 +66,21 @@ const EditPersonalInfo = ({ info }) => {
     const formData = new FormData();
     formData.append("image", avatarImage);
     setPersonalInfo({ ...personalInfo, image: formData });
+
     const put_result = await put_edit_user(
       "accounts/update-user/",
       personalInfo,
       cookies["token"]
     );
-    console.log(put_result);
   };
 
   const changeHandeler = (event) => {
     setPersonalInfo({
       ...personalInfo,
-      [event.target.name]: event.target.defaultValue,
+      [event.target.name]: event.target.value,
     });
+
+    console.log(personalInfo)
   };
 
   const passHandeler = (event) => {
@@ -114,6 +133,7 @@ const EditPersonalInfo = ({ info }) => {
                       <button
                         className="btn btn-outline-primary mt-2 ms-2"
                         onClick={handleDeleteAvatar}
+                        
                       >
                         حذف
                       </button>
@@ -121,7 +141,7 @@ const EditPersonalInfo = ({ info }) => {
                   </div>
                 </div>
 
-                <form onSubmit={submitHandeler}>
+                <form onSubmit={submitHandeler} encType="multipart/form-data">
                   <div className="row mt-4">
                     <div className="col-md-6">
                       <div className="mb-3">

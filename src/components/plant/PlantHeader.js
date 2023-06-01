@@ -19,7 +19,7 @@ const PlantHeader = ({ name }) => {
                         <img src={greater} alt="" style={{ width: "15px" }} />
                       </li>
                       <li className="breadcrumb-item">
-                        <Link to="/"> {name} </Link>
+                        <Link to=""> {name} </Link>
                         <img src={greater} alt="" style={{ width: "15px" }} />
                       </li>
                       <li className="breadcrumb-item active">جزئیات گیاه</li>

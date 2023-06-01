@@ -74,27 +74,29 @@ const get_for_user = async (str, token) => {
     .then(res => {
       result = res;
     })
+    .catch(err => {
+        result = err.response.status;
+    })
 
 
     return result.data
 }
 
 const put_edit_user = async (str, data, token) => {
-    var result
     console.log(token)
-    axios.put(BASE_URL + str, {
+    try {
+      const response = await axios.put(BASE_URL + str, data, {
         headers: {
-            'Authorization': `Token ${token}`
-        },
-        data: {
-            data
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'multipart/form-data',
         }
-    })
-    .then((response) => {
-        console.log(response)
-          result = response
-    })
-    return result
-}
+      });
+      console.log(response);
+      return response;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 
 export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user};

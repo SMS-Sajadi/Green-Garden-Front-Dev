@@ -7,6 +7,7 @@ import allergy from "../../assets/icons/allergy.svg";
 import temp from "../../assets/icons/temp.svg";
 import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
+import location from '../../assets/icons/location2.svg';
 //API
 import {postData, get_for_user} from "../../services/api";
 //Component
@@ -107,17 +108,16 @@ const Account_profile = () => {
                     </div>
 
                     <div className="d-flex key-feature align-items-center p-3 rounded shadow mt-4">
-                      <img src={temp} className="avatar avatar-ex-sm" alt="" />
+                      <img src={location} className="avatar avatar-ex-sm" alt=""  style={{width: '32px'}}/>
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0">محیط </h4>
                         <select
-                          name="temperature"
+                          name="location_type"
                           onChange={handleSelectChange}
                         >
-                          <option value="1">گرم و مرطوب</option>
-                          <option value="2">گرم و خشک</option>
-                          <option value="3">سرد و خشک</option>
-                          <option value="4"> متعادل</option>
+                          <option value="1">آپارتمان</option>
+                          <option value="2"> بسته </option>
+                          <option value="3"> باز</option>
                         </select>
                       </div>
                     </div>

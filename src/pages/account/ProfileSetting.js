@@ -10,20 +10,24 @@ import EditPersonalInfo from "../../components/profile/EditPersonalInfo";
 
 const ProfileSetting = () => {
   const [cookies, setCookie] = useCookies(["token"]);
+  // const [info, setInfo] = useState({
+  //   email: "mhrnzshahi@gmail.com",
+  //   id: 0,
+  //   image: "",
+  //   is_garden_owner: false,
+  //   name: "",
+  //   phone_number: "",
+  // });
+
   const [info, setInfo] = useState({});
 
 
-useEffect(
-  () => {
+  useEffect(() => {
     const fetch = async () => {
-      const result = await get_for_user('accounts/get-user/', cookies['token'])
-      console.log(result);
-      setInfo(result)
-    }
+            setInfo(await get_for_user("accounts/get-user/", cookies["token"]));
+    };
     fetch();
-
-  }, []
-);
+  }, []);
 
   return (
     <div>
@@ -39,7 +43,10 @@ useEffect(
       />
       {/* <!-- Hero End --> */}
 
-      <EditPersonalInfo info={info}/>
+
+
+
+      {info && <EditPersonalInfo info={info} />}
     </div>
   );
 };
