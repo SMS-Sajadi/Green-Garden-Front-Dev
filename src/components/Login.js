@@ -40,13 +40,13 @@ const Login = () => {
   }, [data, touch]);
 
 
-  const changeHandeler = (event) => {
+  const changeHandler = (event) => {
     setTouch({ ...touch, [event.target.name]: true });
 
     setData({ ...data, [event.target.name]: event.target.value });
   };
 
-  const submitHandeler = async (event) => {
+  const submitHandler = async (event) => {
     var res = {};
     event.preventDefault();
     if (!Object.keys(errors).length) {
@@ -91,7 +91,7 @@ const Login = () => {
       </Link>
 
       <form
-        onSubmit={submitHandeler}
+        onSubmit={submitHandler}
         className={dark ? Styles.signup : Styles.signupDark}
       >
         <h1
@@ -117,7 +117,7 @@ const Login = () => {
               name="email"
               value={data.email}
               placeholder="ایمیل"
-              onChange={changeHandeler}
+              onChange={changeHandler}
             />
             {errors.email && touch.email && <span>{errors.email}</span>}
           </div>
@@ -133,7 +133,7 @@ const Login = () => {
               name="password"
               value={data.password}
               placeholder="رمز عبور"
-              onChange={changeHandeler}
+              onChange={changeHandler}
             />
           </div>
         </div>
