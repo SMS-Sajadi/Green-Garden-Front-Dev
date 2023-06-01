@@ -7,11 +7,16 @@ import { get_for_user } from "../services/api";
 import logo from "../assets/images/green garden2.svg";
 //Component
 import SavePlants from "../pages/explore/SavePlants";
+import HamburgerMenue from "./HamburgerMenu";
+
 
 const Navbar = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [status, setStatus] = useState("usal");
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const [result, setResult] = useState({
     email: "",
     id: 0,
@@ -37,6 +42,25 @@ const Navbar = () => {
         nav.style.background = "";
       }
     });
+
+
+    const handleResize = () => {
+      if (window.innerWidth < 1000) {
+        setIsMenuOpen(true);
+      } else {
+        setIsMenuOpen(false);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
+
   }, []);
 
   useEffect(() => {
@@ -53,7 +77,7 @@ const Navbar = () => {
 
 
 
-  const accountHandeler =  () => {
+  const accountHandler = () => {
     setOpen(!open);
 
     const fetch = async () => {
@@ -73,9 +97,11 @@ const Navbar = () => {
 
 
   const logout = () => {
-    console.log("me");
     removeCookie("token");
   };
+
+
+
 
   return (
     <div>
@@ -89,9 +115,14 @@ const Navbar = () => {
             </Link>
           </div>
 
+
           <ul className="buy-button list-inline mb-0">
             <li className="list-inline-item mb-0">
               <div className="dropdown">
+
+              {isMenuOpen &&           <HamburgerMenue />}
+
+
                 <button
                   type="button"
                   className="btn btn-link text-decoration-none dropdown-toggle p-0 pe-2"
@@ -120,7 +151,7 @@ const Navbar = () => {
             <li className="list-inline-item mb-0 pe-1">
               <SavePlants />
             </li>
-            <li className="list-inline-item mb-0" onClick={accountHandeler}>
+            <li className="list-inline-item mb-0" onClick={accountHandler}>
               <div className="dropdown dropdown-primary">
                 <button
                   type="button"
@@ -175,19 +206,6 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div className="menu-extras">
-            <div className="menu-item">
-              {/* <!-- Mobile menu toggle--> */}
-              <Link className="navbar-toggle" id="isToggle">
-                <div className="lines">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </Link>
-              {/* <!-- End mobile menu toggle--> */}
-            </div>
-          </div>
 
           <div id="navigation">
             <ul className="navigation-menu nav-light">
