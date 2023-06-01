@@ -7,9 +7,8 @@ import allergy from "../../assets/icons/allergy.svg";
 import temp from "../../assets/icons/temp.svg";
 import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
-import axios from "axios";
 //API
-import {postData, getData, get_for_user} from "../../services/api";
+import {postData, get_for_user} from "../../services/api";
 //Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
@@ -31,7 +30,7 @@ const Account_profile = () => {
       }
       console.log(userInfo)
       fetch();
-  }, [userInfo]);
+  }, []);
 
   const handleSelectChange = (event) => {
     const name = event.target.name;

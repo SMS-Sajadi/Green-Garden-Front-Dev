@@ -70,21 +70,6 @@ const Personalnfo = ({ info }) => {
           </div>
         </div>
 
-        <div className="d-flex align-items-center mt-3">
-          <img
-            src={saveIcon}
-            className="fea icon-ex-md text-muted me-3"
-            alt=""
-            style={{ marginBottom: "24px" }}
-          />
-
-          <Link>
-            <div className="flex-1">
-              <h6 className="text-primary mb-0">پسندیده ها :</h6>
-              <p className="text-muted">گیاهانی که شما پسندیدید</p>
-            </div>
-          </Link>
-        </div>
       </div>
     </div>
   );

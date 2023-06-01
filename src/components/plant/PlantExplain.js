@@ -10,6 +10,18 @@ import saved from "../../assets/icons/saved.svg";
 const PlantExplain = ({ info }) => {
   const { name, description, lihgt_intensity, water, type, image_list, id } = info;
 
+  const lightValues = ['کم', 'متوسط', 'زیاد'];
+  const waterValues = ['هر روز', 'هر دو روز یکبار', 'هر هفته', 'هر دو هفته یکبار'];
+
+  const changeValue = (type, input) => {
+    if(type === 'lihgt'){
+      return lightValues[input - 1];
+    }
+    else{
+      return waterValues[input - 1];
+    }
+  }
+
   const savePlant = () => {
 
   }
@@ -63,7 +75,7 @@ const PlantExplain = ({ info }) => {
                 </ul>
                 <h6 className="mb-0" style={{ marginRight: "14px" }}>
                   نور :
-                  <span style={{ marginRight: "7px" }}>{lihgt_intensity}</span>
+                  <span style={{ marginRight: "7px" }}>{changeValue('light', lihgt_intensity)}</span>
                 </h6>
               </div>
 
@@ -81,7 +93,7 @@ const PlantExplain = ({ info }) => {
                 </ul>
                 <h6 className="mb-0" style={{ marginRight: "14px" }}>
                   آب مورد نیاز :
-                  <span style={{ marginRight: "7px" }}>{water}</span>
+                  <span style={{ marginRight: "7px" }}>{changeValue('water', water)}</span>
                 </h6>
               </div>
             </div>

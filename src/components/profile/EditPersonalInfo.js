@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { notify } from "../../featurs/toast";
-
 
 //images and icons
 import avatar from "../../assets/images/avatar-profie.svg";
@@ -9,25 +8,22 @@ import userIcon from "../../assets/icons/user-1-svgrepo-com.svg";
 import phoneIcon from "../../assets/icons/phone.svg";
 import emailIcon from "../../assets/icons/email.svg";
 import keyIcon from "../../assets/icons/key.svg";
-import commentIcon from "../../assets/icons/comment.svg";
 import { put_edit_user, post } from "../../services/api";
-import {useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 
-
-const EditPersonalInfo = () => {
+const EditPersonalInfo = ({ info }) => {
   const [cookies, setCookie] = useCookies(["token"]);
   const [avatarImage, setAvatarImage] = useState(avatar);
   const [password, setPassword] = useState({
-    previous_password: '',
-    new_password: '',
-    confirm_pass: ''
+    previous_password: "",
+    new_password: "",
+    confirm_pass: "",
   });
   const [personalInfo, setPersonalInfo] = useState({
-    name: '',
-    phone_number: '',
-    email: '',
-    describtion: '',
-    image: ''
+    name: info.name,
+    phone_number: info.phone_number,
+    email: info.email,
+    image: info.image,
   });
 
   const handleAvatarChange = (event) => {
@@ -40,40 +36,50 @@ const EditPersonalInfo = () => {
   };
 
   const handleDeleteAvatar = () => {
-    setAvatarImage(avatar);
+    if (!info.image) {
+      setAvatarImage(avatar);
+    }
+    else{
+      setAvatarImage(info.image)
+    }
   };
 
   const submitHandeler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('image', avatarImage);
-    setPersonalInfo({...personalInfo, image: formData});
-    const put_result = await put_edit_user('accounts/update-user/', personalInfo, cookies['token']);
-    console.log(put_result)
-  }
+    formData.append("image", avatarImage);
+    setPersonalInfo({ ...personalInfo, image: formData });
+    const put_result = await put_edit_user(
+      "accounts/update-user/",
+      personalInfo,
+      cookies["token"]
+    );
+    console.log(put_result);
+  };
 
   const changeHandeler = (event) => {
-    setPersonalInfo({...personalInfo, [event.target.name] : event.target.value })
-  }
-
+    setPersonalInfo({
+      ...personalInfo,
+      [event.target.name]: event.target.defaultValue,
+    });
+  };
 
   const passHandeler = (event) => {
-      setPassword({...password, [event.target.name] : event.target.value})
-  }
+    setPassword({ ...password, [event.target.name]: event.target.value });
+  };
 
   const changePassword = (event) => {
     event.preventDefault();
-    if(password.confirm_pass !== password.new_password){
-      notify('پسورد یکسان نیست.', 'error');
+    if (password.confirm_pass !== password.new_password) {
+      notify("پسورد یکسان نیست.", "error");
+    } else {
+      const res = post(" user/edit/password", {
+        previous_password: password.previous_password,
+        new_password: password.new_password,
+      });
+      if (res.status === 200) notify("رمز با موفقیت تغییر یافت .");
     }
-    else{
-      const res = post(' user/edit/password',{previous_password: password.previous_password, new_password: password.new_password});
-      if(res.status === 200)
-        notify('رمز با موفقیت تغییر یافت .')
-    }
-
-  }
-
+  };
 
   return (
     <section className="section mt-60">
@@ -85,47 +91,34 @@ const EditPersonalInfo = () => {
                 <h5 className="text-md-start text-center">جزئیات شخصی :</h5>
 
                 <div className="mt-3 text-md-start text-center d-sm-flex">
-                  {/* <img
-                    src={avatar}
-                    className="avatar float-md-left avatar-medium rounded-circle shadow me-md-4"
-                    alt=""
-                  /> */}
-
-                  {/* <div className="mt-md-4 mt-3 mt-sm-0">
-                    <button  className="btn btn-primary mt-2">
-                      تغییر تصویر
-                    </button>
-                    <button  className="btn btn-outline-primary mt-2 ms-2">
-                      حذف
-                    </button>
-                  </div> */}
-
-<div className="mt-3 text-md-start text-center d-sm-flex">
-                  <img
-                    src={avatarImage}
-                    className="avatar float-md-left avatar-medium rounded-circle shadow me-md-4 card-shadow"
-                    alt=""
-                  />
-<div className="mt-md-4 mt-3 mt-sm-0">
-                    <label htmlFor="avatarInput" className="btn btn-primary mt-2">
-                      تغییر تصویر
-                      <input
-                        id="avatarInput"
-                        type="file"
-                        accept="image/*"
-                        className="d-none"
-                        onChange={handleAvatarChange}
-                      />
-                    </label>
-                    <button  className="btn btn-outline-primary mt-2 ms-2" onClick={handleDeleteAvatar}>
-                      حذف
-                    </button>
+                  <div className="mt-3 text-md-start text-center d-sm-flex">
+                    <img
+                      src={avatarImage}
+                      className="avatar float-md-left avatar-medium rounded-circle shadow me-md-4 card-shadow"
+                      alt=""
+                    />
+                    <div className="mt-md-4 mt-3 mt-sm-0">
+                      <label
+                        htmlFor="avatarInput"
+                        className="btn btn-primary mt-2"
+                      >
+                        تغییر تصویر
+                        <input
+                          id="avatarInput"
+                          type="file"
+                          accept="image/*"
+                          className="d-none"
+                          onChange={handleAvatarChange}
+                        />
+                      </label>
+                      <button
+                        className="btn btn-outline-primary mt-2 ms-2"
+                        onClick={handleDeleteAvatar}
+                      >
+                        حذف
+                      </button>
+                    </div>
                   </div>
-                </div>
-
-
-
-
                 </div>
 
                 <form onSubmit={submitHandeler}>
@@ -141,7 +134,7 @@ const EditPersonalInfo = () => {
                           />
                           <input
                             name="name"
-                            value={personalInfo.name}
+                            defaultValue={personalInfo.name}
                             id="first"
                             type="text"
                             className="form-control ps-5"
@@ -163,7 +156,7 @@ const EditPersonalInfo = () => {
                           />
                           <input
                             name="phone_number"
-                            value={personalInfo.phone_number}
+                            defaultValue={personalInfo.phone_number}
                             id="phone_number"
                             type="text"
                             className="form-control ps-5"
@@ -185,41 +178,17 @@ const EditPersonalInfo = () => {
                           />
                           <input
                             name="email"
-                            value={personalInfo.email}
+                            defaultValue={personalInfo.email}
                             id="email"
                             type="email"
                             className="form-control ps-5"
                             placeholder="ایمیل شما "
                             onChange={changeHandeler}
-
                           />
                         </div>
                       </div>
                     </div>
                     <div className="col-md-6"></div>
-
-                    <div className="col-lg-12">
-                      <div className="mb-3">
-                        <label className="form-label">توضیحات </label>
-                        <div className="form-icon position-relative">
-                          <img
-                            src={commentIcon}
-                            className="fea icon-sm icons"
-                            alt=""
-                          />
-                          <textarea
-                            name="comments"
-                            value={personalInfo.describtion}
-                            id="comments"
-                            rows="4"
-                            className="form-control ps-5"
-                            placeholder="توضیحات : اگر شرایط خاصی دارید وارد کنید"
-                            onChange={changeHandeler}
-
-                          ></textarea>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div className="row">
                     <div className="col-sm-12">
@@ -312,7 +281,10 @@ const EditPersonalInfo = () => {
                         </div>
 
                         <div className="col-lg-12 mt-2 mb-0">
-                          <button className="btn btn-primary" onClick={changePassword}>
+                          <button
+                            className="btn btn-primary"
+                            onClick={changePassword}
+                          >
                             ذخیره رمز عبور{" "}
                           </button>
                         </div>
@@ -323,7 +295,9 @@ const EditPersonalInfo = () => {
               </div>
             </div>
 
-            {/* <div className="rounded shadow mt-4">
+            {/* 
+            // Delete account
+            <div className="rounded shadow mt-4">
               <div className="p-4 border-bottom">
                 <h5 className="mb-0 text-danger">حذف اکانت :</h5>
               </div>
