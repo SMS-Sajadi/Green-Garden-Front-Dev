@@ -22,20 +22,20 @@ const EditPersonalInfo = ({ info }) => {
   });
 
   const [personalInfo, setPersonalInfo] = useState({
-    name: '',
+    name: "",
     image: info.image,
-    email: '',
+    email: "",
+    phone_number: ''
   });
 
-useEffect(() => {
-  if(!info.image){
-    setAvatarImage(avatar)
-  }
-  else{
-    setAvatarImage(info.image)
-  }
-  setPersonalInfo(info)
-}, [info])
+  useEffect(() => {
+    if (!info.image) {
+      setAvatarImage(avatar);
+    } else {
+      setAvatarImage(info.image);
+    }
+    setPersonalInfo(info);
+  }, [info]);
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -46,30 +46,29 @@ useEffect(() => {
   };
 
   const handleDeleteAvatar = () => {
-    if(avatarImage === avatar){
-      return
+    if (avatarImage === avatar) {
+      return;
     }
-    if(info.image === avatarImage){
-      setAvatarImage(avatar)
-    }
-    else if (!info.image) {
+    if (info.image === avatarImage) {
       setAvatarImage(avatar);
+    } else if (!info.image) {
+      setAvatarImage(avatar);
+    } else {
+      setAvatarImage(info.image);
     }
-    else{
-      setAvatarImage(info.image)
-    }
-
   };
 
   const submitHandeler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append('name', personalInfo.name);
+    formData.append('email', personalInfo.email);
+    formData.append('phone_number', personalInfo.phone_number);
     formData.append("image", avatarImage);
-    setPersonalInfo({ ...personalInfo, image: formData });
 
     const put_result = await put_edit_user(
       "accounts/update-user/",
-      personalInfo,
+      formData,
       cookies["token"]
     );
   };
@@ -80,7 +79,7 @@ useEffect(() => {
       [event.target.name]: event.target.value,
     });
 
-    console.log(personalInfo)
+    console.log(personalInfo);
   };
 
   const passHandeler = (event) => {
@@ -133,7 +132,6 @@ useEffect(() => {
                       <button
                         className="btn btn-outline-primary mt-2 ms-2"
                         onClick={handleDeleteAvatar}
-                        
                       >
                         حذف
                       </button>

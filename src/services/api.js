@@ -15,7 +15,9 @@ const getData = async (str) => {
       return response.data;
 }
 const get = async (str) => {
-    const response = await axios.get(BASE_URL + str, { withCredentials: true });
+    const response = await axios.get(BASE_URL + str, { withCredentials: true }) 
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
     return response;
 }
 
@@ -42,7 +44,6 @@ const post = async (str, data) => {
 
 const getWithParam = async (str, params) => {
     var res;
-    var params;
     var AddAnd = false
     for (let key in params) {
         if (AddAnd){
@@ -85,7 +86,7 @@ const get_for_user = async (str, token) => {
 const put_edit_user = async (str, data, token) => {
     console.log(token)
     try {
-      const response = await axios.put(BASE_URL + str, data, {
+      const response = await axios.patch(BASE_URL + str, data, {
         headers: {
           'Authorization': `Token ${token}`,
           'Content-Type': 'multipart/form-data',
