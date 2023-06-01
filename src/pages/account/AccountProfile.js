@@ -9,32 +9,31 @@ import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
 import axios from "axios";
 //API
-import { postData, getData } from "../../services/api";
+import { postData } from "../../services/api";
 //Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
-import {useCookies} from "react-cookie";
+import { useCookies } from "react-cookie";
 
 const Account_profile = () => {
   const [defaultData, setDefaultData] = useState({});
   const userInfoRef = useRef(null);
   const [cookies, setCookie] = useCookies(["token"]);
 
-
   useEffect(() => {
-    var result;
-    axios.get('localhost3000/accounts/get-user/', {
-      headers: {
-        'Authorization': `Bearer ${cookies}`
-      }
-    })
-    .then(res => {
-      result = res;
-      userInfoRef.current = res.data;
-    })
-  .catch(error => {
-    console.log(error);
-  });  }, [userInfoRef]);
+    axios
+      .get("localhost3000/accounts/get-user/", {
+        headers: {
+          Authorization: `Bearer ${cookies}`,
+        },
+      })
+      .then((res) => {
+        userInfoRef.current = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleSelectChange = (event) => {
     const name = event.target.name;

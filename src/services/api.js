@@ -35,20 +35,20 @@ const post = async (str, data) => {
     return res;
 }
 
-const getWithParam = async (str, data) => {
+const getWithParam = async (str, params) => {
     var res;
-    var params = '';
+    var params;
     var AddAnd = false
-    for (let key in data) {
+    for (let key in params) {
         if (AddAnd){
             params += '&'
         }
         AddAnd = true
-        if (typeof data[key] === 'boolean'){
-            const numBool = data[key] === 'true' ? '1' : '0';
+        if (typeof params[key] === 'boolean'){
+            const numBool = params[key] === 'true' ? '1' : '0';
             params += (key + '=' + numBool)
         } else {
-            params += (key + '=' + data[key])
+            params += (key + '=' + params[key])
         }
     }
     console.log(BASE_URL + str + '?' + params)
