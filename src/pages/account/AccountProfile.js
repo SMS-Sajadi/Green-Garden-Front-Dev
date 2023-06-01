@@ -7,19 +7,31 @@ import allergy from "../../assets/icons/allergy.svg";
 import temp from "../../assets/icons/temp.svg";
 import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
+import location from '../../assets/icons/location2.svg';
 //API
-import { postData, getData } from "../../services/api";
+import {postData, get_for_user} from "../../services/api";
 //Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
+import { useCookies } from "react-cookie";
 
 const Account_profile = () => {
   const [defaultData, setDefaultData] = useState({});
-  const userInfoRef = useRef(null);
+  // const userInfoRef = useRef(null);
+  const [userInfo, setUserInfo] = useState({});
+  const [cookies, setCookie] = useCookies(["token"]);
 
-  useEffect(() => {
-    userInfoRef.current = getData("accounts/");
-  }, [userInfoRef]);
+
+    useEffect(() => {
+      console.log(cookies)
+      const fetch = async () => {
+        const result = await get_for_user('accounts/get-user/', cookies['token'])
+        console.log(result)
+        setUserInfo(result)
+      }
+      console.log(userInfo)
+      fetch();
+  }, []);
 
   const handleSelectChange = (event) => {
     const name = event.target.name;
@@ -37,8 +49,8 @@ const Account_profile = () => {
       {/* <!-- Hero Start --> */}
       <HeaderProfile
         prof_info={{
-          image: userInfoRef.profile_photo,
-          name: userInfoRef.name,
+          image: userInfo.image,
+          name: userInfo.name,
           describe: "کاربر خوش قلب گرین گاردن",
           owner: true,
           link: "/home/account/setting",
@@ -55,9 +67,10 @@ const Account_profile = () => {
                 <div className="row">
                   <Personalnfo
                     info={{
-                      email: userInfoRef.email,
-                      phone_number: userInfoRef.phone_number,
-                      saved: userInfoRef.save,
+                      name: userInfo.name,
+                      email: userInfo.email,
+                      phone_number: userInfo.phone_number,
+                      saved: userInfo.save,
                     }}
                   />
 
@@ -95,17 +108,16 @@ const Account_profile = () => {
                     </div>
 
                     <div className="d-flex key-feature align-items-center p-3 rounded shadow mt-4">
-                      <img src={temp} className="avatar avatar-ex-sm" alt="" />
+                      <img src={location} className="avatar avatar-ex-sm" alt=""  style={{width: '32px'}}/>
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0">محیط </h4>
                         <select
-                          name="temperature"
+                          name="location_type"
                           onChange={handleSelectChange}
                         >
-                          <option value="1">گرم و مرطوب</option>
-                          <option value="2">گرم و خشک</option>
-                          <option value="3">سرد و خشک</option>
-                          <option value="4"> متعادل</option>
+                          <option value="1">آپارتمان</option>
+                          <option value="2"> بسته </option>
+                          <option value="3"> باز</option>
                         </select>
                       </div>
                     </div>

@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Function
+import { translateType } from "../featurs/translateType";
+
 const Card = ({ info }) => {
-  const { image: main_img, name, category: type } = info;
+  const { main_img, name, type, id } = info;
+  
   return (
     <div className="col-lg-3 col-md-6 col-12 spacing picture-item">
       <div className="card border-0 work-container work-modern position-relative d-block overflow-hidden rounded">
@@ -15,16 +19,17 @@ const Card = ({ info }) => {
                 {name}
               </Link>
             </h5>
-            <h6 className="text-light tag mb-0">{type} </h6>
+            <h6 className="text-light tag mb-0">{translateType(type)} </h6>
+            {console.log(translateType(type))}
           </div>
           {/* detail */}
           <div className="icons text-center">
             <Link
-              to="/"
+              to={`/home/plant-detail/${id}`}
               className="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"
             >
               <i data-feather="camera" className="uil uil-camera "></i>
-              <Link to="/" className="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" className="icons"></i></Link>
+              <div className="btn btn-icon btn-pills btn-soft-danger"><i data-feather="heart" className="icons"></i></div>
 
             </Link>
           </div>

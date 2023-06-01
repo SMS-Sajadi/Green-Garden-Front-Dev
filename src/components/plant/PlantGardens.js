@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { changeValue } from "../../featurs/translateType";
 // Icons
 import sun from "../../assets/icons/sun2.svg";
 import allergy from "../../assets/icons/allergy.svg";
@@ -11,6 +12,7 @@ import waterIcon from "../../assets/icons/water.svg";
 import fragranceIcon from "../../assets/icons/fragrance.svg";
 import eatableIcon from "../../assets/icons/eatable.svg";
 import growthIcon from "../../assets/icons/growth.svg";
+import locationIcon from "../../assets/icons/location2.svg";
 // //image
 // import garden from "../../assets/images/garden/g1.jpg";
 // import g2 from "../../assets/images/garden/g2.avif";
@@ -20,13 +22,10 @@ import growthIcon from "../../assets/icons/growth.svg";
 import GardenList from "../garden/GardenList";
 
 const PlantGardens = ({ info }) => {
-
-
-  const 
-  {
+  const {
     fragrance,
     // type,
-    lihgt_intensity,
+    light_intensity,
     // location_type,
     water,
     growth,
@@ -35,8 +34,11 @@ const PlantGardens = ({ info }) => {
     alergy_compatible,
     attention_need,
     edible,
-    gardens
-    } = info;
+    gardens,
+    location_type,
+  } = info;
+
+
 
   // const gardens = [
   //   {
@@ -92,11 +94,11 @@ const PlantGardens = ({ info }) => {
 
   const showAllGarden = (gardens) => {
     return gardens.map((item) => {
-      return(
+      return (
         <Link to={`/home/garden/${item.id}`}>
-         <GardenList key={item.id*10} info={item} />
-         </Link>
-         );
+          <GardenList key={item.id * 10} info={item} />
+        </Link>
+      );
     });
   };
 
@@ -142,7 +144,9 @@ const PlantGardens = ({ info }) => {
                       />
                       نور{" "}
                     </td>
-                    <td className="text-muted">{lihgt_intensity}</td>
+                    <td className="text-muted">
+                      {changeValue("light", light_intensity)}
+                    </td>
                   </tr>
 
                   <tr>
@@ -150,7 +154,9 @@ const PlantGardens = ({ info }) => {
                       <img src={temp} alt="" style={{ margin: "0px 12px" }} />
                       دما{" "}
                     </td>
-                    <td className="text-muted">{temperature} </td>
+                    <td className="text-muted">
+                      {changeValue("temperature", temperature)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -162,7 +168,9 @@ const PlantGardens = ({ info }) => {
                       />
                       عطری{" "}
                     </td>
-                    <td className="text-muted">{fragrance} </td>
+                    <td className="text-muted">
+                      {changeValue("fragrance", fragrance)}{" "}
+                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -173,7 +181,23 @@ const PlantGardens = ({ info }) => {
                       />
                       خوراکی{" "}
                     </td>
-                    <td className="text-muted">{edible} </td>
+                    <td className="text-muted">
+                      {changeValue("edible", edible)}{" "}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <img
+                        src={locationIcon}
+                        alt=""
+                        style={{ margin: "0px 12px", width: "32px" }}
+                      />
+                      محیط{" "}
+                    </td>
+                    <td className="text-muted">
+                      {changeValue("location_type", location_type)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -185,15 +209,23 @@ const PlantGardens = ({ info }) => {
                       />
                       حساسیت{" "}
                     </td>
-                    <td className="text-muted">{alergy_compatible} </td>
+                    <td className="text-muted">
+                      {changeValue("alergy", alergy_compatible)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
                     <td>
-                      <img src={growthIcon} alt="" style={{ margin: "0px 12px" }} />
+                      <img
+                        src={growthIcon}
+                        alt=""
+                        style={{ margin: "0px 12px" }}
+                      />
                       مرحله رشد{" "}
                     </td>
-                    <td className="text-muted">{growth} </td>
+                    <td className="text-muted">
+                      {changeValue("growth", growth)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -209,7 +241,9 @@ const PlantGardens = ({ info }) => {
                       />
                       آب مورد نیاز{" "}
                     </td>
-                    <td className="text-muted">{water} </td>
+                    <td className="text-muted">
+                      {changeValue("water", water)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -217,7 +251,9 @@ const PlantGardens = ({ info }) => {
                       <img src={pet} alt="" style={{ margin: "0px 12px" }} />
                       حیوان خانگی{" "}
                     </td>
-                    <td className="text-muted">{pet_compatible} </td>
+                    <td className="text-muted">
+                      {changeValue("pet", pet_compatible)}{" "}
+                    </td>
                   </tr>
 
                   <tr>
@@ -225,7 +261,9 @@ const PlantGardens = ({ info }) => {
                       <img src={bill} alt="" style={{ margin: "0px 12px" }} />
                       میزان رسیدگی{" "}
                     </td>
-                    <td className="text-muted">{attention_need} </td>
+                    <td className="text-muted">
+                      {changeValue("attention", attention_need)}{" "}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -238,9 +276,7 @@ const PlantGardens = ({ info }) => {
               id="additional"
             >
               <table className="table">
-                <tbody>
-                      {showAllGarden(gardens)}
-                </tbody>
+                <tbody>{showAllGarden(gardens)}</tbody>
               </table>
             </div>
           )}

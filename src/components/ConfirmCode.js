@@ -32,9 +32,9 @@ const ConfirmCode = () => {
     if (res.status === 200) {
       notify("با موفقیت ثبت نام شدید", "success");
       // set cookie
-      setCookie("token", res.token, {path: "/" });
-      axios.defaults.headers.common["Authorization"] = `Bearer ${res.token}`;
-
+      console.log(res.data['token'])
+      setCookie("token", res.data['token'], {path: "/" });
+      axios.defaults.headers.common["Authorization"] = `Token ${res.token}`;
       navigate("/home");
     } else {
       notify("رمز واردشده مطابقت ندارد", "error");

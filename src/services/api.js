@@ -30,25 +30,30 @@ const postData = async (str, data) => {
 const post = async (str, data) => {
     var res;
     await axios.post(BASE_URL + str, data)
-        .then(response =>  res = response)
-
+        .then(
+            response =>  res = response
+        )
+        .catch(error => {
+            res = error.response
+        });
+    console.log(res.status)
     return res;
 }
 
-const getWithParam = async (str, data) => {
+const getWithParam = async (str, params) => {
     var res;
-    var params = '';
+    var params;
     var AddAnd = false
-    for (let key in data) {
+    for (let key in params) {
         if (AddAnd){
             params += '&'
         }
         AddAnd = true
-        if (typeof data[key] === 'boolean'){
-            const numBool = data[key] === 'true' ? '1' : '0';
+        if (typeof params[key] === 'boolean'){
+            const numBool = params[key] === 'true' ? '1' : '0';
             params += (key + '=' + numBool)
         } else {
-            params += (key + '=' + data[key])
+            params += (key + '=' + params[key])
         }
     }
     console.log(BASE_URL + str + '?' + params)
@@ -59,4 +64,39 @@ const getWithParam = async (str, data) => {
     return res.data
 }
 
-export {getData, postData, checkToken, post, get, getWithParam};
+const get_for_user = async (str, token) => {
+    var result;
+    await axios.get(BASE_URL + str, {
+      headers: {
+        'Authorization': `Token ${token}`
+      }
+    })
+    .then(res => {
+      result = res;
+    })
+    .catch(err => {
+        result = err.response.status;
+    })
+
+
+    return result.data
+}
+
+const put_edit_user = async (str, data, token) => {
+    console.log(token)
+    try {
+      const response = await axios.put(BASE_URL + str, data, {
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+      console.log(response);
+      return response;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user};

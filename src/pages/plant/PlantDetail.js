@@ -21,9 +21,16 @@ const PlantDetail = () => {
   const plant_id = params.plant_id;
 
   useEffect(() => {
-      const data =getData(`/plant/${plant_id}`);
+      const fetch = async () => {
+          const data = await  getData(`/plants/${plant_id}`);
+       console.log(data)
        setInfo(data);
-    
+
+
+      }
+
+      fetch();
+
   }, [plant_id]);  
   return (
     <div>
