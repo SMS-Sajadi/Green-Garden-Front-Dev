@@ -31,7 +31,7 @@ const SignUp = () => {
     phone_number: "",
     password: "",
     confirmPassword: "",
-    isAccepted: false,
+    is_garden_owner: false,
   });
 
   const [errors, setErrors] = useState({});
@@ -45,7 +45,7 @@ const SignUp = () => {
   const changeHandeler = (event) => {
     setTouch({ ...touch, [event.target.name]: true });
 
-    if (event.target.name === "isAccepted") {
+    if (event.target.name === "is_garden_owner") {
       setData({ ...data, [event.target.name]: event.target.checked });
     } else {
       setData({ ...data, [event.target.name]: event.target.value });
@@ -55,23 +55,25 @@ const SignUp = () => {
   const submitHandeler = async (event) => {
     event.preventDefault();
     let res = {};
-    console.log(Object.keys(errors))
     if (!Object.keys(errors).length) {
-      const { name, email, password, phone_number, isAccepted } = data;
+      const { name, email, password, phone_number, is_garden_owner } = data;
       const context = {
         name: name,
         email: email,
         password: password,
         phone_number: phone_number,
-        isAccepted:  isAccepted,
+        is_garden_owner:  is_garden_owner,
       };
+      console.log(context)
 
       res = await post("accounts/signup/", context);
-      console.log(res)
-      if (res.status === 412) {
-        notify("اطلاعات نامعتبر است", "error");
+      console.log(res.data)
+      if (res.status === 400) {
+        for (var key in res.data) {
+          console.log(res.data[key])
+          notify(`${key}: ${res.data[key]}`, "error");
+        }
       } else {
-
         navigate("/signUp/verify");
       }
     } else {
@@ -81,7 +83,6 @@ const SignUp = () => {
         phone_number: true,
         password: true,
         confirmPassword: true,
-        // isAccepted: true,
       });
       notify("اطلاعات نامعتبر است", "error");
     }
@@ -230,8 +231,8 @@ const SignUp = () => {
                   <input
                     id="cbx-12"
                     type="checkbox"
-                    name="isAccepted"
-                    value={data.isAccepted}
+                    name="is_garden_owner"
+                    value={data.is_garden_owner}
                     onChange={changeHandeler}
                   />
                   <label></label>

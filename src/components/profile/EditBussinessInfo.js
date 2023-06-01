@@ -17,13 +17,13 @@ const EditBussinessInfo = () => {
   const [businessImage, setBusinessImage] = useState();
 
   const [info, setInfo] = useState({
-    new_garden_name: "",
-    new_phone_number: "",
-    new_address: "",
-    new_image: "",
-    new_business_image: "",
-    new_business_code: "",
-    new_admin_name: "",
+    garden_name: "",
+    phone_number: "",
+    address: "",
+    image: "",
+    business_image: "",
+    business_code: "",
+    admin_name: "",
   });
 
   const handleAvatarChange = (event) => {
@@ -51,12 +51,12 @@ const EditBussinessInfo = () => {
   const submitHandeler = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("new_image", avatarImage);
+    formData.append("image", avatarImage);
 
     const formData2 = new FormData();
-    formData2.append(" new_business_image", businessImage);
+    formData2.append(" business_image", businessImage);
 
-    setInfo({ ...info, new_image: formData, new_business_image: formData2 });
+    setInfo({ ...info, image: formData, business_image: formData2 });
     post("garden/edit/profile/", info);
   };
 
@@ -115,8 +115,8 @@ const EditBussinessInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_garden_name"
-                            value={info.new_admin_name}
+                            name="garden_name"
+                            value={info.admin_name}
                             type="text"
                             className="form-control ps-5"
                             placeholder="نام گلخانه "
@@ -136,8 +136,8 @@ const EditBussinessInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_business_code"
-                            value={info.new_business_code}
+                            name="business_code"
+                            value={info.business_code}
                             type="text"
                             className="form-control ps-5"
                             placeholder="شناسه کسب و کار "
@@ -157,8 +157,8 @@ const EditBussinessInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_phone_number"
-                            value={info.new_phone_number}
+                            name="phone_number"
+                            value={info.phone_number}
                             type="text"
                             className="form-control ps-5"
                             placeholder="تلفن "
@@ -178,8 +178,8 @@ const EditBussinessInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_address"
-                            value={info.new_address}
+                            name="address"
+                            value={info.address}
                             id="address"
                             type="text"
                             className="form-control ps-5"
@@ -200,8 +200,8 @@ const EditBussinessInfo = () => {
                             alt=""
                           />
                           <input
-                            name="new_admin_name"
-                            value={info.new_admin_name}
+                            name="admin_name"
+                            value={info.admin_name}
                             id="owner"
                             type="text"
                             className="form-control ps-5"

@@ -9,7 +9,7 @@ import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
 import axios from "axios";
 //API
-import { postData } from "../../services/api";
+import {postData, getData, get_for_user} from "../../services/api";
 //Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
@@ -17,23 +17,21 @@ import { useCookies } from "react-cookie";
 
 const Account_profile = () => {
   const [defaultData, setDefaultData] = useState({});
-  const userInfoRef = useRef(null);
+  // const userInfoRef = useRef(null);
+  const [userInfo, setUserInfo] = useState({});
   const [cookies, setCookie] = useCookies(["token"]);
 
-  useEffect(() => {
-    axios
-      .get("localhost3000/accounts/get-user/", {
-        headers: {
-          Authorization: `Bearer ${cookies}`,
-        },
-      })
-      .then((res) => {
-        userInfoRef.current = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+
+    useEffect(() => {
+      console.log(cookies)
+      const fetch = async () => {
+        const result = await get_for_user('accounts/get-user/', cookies['token'])
+        console.log(result)
+        setUserInfo(result)
+      }
+      console.log(userInfo)
+      fetch();
+  }, [userInfo]);
 
   const handleSelectChange = (event) => {
     const name = event.target.name;
@@ -51,8 +49,8 @@ const Account_profile = () => {
       {/* <!-- Hero Start --> */}
       <HeaderProfile
         prof_info={{
-          image: userInfoRef.profile_photo,
-          name: userInfoRef.name,
+          image: userInfo.image,
+          name: userInfo.name,
           describe: "کاربر خوش قلب گرین گاردن",
           owner: true,
           link: "/home/account/setting",
@@ -69,9 +67,10 @@ const Account_profile = () => {
                 <div className="row">
                   <Personalnfo
                     info={{
-                      email: userInfoRef.email,
-                      phone_number: userInfoRef.phone_number,
-                      saved: userInfoRef.save,
+                      name: userInfo.name,
+                      email: userInfo.email,
+                      phone_number: userInfo.phone_number,
+                      saved: userInfo.save,
                     }}
                   />
 
