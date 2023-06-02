@@ -153,7 +153,7 @@ const put_edit_user = async (str, data, token) => {
       const response = await axios.patch(BASE_URL + str, data, {
         headers: {
           'Authorization': `Token ${token}`,
-          'Content-Type': 'multipart/form-data',
+          // 'Content-Type': 'multipart/form-data',
         }
       });
       console.log(response);

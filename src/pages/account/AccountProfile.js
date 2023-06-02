@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useCookies } from "react-cookie";
+
 
 //images and icons
 import avatar from "../../assets/images/avatar-profie.svg";
@@ -13,7 +15,6 @@ import {putData, get_for_user} from "../../services/api";
 //Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
-import { useCookies } from "react-cookie";
 
 const Account_profile = () => {
   const [defaultData, setDefaultData] = useState({});
