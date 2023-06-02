@@ -2,6 +2,25 @@ import axios from "axios";
 
 const BASE_URL  = "http://localhost:8000/";
 
+
+
+const instance = axios.create({
+  baseURL: 'http://localhost:8000/',
+});
+
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Token ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 const checkToken = async (str, token) => {
     const response = await axios.get(BASE_URL + str, { withCredentials: true,
         headers: { 'Authorization': 'Bearer ' + token }
@@ -14,6 +33,9 @@ const getData = async (str) => {
       const response = await axios.get(BASE_URL + str, { withCredentials: true });
       return response.data;
 }
+
+
+
 const get = async (str) => {
     const response = await axios.get(BASE_URL + str, { withCredentials: true })
     .then(res => console.log(res))
@@ -46,7 +68,7 @@ const getWithParam = async (str, params) => {
     var res;
     var totalParams;
     var AddAnd = false
-    console.log(params)
+    // console.log(params)
     for (let key in params) {
         if (AddAnd){
             totalParams += '&'
@@ -59,7 +81,7 @@ const getWithParam = async (str, params) => {
             totalParams += (key + '=' + params[key])
         }
     }
-    console.log(BASE_URL + str + '?' + totalParams)
+    // console.log(BASE_URL + str + '?' + totalParams)
     await axios.get(BASE_URL + str + '?' + totalParams)
     .then(response => {
         res = response
@@ -101,27 +123,41 @@ const post_pass= async (str, data, token) => {
 
 
 
-const get_by_token =async (str, token) => {
+// const get_by_token =async (str, token) => {
 
-    var result;
-    await axios.get(BASE_URL + str, {
+//     var result;
+//     await axios.get(BASE_URL + str, {
+//       headers: {
+//         'Authorization': `Token ${token}`
+//       }
+//     })
+//     .then(res => {
+//       result = res;
+//       console.log(result.data)
+//       return result.data
+
+//     })
+//     .catch(err => {
+//       console.log(err)
+//         return  err.response.status;
+//     })
+
+// }
+
+const get_by_token = async (str, token) => {
+  try {
+    const response = await axios.get(BASE_URL + str, {
       headers: {
         'Authorization': `Token ${token}`
       }
-    })
-    .then(res => {
-      result = res;
-      return result.data
-
-    })
-    .catch(err => {
-        return  err.response.status;
-    })
-
-
-
-
-}
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error.response.status;
+  }
+};
 
 const put_edit_user = async (str, data, token) => {
     try {

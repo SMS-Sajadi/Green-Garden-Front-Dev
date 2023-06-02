@@ -20,7 +20,6 @@ const Card = ({ info }) => {
               </Link>
             </h5>
             <h6 className="text-light tag mb-0">{translateType(type)} </h6>
-            {console.log(translateType(type))}
           </div>
           {/* detail */}
           <div className="icons text-center">

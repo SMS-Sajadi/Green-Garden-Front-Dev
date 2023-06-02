@@ -37,6 +37,7 @@ const PlantDetail = () => {
       <PlantHeader name = {info.name}/>
 
       <section className="section pb-0">
+        {console.log(info)}
       <PlantExplain info={info}/>
 
       </section>

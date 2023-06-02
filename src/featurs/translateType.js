@@ -30,7 +30,6 @@ const locationValues = ["آپارتمانی", "بسته", "باز"];
    export const changeValue = (type, input) => {
   switch (type) {
     case "light":
-        console.log(input)
       return lightValues[input - 1];
     case "water":
       return waterValues[input - 1];

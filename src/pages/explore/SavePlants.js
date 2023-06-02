@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 //images
 import plant from "../../assets/images/3_2.svg";
 import plant2 from "../../assets/images/plants/6_2.png";
+import saved from "../../assets/icons/saved.svg";
+
 // Component
 import SaveCard from "../../components/SaveCard";
 import { useEffect } from "react";
@@ -42,7 +44,7 @@ const SavePlants = () => {
         "accounts/bookmark-plant/",
         cookies["token"]
       );
-      console.log(res)
+      // console.log(res);
 
       setData(res);
     };
@@ -69,7 +71,31 @@ const SavePlants = () => {
   return (
     <div>
       <button onClick={openModal} className="btn btn-icon  nav-icon">
-        <i className="uil uil-heart align-middle icons"></i>
+        {/* <i className="uil uil-heart align-middle icons"></i> */}
+        <svg
+          className="align-middle"
+          width="26px"
+          height="19px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M19 19.2674V7.84496C19 5.64147 17.4253 3.74489 15.2391 3.31522C13.1006 2.89493 10.8994 2.89493 8.76089 3.31522C6.57467 3.74489 5 5.64147 5 7.84496V19.2674C5 20.6038 6.46752 21.4355 7.63416 20.7604L10.8211 18.9159C11.5492 18.4945 12.4508 18.4945 13.1789 18.9159L16.3658 20.7604C17.5325 21.4355 19 20.6038 19 19.2674Z"
+              stroke="#ffd15a"
+              strokeWidth="1.896"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></path>
+          </g>
+        </svg>
       </button>
       <Modal
         isOpen={modalIsOpen}
@@ -93,7 +119,6 @@ const SavePlants = () => {
           </div>
 
           <div className="row">
-            {console.log(data)}
             {Array.isArray(data) &&
               data.map((item) => {
                 return <SaveCard info={item} />;

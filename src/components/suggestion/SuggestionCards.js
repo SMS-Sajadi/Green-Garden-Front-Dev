@@ -12,7 +12,6 @@ const itemsPerPage = 4;
 
 const SuggestionCards = ({info}) => {
 
-  console.log(info)
 
   const [currentPage, setCurrentPage] = useState(0);
 

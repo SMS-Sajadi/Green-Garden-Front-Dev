@@ -59,6 +59,28 @@ const Login = () => {
         const token = cookies["token"];
         // Set token if isn't save
         if (!token) {
+
+      
+      
+      
+          const instance = axios.create({
+            baseURL: 'http://localhost:8000/',
+          });
+          
+          instance.interceptors.request.use(
+            (config) => {
+              const token = localStorage.getItem('token');
+              if (token) {
+                config.headers.Authorization = `Token ${token}`;
+              }
+              return config;
+            },
+            (error) => {
+              return Promise.reject(error);
+            }
+          );
+    
+
           setCookie('token', res.token, { path: '/' });
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         }    

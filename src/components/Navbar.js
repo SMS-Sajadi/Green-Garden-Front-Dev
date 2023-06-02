@@ -5,6 +5,7 @@ import { get_for_user } from "../services/api";
 
 //image
 import logo from "../assets/images/green garden2.svg";
+
 //Component
 import SavePlants from "../pages/explore/SavePlants";
 import HamburgerMenue from "./HamburgerMenu";
@@ -70,7 +71,7 @@ const Navbar = () => {
     
         const res = await get_for_user("accounts/get-user/", cookies["token"]);
         setResult(res);
-        setError(res)
+        setError(res);
       
     };
         fetch();
@@ -79,8 +80,9 @@ const Navbar = () => {
 
 
   useEffect(() => {
+    console.log(result)
+
     if (error === 401) {
-      console.log('miii')
       setStatus("usual");
     } else if(result && result.is_garden_owner) {
       setStatus("garden_owner");

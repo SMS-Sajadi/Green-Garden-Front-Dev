@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Link } from "react-router-dom";
-import { getWithParam } from "../../services/api";
+import { getWithParam, getData } from "../../services/api";
 // image  and icons
 import plantBg from "../../assets/images/plants/shahpasand.jpg";
 import aloeVear from "../../assets/images/plants/aloe vear.jpg";
@@ -13,27 +13,32 @@ import { wait } from "@testing-library/user-event/dist/utils";
 
 const Explore = () => {
   const [data, setData] = useState([]);
+  const [allPlants, setAllPlants] = useState([]);
+
   const season_data = [
     {
       seasonal: 1,
     },
-
   ];
 
   useEffect(() => {
     const fetchData = async () => {
+      // get all plants
+      const res = await getData("plants/list/");
+      setAllPlants(res);
+
+      // get plants with filter
       try {
         const promises = season_data.map((item) => {
           return getWithParam("plants/filter/", item);
         });
 
         const results = await Promise.all(promises);
-        console.log(results);
         setData(results);
         // handle the data here
       } catch (error) {
         // handle errors here
-        console.log(error)
+        console.log(error);
       }
     };
 
@@ -141,7 +146,11 @@ const Explore = () => {
             </div>
           </div>
 
-          <HorizontalCard info={info} />
+          {Array.isArray(allPlants) &&
+            allPlants.map((item) => {
+              return <HorizontalCard key={info.id} info={item} />;
+            })}
+
         </div>
       </section>
     </div>
