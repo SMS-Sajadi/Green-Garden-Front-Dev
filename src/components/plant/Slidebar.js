@@ -17,7 +17,7 @@ const Slidebar = ({album}) => {
       <AliceCarousel autoPlay autoPlayInterval="3000"  infinite={true}>
 
       {Array.isArray(album) && album.map(item => {
-            return  <img src={item.image_url} className="sliderimg" alt="" />      
+            return  <img src={item.img} className="sliderimg" alt="" />      
           })}
    
 
