@@ -6,6 +6,8 @@ import { translateType } from "../../featurs/translateType";
 // Components
 import Slidebar from "../../components/plant/Slidebar";
 import PlantGardens from "./PlantGardens";
+import { notify } from "../../featurs/toast";
+
 
 import sun from "../../assets/icons/sun2.svg";
 import waterIcon from "../../assets/icons/water.svg";
@@ -19,6 +21,11 @@ const PlantExplain = ({ info }) => {
 
   const savePlant = async () => {
     const res = await put(`accounts/bookmark-plant/${id}`, cookies['token'])
+    console.log(res.status)
+    if(res.status === 200){
+      console.log('here')
+      notify('گیاه مورد نطرتان ذخیره شد', "success");
+    }
 
   }
 

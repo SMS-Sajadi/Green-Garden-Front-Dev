@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getData, get_by_token } from "../../services/api";
+import {  get_by_token } from "../../services/api";
 import { useCookies } from "react-cookie";
 
 // Components
@@ -19,16 +19,11 @@ import parvaneh from "../../assets/images/temp/parvaneh.png";
 
 const Garden = () => {
   const [garden_info, setGarden_info] = useState({});
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const [cookies, setCookie] = useCookies(["token"]);
 
 
   const params = useParams();
   const garden_id = params.gerden_id;
-
-  // const fetch = async () => {
-  //   return await get_by_token(`gardens/${garden_id}/`, cookies['token']);
-  //   // const data = await get_by_token(`gardens/${garden_id}/`, cookies['token']);
-  // };
 
 
   const fetchData = async () => {
@@ -53,8 +48,6 @@ const Garden = () => {
     is_owner,
     profile_photo,
     user_name,
-    tolal_products,
-
     scores,
     plants,
     phone_number,
@@ -125,7 +118,7 @@ const Garden = () => {
             {console.log(garden_info)}
             <GardenScore
               info={{
-                score: avg_score,
+                score: parseInt(avg_score) ,
                 plants_number: Array.isArray(plants) ? plants.length : 0,
               }}
             />
@@ -200,7 +193,7 @@ const Garden = () => {
               </ul>
             </div>
 
-             {true && <Comment garden_id={garden_id} />}
+             {!is_owner && <Comment garden_id={garden_id} />}
           </div>
         </div>
       </section>

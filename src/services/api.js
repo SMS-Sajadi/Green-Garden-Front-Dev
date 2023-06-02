@@ -121,29 +121,6 @@ const post_pass= async (str, data, token) => {
 };
 
 
-
-
-// const get_by_token =async (str, token) => {
-
-//     var result;
-//     await axios.get(BASE_URL + str, {
-//       headers: {
-//         'Authorization': `Token ${token}`
-//       }
-//     })
-//     .then(res => {
-//       result = res;
-//       console.log(result.data)
-//       return result.data
-
-//     })
-//     .catch(err => {
-//       console.log(err)
-//         return  err.response.status;
-//     })
-
-// }
-
 const get_by_token = async (str, token) => {
   try {
     const response = await axios.get(BASE_URL + str, {
@@ -190,4 +167,18 @@ const put_edit_user = async (str, data, token) => {
       return error.response.status;
     }
   };
-export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user, put, get_by_token,post_pass};
+
+  const deleteData = async (str, id, token) => {
+    try {
+      const response = await axios.delete(`${BASE_URL + str}/${id}`, {
+        headers: {
+          Authorization: `Token ${token}`
+        }
+        });
+      console.log(response.data); // logs the response from the server
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user, put, get_by_token,post_pass, deleteData};

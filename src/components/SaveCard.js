@@ -1,15 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { translateType } from "../featurs/translateType";
+import { deleteData } from "../services/api";
+import { useCookies } from 'react-cookie';
+
 
 // Icon
 import chervon from "../assets/icons/chevron-right.svg";
 
 const SaveCard = ({ info, icon }) => {
   const { main_img, name, type, id } = info;
+  const [cookies, setCookie] = useCookies(['token']);
 
-  const deletePlant = () => {};
+
+  const deletePlant =async () => {
+    await deleteData('accounts/remove-saved-plant', id, cookies['token']);
+
+  };
 
   return (
     <div className="col-lg-3 col-md-6 mt-4 pt-2">
