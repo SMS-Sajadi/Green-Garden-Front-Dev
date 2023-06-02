@@ -32,13 +32,17 @@ const SaveCard = ({ info, icon }) => {
             </h5>
             <h6 className="text-light tag mb-0"> {translateType(type)} </h6>
           </div>
-          <div className="icons text-center" onClick={deletePlant}>
-            
+          <div className="icons text-center">
+            <div
+              className="text-primary work-icon bg-white d-inline-block rounded-pill lightbox"
+              onClick={deletePlant}
+            >
               {icon ? (
-                <img src={icon} alt="" style={{height: '45px'}}/>
+                <img src={icon} alt="" style={{ height: "45px" }} />
               ) : (
                 <i className="uil uil-trash"></i>
               )}
+            </div>
           </div>
           <div className="read_more bg-primary text-center rounded-circle">
             <Link

@@ -77,23 +77,28 @@ const AddPlant = () => {
     <div>
         {/* select plants */}
       <section
-        className="section-two mt-5"
+        className="section-two mt-5 "
         id="bookroom"
         style={{ padding: "60px 0 0 0" }}
       >
-        <div className="container">
+        <div className="container shadow">
           <div className="row justify-content-center">
-            <div className="col-lg-12"></div>
-            <h4 className="mb-4">
+            <div className="row" >
+            <h4 className="mb-4 rounded ">
                   {" "}
                   گیاهان منتخب خود را به گلخانه خود اضافه کنید.
                 </h4>
 
-
-            {Array.isArray(data) &&
+                {Array.isArray(data) &&
               data.map((item) => {
                 return <SaveCard info={item} icon={addIcon}/>;
               })}
+
+
+
+            </div>
+
+
           </div>
         </div>
       </section>
@@ -378,6 +383,8 @@ const AddPlant = () => {
           </div>
         </div>
       </section>
+
+
     </div>
   );
 };
