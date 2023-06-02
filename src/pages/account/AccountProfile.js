@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 //images and icons
-// import avatar from "../../assets/images/avatar-profie.svg";
+import avatar from "../../assets/images/avatar-profie.svg";
 import sun from "../../assets/icons/sun.svg";
 import allergy from "../../assets/icons/allergy.svg";
 import temp from "../../assets/icons/temp.svg";
@@ -49,7 +49,7 @@ const Account_profile = () => {
       {/* <!-- Hero Start --> */}
       <HeaderProfile
         prof_info={{
-          image: userInfo.image,
+          image: userInfo.image ? userInfo.image : avatar,
           name: userInfo.name,
           describe: "کاربر خوش قلب گرین گاردن",
           owner: true,

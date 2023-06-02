@@ -18,7 +18,7 @@ const PlantExplain = ({ info }) => {
   const { name, description, light_intensity, water, type, image_list, id } = info;
 
   const savePlant = async () => {
-    const res = await put(`accounts/bookmark-plant/${id}/`, cookies['token'])
+    const res = await put(`accounts/bookmark-plant/${id}`, cookies['token'])
 
   }
 

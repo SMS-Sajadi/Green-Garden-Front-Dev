@@ -41,7 +41,7 @@ const SavePlants = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await get_by_token(
-        "accounts/bookmark-plant/",
+        "accounts/bookmark-list/",
         cookies["token"]
       );
       // console.log(res);
