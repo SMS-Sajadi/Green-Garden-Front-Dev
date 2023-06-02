@@ -87,14 +87,14 @@ const EditPersonalInfo = ({ info }) => {
     setPassword({ ...password, [event.target.name]: event.target.value });
   };
 
-  const changePassword = (event) => {
+  const changePassword = async (event) => {
     console.log(password)
     event.preventDefault();
     if (password.confirm_pass !== password.new_password) {
       notify("پسورد یکسان نیست.", "error");
     } else {
       try{
-      const res = post_pass("accounts/change_password/", {
+      const res = await post_pass("accounts/change-password/", {
         old_password: password.old_password,
         new_password: password.new_password,
       }, cookies['token']);
