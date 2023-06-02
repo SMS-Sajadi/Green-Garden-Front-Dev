@@ -42,24 +42,28 @@ const post = async (str, data) => {
 
 const getWithParam = async (str, params) => {
     var res;
-    var params;
+    var totalParams;
     var AddAnd = false
+    console.log(params)
     for (let key in params) {
         if (AddAnd){
-            params += '&'
+            totalParams += '&'
         }
         AddAnd = true
         if (typeof params[key] === 'boolean'){
             const numBool = params[key] === 'true' ? '1' : '0';
-            params += (key + '=' + numBool)
+            totalParams += (key + '=' + numBool)
         } else {
-            params += (key + '=' + params[key])
+            totalParams += (key + '=' + params[key])
         }
     }
-    console.log(BASE_URL + str + '?' + params)
-    await axios.get(BASE_URL + str + '?' + params)
+    console.log(BASE_URL + str + '?' + totalParams)
+    await axios.get(BASE_URL + str + '?' + totalParams)
     .then(response => {
         res = response
+    })
+    .catch(response => {
+        console.log(response)
     })
     return res.data
 }

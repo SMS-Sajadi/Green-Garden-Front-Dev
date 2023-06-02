@@ -24,7 +24,7 @@ const SuggestionField = () => {
 
   const searchHandler = async (event) => {
     event.preventDefault();
-    const information = await getWithParam('/plants/filter/', data);
+    const information = await getWithParam('plants/filter/', data);
     console.log(information)
     setInfo(information);
     setIsReceived(true);
