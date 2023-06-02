@@ -42,6 +42,7 @@ const SavePlants = () => {
         "accounts/bookmark-plant/",
         cookies["token"]
       );
+      console.log(res)
 
       setData(res);
     };
@@ -93,11 +94,12 @@ const SavePlants = () => {
 
           <div className="row">
             {console.log(data)}
-            {Array.isArray(data)  && data.map((item) => {
-              return <SaveCard info={item} />;
-            })}
+            {Array.isArray(data) &&
+              data.map((item) => {
+                return <SaveCard info={item} />;
+              })}
 
-                      <button
+            <button
               className="btn btn-primary me-2"
               onClick={closeModal}
               style={{ marginTop: "50px" }}

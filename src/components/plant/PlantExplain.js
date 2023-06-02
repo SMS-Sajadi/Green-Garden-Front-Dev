@@ -2,6 +2,7 @@ import React from "react";
 import { changeValue } from "../../featurs/translateType";
 import { put } from "../../services/api";
 import { useCookies } from "react-cookie";
+import { translateType } from "../../featurs/translateType";
 // Components
 import Slidebar from "../../components/plant/Slidebar";
 import PlantGardens from "./PlantGardens";
@@ -31,7 +32,7 @@ const PlantExplain = ({ info }) => {
         <div className="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">
           <div className="section-title ms-md-4">
             <h4 className="title">{name}</h4>
-            <h5 className="text-muted">{type}</h5>
+            <h5 className="text-muted">{translateType( type)}</h5>
 
             <h5 className="mt-4 py-2">توضیحات :</h5>
             <p className="text-muted">{description}</p>

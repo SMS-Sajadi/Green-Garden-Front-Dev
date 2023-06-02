@@ -1,16 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { translateType } from "../featurs/translateType";
 
 // Icon
 import chervon from "../assets/icons/chevron-right.svg";
 
-const SaveCard = ({ info }) => {
+const SaveCard = ({ info, icon }) => {
   const { main_img, name, type, id } = info;
 
-
-  const deletePlant = () => {
-    
-  }
+  const deletePlant = () => {};
 
   return (
     <div className="col-lg-3 col-md-6 mt-4 pt-2">
@@ -24,19 +23,29 @@ const SaveCard = ({ info }) => {
           <div className="overlay-work bg-dark"></div>
           <div className="content">
             <h5 className="mb-0">
-              <Link to="/" className="text-white title">
+              <Link
+                to={`/home/plant-detail/${id}/`}
+                className="text-white title"
+              >
                 {name}
               </Link>
             </h5>
-            <h6 className="text-light tag mb-0"> {type} </h6>
+            <h6 className="text-light tag mb-0"> {translateType(type)} </h6>
           </div>
           <div className="icons text-center" onClick={deletePlant}>
-            <div className="text-primary work-icon bg-white d-inline-block rounded-pill lightbox">
-              <i className="uil uil-trash "></i>
-            </div>
+            
+              {icon ? console.log('yes') : console.log('no')}
+              {icon ? (
+                <img src={icon} alt="" style={{height: '45px'}}/>
+              ) : (
+                <i className="uil uil-trash"></i>
+              )}
           </div>
           <div className="read_more bg-primary text-center rounded-circle">
-            <Link to={`plant-detail/${id}/`} className="text-light d-block" >
+            <Link
+              to={`/home/plant-detail/${id}/`}
+              className="text-light d-block"
+            >
               <img src={chervon} alt="" className="fea icon-sm title-dark" />
             </Link>
           </div>

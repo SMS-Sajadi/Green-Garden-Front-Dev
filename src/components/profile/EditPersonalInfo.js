@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { notify } from "../../featurs/toast";
+import { put_edit_user, post, post_pass } from "../../services/api";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+
 
 //images and icons
 import avatar from "../../assets/images/avatar-profie.svg";
@@ -8,15 +12,12 @@ import userIcon from "../../assets/icons/user-1-svgrepo-com.svg";
 import phoneIcon from "../../assets/icons/phone.svg";
 import emailIcon from "../../assets/icons/email.svg";
 import keyIcon from "../../assets/icons/key.svg";
-import { put_edit_user, post } from "../../services/api";
-import { useCookies } from "react-cookie";
-import { useEffect } from "react";
 
 const EditPersonalInfo = ({ info }) => {
   const [cookies, setCookie] = useCookies(["token"]);
   const [avatarImage, setAvatarImage] = useState();
   const [password, setPassword] = useState({
-    previous_password: "",
+    old_password: "",
     new_password: "",
     confirm_pass: "",
   });
@@ -87,17 +88,30 @@ const EditPersonalInfo = ({ info }) => {
   };
 
   const changePassword = (event) => {
+    console.log(password)
     event.preventDefault();
     if (password.confirm_pass !== password.new_password) {
       notify("پسورد یکسان نیست.", "error");
     } else {
-      const res = post(" user/edit/password", {
-        previous_password: password.previous_password,
+      try{
+      const res = post_pass("accounts/change_password/", {
+        old_password: password.old_password,
         new_password: password.new_password,
-      });
-      if (res.status === 200) notify("رمز با موفقیت تغییر یافت .");
+      }, cookies['token']);
+
+      const detail = res.data.detail;
+      console.log(detail)
+      notify(detail, "success");
+    } catch (error) {
+      console.log(error)
+      notify("خطا در تغییر رمز عبور.", "error");
     }
+
+    //   console.log(res)
+    //   if (res.status === 200) notify("رمز با موفقیت تغییر یافت .");
+    // }
   };
+}
 
   return (
     <section className="section mt-60">
@@ -239,8 +253,8 @@ const EditPersonalInfo = ({ info }) => {
                               />
                               <input
                                 type="password"
-                                name="previous_password"
-                                value={passHandeler.previous_password}
+                                name="old_password"
+                                value={password.old_password}
                                 className="form-control ps-5"
                                 placeholder="رمز قدیمی"
                                 required=""
