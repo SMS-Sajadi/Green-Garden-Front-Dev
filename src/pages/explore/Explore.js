@@ -24,7 +24,7 @@ const Explore = () => {
     const fetchData = async () => {
       try {
         const promises = season_data.map((item) => {
-          return getWithParam("/plants/filter/", item);
+          return getWithParam("plants/filter/", item);
         });
 
         const results = await Promise.all(promises);

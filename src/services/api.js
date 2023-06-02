@@ -1,5 +1,4 @@
 import axios from "axios";
-import { async } from "q";
 
 const BASE_URL  = "http://localhost:8000/";
 
@@ -16,7 +15,7 @@ const getData = async (str) => {
       return response.data;
 }
 const get = async (str) => {
-    const response = await axios.get(BASE_URL + str, { withCredentials: true }) 
+    const response = await axios.get(BASE_URL + str, { withCredentials: true })
     .then(res => console.log(res))
     .catch(err => console.log(err))
     return response;
@@ -45,23 +44,28 @@ const post = async (str, data) => {
 
 const getWithParam = async (str, params) => {
     var res;
+    var totalParams;
     var AddAnd = false
+    console.log(params)
     for (let key in params) {
         if (AddAnd){
-            params += '&'
+            totalParams += '&'
         }
         AddAnd = true
         if (typeof params[key] === 'boolean'){
             const numBool = params[key] === 'true' ? '1' : '0';
-            params += (key + '=' + numBool)
+            totalParams += (key + '=' + numBool)
         } else {
-            params += (key + '=' + params[key])
+            totalParams += (key + '=' + params[key])
         }
     }
-    console.log(BASE_URL + str + '?' + params)
-    await axios.get(BASE_URL + str + '?' + params)
+    console.log(BASE_URL + str + '?' + totalParams)
+    await axios.get(BASE_URL + str + '?' + totalParams)
     .then(response => {
         res = response
+    })
+    .catch(response => {
+        console.log(response)
     })
     return res.data
 }
