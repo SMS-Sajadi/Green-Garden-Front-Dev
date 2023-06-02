@@ -29,6 +29,18 @@ const postData = async (str, data) => {
     return res.data;
 }
 
+const putData = async (str, data, token) => {
+    var res;
+    await axios.put(BASE_URL + str, data, {
+        headers: {
+            Authorization: `Token ${token}`
+        }
+    })
+    .then(response =>  res = response)
+
+    return res.data;
+}
+
 const post = async (str, data) => {
     var res;
     await axios.post(BASE_URL + str, data)
@@ -154,4 +166,4 @@ const put_edit_user = async (str, data, token) => {
       return error.response.status;
     }
   };
-export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user, put, get_by_token,post_pass};
+export {getData, postData, checkToken, post, get, getWithParam, get_for_user, put_edit_user, put, get_by_token,post_pass, putData};

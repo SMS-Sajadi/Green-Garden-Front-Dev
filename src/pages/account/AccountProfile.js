@@ -9,7 +9,7 @@ import bill from "../../assets/icons/Layer_1 (1).svg";
 import pet from "../../assets/icons/pet-svgrepo-com.svg";
 import location from '../../assets/icons/location2.svg';
 //API
-import {postData, get_for_user} from "../../services/api";
+import {putData, get_for_user} from "../../services/api";
 //Component
 import Personalnfo from "../../components/profile/Personalnfo";
 import HeaderProfile from "../../components/profile/HeaderProfile";
@@ -34,14 +34,17 @@ const Account_profile = () => {
   }, []);
 
   const handleSelectChange = (event) => {
+    console.log(defaultData)
     const name = event.target.name;
-    const value = event.target.options[event.target.selectedIndex].text;
+    const value = event.target.options[event.target.selectedIndex].value;
+    console.log(event.target.options[event.target.selectedIndex].value)
 
     setDefaultData({ ...defaultData, [name]: value });
   };
 
   const saveHandler = () => {
-    postData("accounts/", defaultData);
+    console.log('I am Called')
+    putData("accounts/set-default-condition/", defaultData, cookies['token']);
   };
 
   return (
@@ -82,7 +85,7 @@ const Account_profile = () => {
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0"> نور محیط</h4>
                         <select
-                          name="light intensity"
+                          name="light_condition"
                           onChange={handleSelectChange}
                         >
                           <option value="3">زیاد</option>
@@ -100,7 +103,7 @@ const Account_profile = () => {
                       />
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0"> حساسیت</h4>
-                        <select name="allergy" onChange={handleSelectChange}>
+                        <select name="have_allergy" onChange={handleSelectChange}>
                           <option value="false">ندارم</option>
                           <option value="true">دارم</option>
                         </select>
@@ -112,11 +115,11 @@ const Account_profile = () => {
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0">محیط </h4>
                         <select
-                          name="location_type"
+                          name="location_type_condition"
                           onChange={handleSelectChange}
                         >
                           <option value="1">آپارتمان</option>
-                          <option value="2"> بسته </option>
+                          <option value="2"> بسته</option>
                           <option value="3"> باز</option>
                         </select>
                       </div>
@@ -127,7 +130,7 @@ const Account_profile = () => {
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0">وقت رسیدگی </h4>
                         <select
-                          name="maintenance"
+                          name="attention_need"
                           onChange={handleSelectChange}
                         >
                           <option value="1"> هر روز </option>
@@ -142,7 +145,7 @@ const Account_profile = () => {
                       <img src={pet} className="avatar avatar-ex-sm" alt="" />
                       <div className="flex-1 content ms-3">
                         <h4 className="title mb-0"> حیوان خانگی </h4>
-                        <select name="pet" onChange={handleSelectChange}>
+                        <select name="have_pet" onChange={handleSelectChange}>
                           <option value="true"> دارم </option>
                           <option value="false"> ندارم </option>
                         </select>
