@@ -182,7 +182,7 @@ const Navbar = () => {
                   {status === "garden_owner" && (
                     <Link
                       className="dropdown-item text-dark"
-                      to="/home/garden/"
+                      to="/home/garden/setting"
                     >
                       <i className="uil uil-clipboard-notes align-middle me-1"></i>{" "}
                       حساب گلخانه{" "}

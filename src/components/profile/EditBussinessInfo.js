@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { post } from "../../services/api";
+import React, { useEffect } from "react";
+import { putData } from "../../services/api";
+import { useCookies } from "react-cookie";
+
 //Icons
 import idIcon from "../../assets/icons/idIcon.svg";
 import location from "../../assets/icons/location.svg";
@@ -12,19 +13,24 @@ import camera from "../../assets/icons/camera-svgrepo-com.svg";
 import garden from "../../assets/images/plants/14.jpg";
 import { useState } from "react";
 
-const EditBussinessInfo = () => {
+const EditBussinessInfo = ({ information }) => {
   const [avatarImage, setAvatarImage] = useState(garden);
   const [businessImage, setBusinessImage] = useState();
+  const [info, setInfo] = useState({});
+  const [cookies, setCookie] = useCookies(["token"]);
 
-  const [info, setInfo] = useState({
-    garden_name: "",
-    phone_number: "",
-    address: "",
-    image: "",
-    business_image: "",
-    business_code: "",
-    admin_name: "",
-  });
+
+  useEffect(() => {
+    setInfo({
+      name: information.name,
+      // profile_photo: information.profile_photo,
+      business_code: information.business_code,
+      phone_number: information.phone_number,
+      address: information.address,
+    });
+    setAvatarImage(information.profile_photo ? information.profile_photo : garden);
+
+  }, [information])
 
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
@@ -36,7 +42,17 @@ const EditBussinessInfo = () => {
   };
 
   const handleDeleteAvatar = () => {
-    setAvatarImage(garden);
+    if (avatarImage === garden) {
+      return;
+    }
+    if (information.profile_photo === avatarImage) {
+      setAvatarImage(garden);
+    } else if (!information.profile_photo) {
+      setAvatarImage(garden);
+    } else {
+      setAvatarImage(information.profile_photo);
+    }
+
   };
 
   const handleImageChange = (event) => {
@@ -46,18 +62,21 @@ const EditBussinessInfo = () => {
       setBusinessImage(event.target.result);
     };
     reader.readAsDataURL(file);
-  }
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    console.log(info)
     const formData = new FormData();
     formData.append("image", avatarImage);
 
     const formData2 = new FormData();
     formData2.append(" business_image", businessImage);
 
-    setInfo({ ...info, image: formData, business_image: formData2 });
-    post("garden/edit/profile/", info);
+    // setInfo({ ...info, profile_photo: formData, business_image: formData2 });
+    putData("gardens/update/", info, cookies['token']);
+
   };
 
   const changeHandler = (event) => {
@@ -115,8 +134,8 @@ const EditBussinessInfo = () => {
                             alt=""
                           />
                           <input
-                            name="garden_name"
-                            value={info.admin_name}
+                            name="name"
+                            defaultValue={info.name}
                             type="text"
                             className="form-control ps-5"
                             placeholder="نام گلخانه "
@@ -137,7 +156,7 @@ const EditBussinessInfo = () => {
                           />
                           <input
                             name="business_code"
-                            value={info.business_code}
+                            defaultValue={info.business_code}
                             type="text"
                             className="form-control ps-5"
                             placeholder="شناسه کسب و کار "
@@ -158,7 +177,7 @@ const EditBussinessInfo = () => {
                           />
                           <input
                             name="phone_number"
-                            value={info.phone_number}
+                            defaultValue={info.phone_number}
                             type="text"
                             className="form-control ps-5"
                             placeholder="تلفن "
@@ -179,35 +198,12 @@ const EditBussinessInfo = () => {
                           />
                           <input
                             name="address"
-                            value={info.address}
+                            defaultValue={info.address}
                             id="address"
                             type="text"
                             className="form-control ps-5"
                             placeholder="آدرس شما "
                             onChange={changeHandler}
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-6">
-                      <div className="mb-3">
-                        <label className="form-label">مدیر اصلی : </label>
-                        <div className="form-icon position-relative">
-                          <img
-                            src={businessMan}
-                            className="fea icon-sm icons"
-                            alt=""
-                          />
-                          <input
-                            name="admin_name"
-                            value={info.admin_name}
-                            id="owner"
-                            type="text"
-                            className="form-control ps-5"
-                            placeholder=" مدیر اصلی "
-                            onChange={changeHandler}
-                            style={{ height: "41px", fontSize: "14px" }}
                           />
                         </div>
                       </div>
@@ -221,14 +217,14 @@ const EditBussinessInfo = () => {
                           <label
                             htmlFor="imageInput"
                             className="btn btn-primary"
-                            style={{height: '40px'}}
+                            style={{ height: "40px" }}
                           >
                             <img
                               src={camera}
                               alt=""
                               style={{ height: "25px" }}
                             />
-                             بارگذاری عکس
+                            بارگذاری عکس
                             <input
                               id="imageInput"
                               type="file"
@@ -239,15 +235,14 @@ const EditBussinessInfo = () => {
                           </label>
                         </div>
 
-                        <div className="mt-3 text-center d-sm-flex b-image" >
-                  <img
-                    src={businessImage}
-                    className="avatar float-md-left avatar-medium rounded-circle shadow me-md-4"
-                    alt=""
-                  />
-                  </div>
-
-
+                        <div className="mt-3 text-center d-sm-flex b-image">
+                          <img
+                            src={businessImage}
+                            style={{ maxWidth: "200px", maxHeight: "200px" }}
+                            className="avatar float-md-left  shadow me-md-4"
+                            alt=""
+                          />
+                        </div>
                       </div>
                     </div>
 
