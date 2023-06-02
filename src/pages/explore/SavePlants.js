@@ -52,11 +52,7 @@ const SavePlants = () => {
     fetch();
   }, []);
 
-  const info = {
-    image: plant,
-    name: "plant",
-    category: "roze",
-  };
+
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -119,9 +115,10 @@ const SavePlants = () => {
           </div>
 
           <div className="row">
+            {data.length === 0 && (<h5 className="text-danger" style={{textAlign: 'center', color: '#ffd15a !import '}}> هنوز گیاهی ذخیره نکرده‌اید.</h5>)}
             {Array.isArray(data) &&
               data.map((item) => {
-                return <SaveCard info={item} />;
+                return <SaveCard key={item.id} info={item} />;
               })}
 
             <button
