@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getData, get } from "../../services/api";
+import { getData, get_by_token } from "../../services/api";
+import { useCookies } from "react-cookie";
 
 // Components
 import HeaderProfile from "../../components/profile/HeaderProfile";
@@ -13,36 +14,50 @@ import CommentShow from "../../components/comment/CommentShow";
 // //image
 // import garden from "../../assets/images/plants/14.jpg";
 // import plant from "../../assets/images/plants/22.png";
-// import parvaneh from "../../assets/images/temp/parvaneh.png";
+import parvaneh from "../../assets/images/temp/parvaneh.png";
 // import pl2 from "../../assets/images/verifyBG.jpg";
 
 const Garden = () => {
   const [garden_info, setGarden_info] = useState({});
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+
 
   const params = useParams();
   const garden_id = params.gerden_id;
 
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getData(`gardens/${garden_id}/`);
-      setGarden_info(data);
-    };
+  // const fetch = async () => {
+  //   return await get_by_token(`gardens/${garden_id}/`, cookies['token']);
+  //   // const data = await get_by_token(`gardens/${garden_id}/`, cookies['token']);
+  // };
 
-    fetch();
+
+  const fetchData = async () => {
+    try {
+      const data = await get_by_token(`gardens/${garden_id}/`, cookies['token']);
+      console.log(`this : ${ await get_by_token(`gardens/${garden_id}/`, cookies['token'])}`)
+      console.log(data);
+      setGarden_info(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, [garden_id]);
 
   const {
     address,
     avg_score,
     business_code,
-    // is_garden_owner,
+    is_owner,
     profile_photo,
-    // admin_name,
+    user_name,
     tolal_products,
 
-    // garden_comments,
+    scores,
     plants,
-    phoene_number,
+    phone_number,
     name,
     // business_license_image,
   } = garden_info;
@@ -93,6 +108,7 @@ const Garden = () => {
 
   return (
     <div>
+      {console.log(garden_info)}
       <HeaderProfile
         prof_info={{
           image: profile_photo,
@@ -102,12 +118,11 @@ const Garden = () => {
           link: "/home/garden/setting",
         }}
       />
-      {console.log(garden_info.avg_score)}
 
       <section className="section mt-60">
         <div className="container mt-lg-3">
           <div className="row">
-            {console.log(plants)}
+            {console.log(garden_info)}
             <GardenScore
               info={{
                 score: avg_score,
@@ -117,16 +132,16 @@ const Garden = () => {
             <div className="col-lg-8 col-12">
               <div className="border-bottom pb-4">
                 <div className="row">
-                  {/* <BusinessInfo
+                  <BusinessInfo
                     info={{
-                      business_id: business_code ,
-                      image: business_license_image ,
-                      address: address ,
-                      admin: admin_name ,
-                      phone: phoene_number ,
+                      business_id: business_code,
+                      image: parvaneh,
+                      address: address,
+                      admin: user_name,
+                      phone: phone_number,
                     }}
-                  /> 
- */}
+                  />
+
                   <h5 className="mt-4 mb-0">محصولات :</h5>
                   <div className="row">
                     {Array.isArray(plants) &&
@@ -135,10 +150,10 @@ const Garden = () => {
                           <Product
                             key={index}
                             info={{
-                              image: item.main_img,
+                              main_img: item.main_img,
                               name: item.name,
-                              category: item.type,
-                              plant_id: item.plant_id,
+                              type: item.type,
+                              id: item.id,
                             }}
                           />
                         );
@@ -163,21 +178,29 @@ const Garden = () => {
               </div>
             </div>
 
-            {/* {garden_comments.map((item) => {
-              return (
-                <CommentShow
-                  comment_info={{
-                    name: item.name,
-                    comment_message: item.comment_message,
-                    score: item.score,
-                    date: item.date,
-                    time: item.time
-                  }}
-                />
-              );
-            })}
+            <div className="col mt-4">
+              <h5> نظرات :</h5>
 
-            {!is_garden_owner && <Comment garden_id={garden_id} />} */}
+              <ul className="media-list list-unstyled mb-0">
+                {Array.isArray(scores) &&
+                  scores.map((item) => {
+                    return (
+                      <CommentShow
+                        key={item.id}
+                        comment_info={{
+                          name: item.user.name,
+                          comment_message: item.comment,
+                          score: item.score,
+                          date: item.date,
+                          profile: item.user.image,
+                        }}
+                      />
+                    );
+                  })}
+              </ul>
+            </div>
+
+             {true && <Comment garden_id={garden_id} />}
           </div>
         </div>
       </section>

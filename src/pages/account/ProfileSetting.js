@@ -26,7 +26,7 @@ const ProfileSetting = () => {
       {/* <!-- Hero Start --> */}
       <HeaderProfile
         prof_info={{
-          image: info.image,
+          image: info.image ? info.image : avatar,
           name: info.name,
           describe: "کاربر خوش قلب گرین گاردن",
           owner: false,

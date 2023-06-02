@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { changeValue } from "../../featurs/translateType";
+import { changeValue, translateType } from "../../featurs/translateType";
 // Icons
 import sun from "../../assets/icons/sun2.svg";
 import allergy from "../../assets/icons/allergy.svg";
@@ -24,9 +24,8 @@ import GardenList from "../garden/GardenList";
 const PlantGardens = ({ info }) => {
   const {
     fragrance,
-    // type,
+    type,
     light_intensity,
-    // location_type,
     water,
     growth,
     temperature,
@@ -36,6 +35,7 @@ const PlantGardens = ({ info }) => {
     edible,
     gardens,
     location_type,
+    garden_list,
   } = info;
 
 
@@ -93,11 +93,10 @@ const PlantGardens = ({ info }) => {
   };
 
   const showAllGarden = (gardens) => {
+    console.log(gardens)
     return gardens.map((item) => {
       return (
-        <Link to={`/home/garden/${item.id}`}>
           <GardenList key={item.id * 10} info={item} />
-        </Link>
       );
     });
   };
@@ -276,7 +275,7 @@ const PlantGardens = ({ info }) => {
               id="additional"
             >
               <table className="table">
-                <tbody>{showAllGarden(gardens)}</tbody>
+                <tbody>{showAllGarden(garden_list)}</tbody>
               </table>
             </div>
           )}

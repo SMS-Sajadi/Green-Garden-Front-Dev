@@ -11,22 +11,19 @@ const Slidebar = ({album}) => {
   
     return (
    
-          <div className="slide-card card-shadow" style={{borderRadius: '16px'}}>
+
+      <div className="slide-card card-shadow" style={{borderRadius: '32px'}}>
         
-        <AliceCarousel autoPlay autoPlayInterval="5000"
-          infinite={true}
-        >
-          {album.map(item => {
-               return  <img src={item} classNameName="sliderimg" alt=""/>
+      <AliceCarousel autoPlay autoPlayInterval="3000"  infinite={true}>
+
+      {Array.isArray(album) && album.map(item => {
+            return  <img src={item.image_url} className="sliderimg" alt="" />      
           })}
-         {/* <img src={image1} classNameName="sliderimg" alt=""/>
-         <img src={image2} classNameName="sliderimg" alt=""/>
-         <img src={image3} classNameName="sliderimg" alt=""/>
-         <img src={image4} classNameName="sliderimg" alt=""/> */}
+   
 
-       </AliceCarousel>
+     </AliceCarousel>
 
-       </div>
+     </div>
 
        );
 };

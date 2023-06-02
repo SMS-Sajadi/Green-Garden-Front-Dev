@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { translateType } from "../../featurs/translateType";
+
 
 // Icon
 import chervon from '../../assets/icons/chevron-right.svg';
@@ -15,13 +17,13 @@ const Card = ({item}) => {
                 <img src={main_img} className="img-fluid rounded" alt=""/>
                 <div className="overlay-work"></div>
                 <div className="content">
-                    <Link to="/" className="title text-green pb-2 border-bottom"> {name}</Link>
+                    <Link  to={`/home/plant-detail/${id}/`} className="title text-green pb-2 border-bottom"> {name}</Link>
                     <ul className="post-meta mb-0 mt-2 text-white list-unstyled">
-                        <li className="list-inline-item me-3"><i className="uil uil-bed-double me-2"></i> {type}</li>
+                        <li className="list-inline-item me-3"><i className="uil uil-bed-double me-2"></i> {translateType(type)}</li>
                     </ul>
                 </div>
                 <div className="read_more bg-primary text-center rounded-circle">
-                    <Link to={`plant-detail/${id}/`} className="text-light d-block">
+                    <Link to={`/home/plant-detail/${id}/`} className="text-light d-block">
                         <img src={chervon} alt='' className="fea icon-sm title-dark"/>
                         </Link>
                 </div>

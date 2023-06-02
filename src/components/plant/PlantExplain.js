@@ -26,7 +26,7 @@ const PlantExplain = ({ info }) => {
     <div className="container">
       <div className="row align-items-center">
         <div className="col-md-5">
-          {/*<Slidebar album={image_list}/>*/}
+          <Slidebar album={image_list}/>
           </div>
 
         <div className="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">

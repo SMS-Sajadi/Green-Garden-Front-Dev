@@ -1,14 +1,15 @@
 import React from "react";
 // Component
 import StarScore from "../score/StarScore";
+import { Link } from "react-router-dom";
 
-const GardenList = ({info}) => {
-    const {name, image, id, score} = info;
+const GardenList = ({ info }) => {
+  const { name, img, id, score } = info;
   return (
-    <tr key={id+score}>
+    <tr key={id + score}>
       <td>
         <img
-          src={image}
+          src={`http://127.0.0.1:8000/${img}`}
           alt=""
           style={{
             margin: "0px 12px",
@@ -17,15 +18,13 @@ const GardenList = ({info}) => {
             borderRadius: "50%",
           }}
         />
-        {name}
+        <Link to={`/home/garden/${id}`}>{name}</Link>
       </td>
 
       <td className="list-unstyled mb-0">
-        <div className="tdst-inline-item"
-        
-        >
+        <div className="tdst-inline-item">
           <StarScore
-            key={id*score}
+            key={id * score}
             outOf={5}
             initialRating={score}
             className="mdi mdi-star text-warning"

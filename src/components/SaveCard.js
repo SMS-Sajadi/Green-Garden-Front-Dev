@@ -34,7 +34,6 @@ const SaveCard = ({ info, icon }) => {
           </div>
           <div className="icons text-center" onClick={deletePlant}>
             
-              {icon ? console.log('yes') : console.log('no')}
               {icon ? (
                 <img src={icon} alt="" style={{height: '45px'}}/>
               ) : (

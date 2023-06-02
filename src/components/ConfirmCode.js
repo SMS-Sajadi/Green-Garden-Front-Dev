@@ -32,6 +32,31 @@ const ConfirmCode = () => {
     if (res.status === 200) {
       notify("با موفقیت ثبت نام شدید", "success");
       // set cookie
+      
+      
+      
+      const instance = axios.create({
+        baseURL: 'http://localhost:8000/',
+      });
+      
+      instance.interceptors.request.use(
+        (config) => {
+          const token = localStorage.getItem('token');
+          if (token) {
+            config.headers.Authorization = `Token ${token}`;
+          }
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+      
+      
+
+
+
+
       console.log(res.data['token'])
       setCookie("token", res.data['token'], {path: "/" });
       axios.defaults.headers.common["Authorization"] = `Token ${res.token}`;

@@ -1,17 +1,22 @@
 import React from "react";
+import { useCookies } from "react-cookie";
+
+
 // Component
 import StarScore from "../score/StarScore";
 import commentIcon from "../../assets/icons/comment.svg";
 //API
-import { post } from "../../services/api";
+import { post, post_pass } from "../../services/api";
 import { useState } from "react";
 // Icon
 import userIcon from "../../assets/icons/user-1-svgrepo-com.svg";
 
 
 const Comment = ({ garden_id }) => {
+  const [cookies, setCookie] = useCookies(["token"]);
+
+
   const [commentMessage, setCommentMassage] = useState({
-    name: "",
     score: 0,
     message: "",
   });
@@ -25,9 +30,10 @@ const Comment = ({ garden_id }) => {
   };
 
   // send comment to be saved in database
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
+    console.log(commentMessage)
     event.preventDefault();
-    post(`/garden/${garden_id}/`, commentMessage);
+    await post_pass(`gardens/${garden_id}/add_score/`, commentMessage, cookies['token']);
   };
 
   return (
@@ -48,27 +54,6 @@ const Comment = ({ garden_id }) => {
                 setCommentMassage({...commentMessage, score: newRating})
             }}
             />
-          </div>
-
-          <div className="col-lg-6">
-            <div className="mb-3">
-              <label className="form-label">
-                نام <span className="text-danger">*</span>
-              </label>
-              <div className="form-icon position-relative">
-                <img src={userIcon} alt="" className="fea icon-sm icons"/>
-                <input
-                  id="name"
-                  name="name"
-                  value={commentMessage.name}
-                  type="text"
-                  placeholder="نام"
-                  onChange={changeHandler}
-                  className="form-control ps-5"
-                  required=""
-                />
-              </div>
-            </div>
           </div>
 
           <div className="col-md-12 mt-3">
