@@ -1,10 +1,10 @@
 export const translateType = (type) => {
     switch(type){
-        case '1' : 
+        case 1 : 
             return 'خاردار'
-        case '2':
+        case 2:
             return 'گل‌دار'
-        case '3':
+        case 3:
             return 'بدون گل'
         default :
             return ''

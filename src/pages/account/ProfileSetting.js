@@ -10,14 +10,6 @@ import EditPersonalInfo from "../../components/profile/EditPersonalInfo";
 
 const ProfileSetting = () => {
   const [cookies, setCookie] = useCookies(["token"]);
-  // const [info, setInfo] = useState({
-  //   email: "mhrnzshahi@gmail.com",
-  //   id: 0,
-  //   image: "",
-  //   is_garden_owner: false,
-  //   name: "",
-  //   phone_number: "",
-  // });
 
   const [info, setInfo] = useState({});
 

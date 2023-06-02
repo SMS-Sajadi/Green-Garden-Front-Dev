@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { notify } from "../../featurs/toast";
+import { put_edit_user, post, post_pass } from "../../services/api";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+
 
 //images and icons
 import avatar from "../../assets/images/avatar-profie.svg";
@@ -8,34 +12,31 @@ import userIcon from "../../assets/icons/user-1-svgrepo-com.svg";
 import phoneIcon from "../../assets/icons/phone.svg";
 import emailIcon from "../../assets/icons/email.svg";
 import keyIcon from "../../assets/icons/key.svg";
-import { put_edit_user, post } from "../../services/api";
-import { useCookies } from "react-cookie";
-import { useEffect } from "react";
 
 const EditPersonalInfo = ({ info }) => {
   const [cookies, setCookie] = useCookies(["token"]);
   const [avatarImage, setAvatarImage] = useState();
   const [password, setPassword] = useState({
-    previous_password: "",
+    old_password: "",
     new_password: "",
     confirm_pass: "",
   });
 
   const [personalInfo, setPersonalInfo] = useState({
-    name: '',
+    name: "",
     image: info.image,
-    email: '',
+    email: "",
+    phone_number: ''
   });
 
-useEffect(() => {
-  if(!info.image){
-    setAvatarImage(avatar)
-  }
-  else{
-    setAvatarImage(info.image)
-  }
-  setPersonalInfo(info)
-}, [info])
+  useEffect(() => {
+    if (!info.image) {
+      setAvatarImage(avatar);
+    } else {
+      setAvatarImage(info.image);
+    }
+    setPersonalInfo(info);
+  }, [info]);
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -46,30 +47,29 @@ useEffect(() => {
   };
 
   const handleDeleteAvatar = () => {
-    if(avatarImage === avatar){
-      return
+    if (avatarImage === avatar) {
+      return;
     }
-    if(info.image === avatarImage){
-      setAvatarImage(avatar)
-    }
-    else if (!info.image) {
+    if (info.image === avatarImage) {
       setAvatarImage(avatar);
+    } else if (!info.image) {
+      setAvatarImage(avatar);
+    } else {
+      setAvatarImage(info.image);
     }
-    else{
-      setAvatarImage(info.image)
-    }
-
   };
 
   const submitHandeler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    formData.append('name', personalInfo.name);
+    formData.append('email', personalInfo.email);
+    formData.append('phone_number', personalInfo.phone_number);
     formData.append("image", avatarImage);
-    setPersonalInfo({ ...personalInfo, image: formData });
 
     const put_result = await put_edit_user(
       "accounts/update-user/",
-      personalInfo,
+      formData,
       cookies["token"]
     );
   };
@@ -80,7 +80,7 @@ useEffect(() => {
       [event.target.name]: event.target.value,
     });
 
-    console.log(personalInfo)
+    console.log(personalInfo);
   };
 
   const passHandeler = (event) => {
@@ -88,17 +88,30 @@ useEffect(() => {
   };
 
   const changePassword = (event) => {
+    console.log(password)
     event.preventDefault();
     if (password.confirm_pass !== password.new_password) {
       notify("پسورد یکسان نیست.", "error");
     } else {
-      const res = post(" user/edit/password", {
-        previous_password: password.previous_password,
+      try{
+      const res = post_pass("accounts/change_password/", {
+        old_password: password.old_password,
         new_password: password.new_password,
-      });
-      if (res.status === 200) notify("رمز با موفقیت تغییر یافت .");
+      }, cookies['token']);
+
+      const detail = res.data.detail;
+      console.log(detail)
+      notify(detail, "success");
+    } catch (error) {
+      console.log(error)
+      notify("خطا در تغییر رمز عبور.", "error");
     }
+
+    //   console.log(res)
+    //   if (res.status === 200) notify("رمز با موفقیت تغییر یافت .");
+    // }
   };
+}
 
   return (
     <section className="section mt-60">
@@ -133,7 +146,6 @@ useEffect(() => {
                       <button
                         className="btn btn-outline-primary mt-2 ms-2"
                         onClick={handleDeleteAvatar}
-                        
                       >
                         حذف
                       </button>
@@ -241,8 +253,8 @@ useEffect(() => {
                               />
                               <input
                                 type="password"
-                                name="previous_password"
-                                value={passHandeler.previous_password}
+                                name="old_password"
+                                value={password.old_password}
                                 className="form-control ps-5"
                                 placeholder="رمز قدیمی"
                                 required=""

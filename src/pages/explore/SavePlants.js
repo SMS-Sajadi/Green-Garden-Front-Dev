@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { getData, get_by_token } from "../../services/api";
+import { useCookies } from "react-cookie";
 //images
 import plant from "../../assets/images/3_2.svg";
 import plant2 from "../../assets/images/plants/6_2.png";
 // Component
 import SaveCard from "../../components/SaveCard";
+import { useEffect } from "react";
 
 const customStyles = {
   content: {
@@ -12,7 +15,7 @@ const customStyles = {
     left: "50%",
     right: "auto",
     bottom: "auto",
-    marginRight: '-50%',
+    marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     display: "flex",
     flexDirection: "column",
@@ -29,6 +32,24 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const SavePlants = () => {
+  const [cookies, setCookie] = useCookies(["token"]);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await get_by_token(
+        "accounts/bookmark-plant/",
+        cookies["token"]
+      );
+      console.log(res)
+
+      setData(res);
+    };
+
+    fetch();
+  }, []);
+
   const info = {
     image: plant,
     name: "plant",
@@ -47,10 +68,7 @@ const SavePlants = () => {
 
   return (
     <div>
-      <button
-        onClick={openModal}
-        className="btn btn-icon  nav-icon"
-      >
+      <button onClick={openModal} className="btn btn-icon  nav-icon">
         <i className="uil uil-heart align-middle icons"></i>
       </button>
       <Modal
@@ -59,7 +77,7 @@ const SavePlants = () => {
         style={customStyles}
         contentLabel="Example Modal"
         overlayStyle={{
-          backgroundColor: 'rgba(0, 1, 10, 0.5)',
+          backgroundColor: "rgba(0, 1, 10, 0.5)",
           zIndex: 9999,
         }}
       >
@@ -75,24 +93,12 @@ const SavePlants = () => {
           </div>
 
           <div className="row">
-            <SaveCard info={info} />
-            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
+            {console.log(data)}
+            {Array.isArray(data) &&
+              data.map((item) => {
+                return <SaveCard info={item} />;
+              })}
 
-            <SaveCard info={info} />
-            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
-            <SaveCard info={info} />
-            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
-            <SaveCard info={info} />
-            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
-
-            <SaveCard info={info} />
-            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
-
-            <SaveCard info={info} />
-            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
-
-            <SaveCard info={info} />
-            <SaveCard info={{ image: plant2, name: "nowo", category: "2m" }} />
             <button
               className="btn btn-primary me-2"
               onClick={closeModal}
@@ -102,8 +108,6 @@ const SavePlants = () => {
             </button>
           </div>
         </div>
-
-
       </Modal>
     </div>
   );
