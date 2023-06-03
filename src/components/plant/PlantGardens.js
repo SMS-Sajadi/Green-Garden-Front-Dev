@@ -35,10 +35,7 @@ const PlantGardens = ({ info }) => {
     edible,
     gardens,
     location_type,
-    garden_list,
   } = info;
-
-
 
   // const gardens = [
   //   {
@@ -93,11 +90,8 @@ const PlantGardens = ({ info }) => {
   };
 
   const showAllGarden = (gardens) => {
-    console.log(gardens)
     return gardens.map((item) => {
-      return (
-          <GardenList key={item.id * 10} info={item} />
-      );
+      return <GardenList key={item.id * 10} info={item} />;
     });
   };
 
@@ -275,7 +269,9 @@ const PlantGardens = ({ info }) => {
               id="additional"
             >
               <table className="table">
-                <tbody>{showAllGarden(garden_list)}</tbody>
+                {Array.isArray(gardens) && (
+                  <tbody>{showAllGarden(gardens)}</tbody>
+                )}
               </table>
             </div>
           )}

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext  } from "react";
 import { useParams } from "react-router-dom";
 import {  get_by_token } from "../../services/api";
 import { useCookies } from "react-cookie";
+import { StatusContext } from '../../context/StatusContext';
 
 // Components
 import HeaderProfile from "../../components/profile/HeaderProfile";
@@ -11,13 +12,12 @@ import Product from "../../components/profile/Product";
 import Comment from "../../components/comment/Comment";
 import CommentShow from "../../components/comment/CommentShow";
 
-// //image
-// import garden from "../../assets/images/plants/14.jpg";
-// import plant from "../../assets/images/plants/22.png";
+//image
+import garden from "../../assets/images/plants/14.jpg";
 import parvaneh from "../../assets/images/temp/parvaneh.png";
-// import pl2 from "../../assets/images/verifyBG.jpg";
 
 const Garden = () => {
+  const { status, setStatus } = useContext(StatusContext);
   const [garden_info, setGarden_info] = useState({});
   const [cookies, setCookie] = useCookies(["token"]);
 
@@ -29,8 +29,7 @@ const Garden = () => {
   const fetchData = async () => {
     try {
       const data = await get_by_token(`gardens/${garden_id}/`, cookies['token']);
-      console.log(`this : ${ await get_by_token(`gardens/${garden_id}/`, cookies['token'])}`)
-      console.log(data);
+      console.log(`data is ${data}`);
       setGarden_info(data);
     } catch (error) {
       console.log(error);
@@ -99,15 +98,15 @@ const Garden = () => {
     setCount(4);
   };
 
+
   return (
     <div>
-      {console.log(garden_info)}
       <HeaderProfile
         prof_info={{
-          image: profile_photo,
-          name: garden_info.name,
+          image: profile_photo ? profile_photo : garden,
+          name: garden_info.name ? garden_info.name : 'گلخانه شما',
           describe: "گلخانه",
-          owner: false,
+          owner: is_owner,
           link: "/home/garden/setting",
         }}
       />
@@ -115,10 +114,9 @@ const Garden = () => {
       <section className="section mt-60">
         <div className="container mt-lg-3">
           <div className="row">
-            {console.log(garden_info)}
             <GardenScore
               info={{
-                score: parseInt(avg_score) ,
+                score: avg_score ? parseInt(avg_score)  : 0,
                 plants_number: Array.isArray(plants) ? plants.length : 0,
               }}
             />
@@ -193,7 +191,7 @@ const Garden = () => {
               </ul>
             </div>
 
-             {!is_owner && <Comment garden_id={garden_id} />}
+             {!is_owner && status !== 'usual' && <Comment garden_id={garden_id} />}
           </div>
         </div>
       </section>

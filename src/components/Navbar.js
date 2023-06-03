@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { get_for_user } from "../services/api";
+import { get_for_user, get_by_token } from "../services/api";
+
 
 //image
 import logo from "../assets/images/green garden2.svg";
@@ -13,19 +14,12 @@ import HamburgerMenue from "./HamburgerMenu";
 
 const Navbar = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  const [status, setStatus] = useState("usal");
+  const [status, setStatus] = useState("usual");
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [gardenId, setGardenId]  = useState({});
 
-  const [result, setResult] = useState({
-    email: "",
-    id: 0,
-    image: "",
-    is_garden_owner: true,
-    name: "",
-    phone_number: "",
-  });
+  const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
   const style = {
@@ -80,12 +74,19 @@ const Navbar = () => {
 
 
   useEffect(() => {
-    console.log(result)
 
     if (error === 401) {
+      console.log('401 in')
       setStatus("usual");
     } else if(result && result.is_garden_owner) {
       setStatus("garden_owner");
+      const fetch = async () => {
+        // Get garden by garden owner token
+        setGardenId((await get_by_token("gardens/get_garden/", cookies["token"])).id);
+
+    };
+    fetch();
+    
     } else if (result) {
       setStatus("user");
     }
@@ -120,7 +121,6 @@ const Navbar = () => {
               <div className="dropdown">
 
               {/* {isMenuOpen &&           <HamburgerMenue />} */}
-
 
                 <button
                   type="button"
@@ -182,7 +182,7 @@ const Navbar = () => {
                   {status === "garden_owner" && (
                     <Link
                       className="dropdown-item text-dark"
-                      to="/home/garden/setting"
+                      to={`/home/garden/${gardenId}/`}
                     >
                       <i className="uil uil-clipboard-notes align-middle me-1"></i>{" "}
                       حساب گلخانه{" "}
@@ -219,7 +219,7 @@ const Navbar = () => {
               </li>
 
               <li className="has-submenu parent-menu-item">
-                <Link to="#">درباره ما </Link>
+                <Link to="/home/aboutUs">درباره ما </Link>
               </li>
             </ul>
           </div>
