@@ -2,14 +2,17 @@ import React from "react";
 // Component
 import StarScore from "../score/StarScore";
 import { Link } from "react-router-dom";
+//  Image
+import garden from "../../assets/images/plants/14.jpg";
+
 
 const GardenList = ({ info }) => {
-  const { name, img, id, avg_score } = info;
+  const { name, profile_photo, id, avg_score } = info;
   return (
     <tr key={id + avg_score}>
       <td>
         <img
-          src={`http://127.0.0.1:8000/${img}`}
+          src={profile_photo ? `http://127.0.0.1:8000/${profile_photo}` : garden}
           alt=""
           style={{
             margin: "0px 12px",

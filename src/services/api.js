@@ -140,10 +140,9 @@ const get_by_token = async (str, token) => {
         'Authorization': `Token ${token}`
       }
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
     return error.response.status;
   }
 };
@@ -156,7 +155,7 @@ const put_edit_user = async (str, data, token) => {
           // 'Content-Type': 'multipart/form-data',
         }
       });
-      console.log(response);
+      // console.log(response);
       return response;
     } catch (err) {
       console.log(err);
@@ -187,7 +186,7 @@ const put_edit_user = async (str, data, token) => {
           Authorization: `Token ${token}`
         }
         });
-      console.log(response.data); // logs the response from the server
+      // console.log(response.data); // logs the response from the server
     } catch (error) {
       console.error(error);
     }

@@ -45,14 +45,6 @@ const Explore = () => {
     fetchData();
   }, []);
 
-  const info = {
-    id: 2,
-    image: plantBg,
-    name: "plant",
-    category: "fall",
-  };
-
-  const showData = () => {};
 
   return (
     <div>
@@ -148,7 +140,7 @@ const Explore = () => {
 
           {Array.isArray(allPlants) &&
             allPlants.map((item) => {
-              return <HorizontalCard key={info.id} info={item} />;
+              return <HorizontalCard key={item.id} info={item} />;
             })}
 
         </div>

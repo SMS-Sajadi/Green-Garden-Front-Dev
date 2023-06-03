@@ -17,7 +17,7 @@ const PlantExplain = ({ info }) => {
 
   const [cookies, setCookie] = useCookies(["token"]);
 
-  const { name, description, light_intensity, water, type, images, id } = info;
+  const { name, description, light_intensity, water, type, images, id, main_img} = info;
 
   const savePlant = async () => {
     const res = await put(`accounts/bookmark-plant/${id}`, cookies["token"]);
@@ -32,7 +32,7 @@ const PlantExplain = ({ info }) => {
     <div className="container">
       <div className="row align-items-center">
         <div className="col-md-5">
-          {Array.isArray(images) && <Slidebar album={images} />}
+          {Array.isArray(images) && <Slidebar album={images} main_img={main_img}/>}
         </div>
 
         <div className="col-md-7 mt-4 mt-sm-0 pt-2 pt-sm-0">

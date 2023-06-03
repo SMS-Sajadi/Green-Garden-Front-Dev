@@ -18,7 +18,7 @@ const Comment = ({ garden_id }) => {
 
   const [commentMessage, setCommentMassage] = useState({
     score: 0,
-    message: "",
+    comment: "",
   });
 
   // update commentMessage
@@ -27,12 +27,14 @@ const Comment = ({ garden_id }) => {
       ...commentMessage,
       [event.target.name]: event.target.value,
     });
+
   };
 
   // send comment to be saved in database
   const submitHandler = async (event) => {
-    console.log(commentMessage)
     event.preventDefault();
+    console.log(commentMessage)
+
     await post_pass(`gardens/${garden_id}/add_score/`, commentMessage, cookies['token']);
   };
 
@@ -62,11 +64,11 @@ const Comment = ({ garden_id }) => {
               <div className="form-icon position-relative">
                 <img src={commentIcon} className="fea icon-sm icons" alt="" />
                 <textarea
-                  id="message"
+                  id="comment"
                   placeholder="کامنت شما"
                   rows="5"
-                  name="message"
-                  value={commentMessage.message}
+                  name="comment"
+                  value={commentMessage.commet}
                   onChange={changeHandler}
                   className="form-control ps-5"
                   required=""
